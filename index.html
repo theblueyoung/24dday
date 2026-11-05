@@ -1,130 +1,116 @@
 <!DOCTYPE html>
 <html lang="ko"><head><meta charset="utf-8">
+<meta name="color-scheme" content="light">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>24dday</title>
 <style>
-:root{--bg:#F2F4F6;--cd:#fff;--ink:#191F28;--sub:#8B95A1;--ln:#E5E8EB;--p:#7A4DFF;--pd:#4B2BBF;--lav:#EEE9FF;--co:#F03E3E;--gn:#12B886;--gnl:#E6F8F1;--offb:#FFE3E3;
---t2:#FFEDE3;--f2:#D9531E;--t3:#FFF3D1;--f3:#A66A00;--t4:#E3F0FF;--f4:#2F6FE0;
+:root{color-scheme:light;--bg:#fff;--gy:#F2F4F6;--cd:#fff;--ink:#191F28;--ink2:#4E5968;--sub:#8B95A1;--mute:#B0B8C1;--ln:#E5E8EB;--p:#7A4DFF;--pd:#4B2BBF;--pdd:#3A1C9C;--lav:#F1ECFF;--co:#F04452;--gn:#12B886;--gnl:#E6F8F1;--offb:#FFEBEE;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101216;--cd:#1C1F26;--ink:#F2F4F6;--sub:#9AA3AF;--ln:#2B303A;--lav:#2A2250;--pd:#C9B8FF;--gnl:#13332A;--offb:#3A1A1C;--t2:#3A2418;--f2:#FF9A6B;--t3:#38301A;--f3:#F2C14E;--t4:#172A45;--f4:#7AB0FF;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#101216;--cd:#1C1F26;--ink:#F2F4F6;--sub:#9AA3AF;--ln:#2B303A;--lav:#2A2250;--pd:#C9B8FF;--gnl:#13332A;--offb:#3A1A1C;--t2:#3A2418;--f2:#FF9A6B;--t3:#38301A;--f3:#F2C14E;--t4:#172A45;--f4:#7AB0FF;color-scheme:dark}
-*{box-sizing:border-box}html{height:100%}
-body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:15px/1.5 Pretendard,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html{height:100%}
+body{margin:0;height:100%;background:var(--gy);color:var(--ink);font:16px/1.5 Pretendard,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;letter-spacing:-.2px}
 #app{position:relative;max-width:430px;height:100%;margin:0 auto;display:flex;flex-direction:column;background:var(--bg);overflow:hidden}
-#scr{flex:1;overflow-y:auto;padding-bottom:24px}
-h1{font-size:25px;line-height:1.35;margin:6px 0 0;font-weight:700}
-h2{font-size:22px;margin:0;font-weight:700}small,.sb{color:var(--sub);font-size:13px}
-.hd{display:flex;justify-content:space-between;align-items:flex-start;padding:22px 20px 6px}
-.c{background:var(--cd);border-radius:22px;padding:18px;margin:12px 14px}
+#scr{flex:1;overflow-y:auto;padding-bottom:32px}
+h1{font-size:26px;line-height:1.35;margin:6px 0 0;font-weight:700}
+h2{font-size:24px;margin:0;font-weight:700}small,.sb{color:var(--sub);font-size:14px}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;padding:24px 20px 16px}
+.c{background:var(--cd);padding:24px 20px;border-top:12px solid var(--gy)}
 .row{display:flex;align-items:center;gap:10px}.sp{justify-content:space-between}
-a,[data-a]{cursor:pointer}a{color:var(--pd);font-size:13px;text-decoration:none;font-weight:600}
-button,select,input,textarea{font:inherit;color:inherit}
-.btn{display:block;width:100%;border:0;border-radius:16px;background:var(--p);color:#fff;font-weight:600;padding:15px;margin-top:12px;font-size:16px}
-.btn.lv{background:var(--lav);color:var(--pd)}.btn.gh{background:none;color:var(--sub)}.btn.rd{background:var(--co)}
-.btn.ol{background:none;border:1.5px solid var(--p);color:var(--pd)}
-.b2{border:0;border-radius:10px;background:var(--lav);color:var(--pd);padding:8px 12px;font-size:13px;font-weight:600}
-.bo{border:1px solid var(--ln);border-radius:9px;background:var(--cd);color:var(--ink);padding:5px 10px;font-size:12px;font-weight:600;flex:none}
+a,[data-a]{cursor:pointer}a{color:var(--ink2);font-size:14px;text-decoration:none;font-weight:600}
+button,select,input,textarea{font:inherit;color:inherit;letter-spacing:inherit}
+.btn{display:block;width:100%;border:0;border-radius:16px;background:var(--p);color:#fff;font-weight:700;padding:16px;margin-top:12px;font-size:17px}
+.btn.lv{background:var(--lav);color:var(--pd)}.btn.gh{background:none;color:var(--sub);font-weight:600}.btn.rd{background:var(--co)}.btn.gy{background:var(--gy);color:var(--ink2)}
+.b2{border:0;border-radius:12px;background:var(--gy);color:var(--ink2);padding:10px 14px;font-size:15px;font-weight:600}
+.bo{border:0;border-radius:9px;background:var(--gy);color:var(--ink2);padding:7px 11px;font-size:13px;font-weight:600;flex:none}
 .bo.dl{color:var(--co)}
-.pb{border:0;border-radius:10px;background:var(--p);color:#fff;font-size:13px;font-weight:600;padding:7px 12px}
-.ch{display:inline-block;background:var(--lav);color:var(--pd);border-radius:10px;padding:2px 9px;font-size:12px;font-weight:600}
-.ch.g{background:var(--gnl);color:var(--gn)}
-.co{color:var(--co)}.gtx{color:var(--gn)}.on{background:var(--p);color:#fff}
-input,select,textarea{width:100%;background:var(--bg);border:0;border-radius:10px;padding:11px 12px;margin-top:6px}
-textarea{min-height:110px}label{display:block;font-size:13px;color:var(--sub);margin-top:12px}
-.pill{display:flex;gap:6px;padding:4px 14px 0}.pill button{border:0;border-radius:16px;padding:7px 14px;background:var(--cd);font-size:14px}.pill button.on{background:var(--p);color:#fff}
-.li{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--ln)}.li:first-child,.shd+.li,.sgh+.li,b+.li{border-top:0}.li>div{flex:1;min-width:0}
-.d{width:12px;height:12px;border-radius:50%;border:2px solid #B9AEE8;flex:none}.d.dn{background:var(--gn);border-color:var(--gn)}
-/* 진행 스트립 */
-.metro{display:flex;margin:18px 0 6px}
-.st{flex:1;text-align:center;position:relative;font-size:11px}
-.st i{display:block;width:14px;height:14px;border-radius:50%;margin:2px auto 8px;background:var(--cd);border:2px solid #B9AEE8;position:relative;z-index:1}
-.st.dn i{background:var(--gn);border-color:var(--gn)}.st.cur i{width:20px;height:20px;margin:-1px auto 5px;border:5px solid var(--p)}
-.st::before{content:"";position:absolute;top:8px;left:-50%;width:100%;height:3px;background:var(--lav)}
-.st:first-child::before{display:none}.st.dn::before{background:var(--gn)}.st.cur::before{background:var(--gn)}
-.st b{display:block;font-size:12px;font-weight:600;white-space:nowrap}.st span{color:var(--sub)}
-.st.cur i{animation:pl 2.2s ease-out infinite}@keyframes pl{0%{box-shadow:0 0 0 0 rgba(122,77,255,.45)}100%{box-shadow:0 0 0 12px rgba(122,77,255,0)}}
-.bar{height:8px;border-radius:4px;background:var(--lav);overflow:hidden;display:flex}.bar i{display:block;height:100%}
-/* 상단 바 */
-.top{display:flex;justify-content:space-between;align-items:center;padding:16px 16px 10px}
-.logo{display:flex;align-items:center;gap:8px;font-size:21px;font-weight:800;letter-spacing:-.6px}.logo svg{width:34px;height:34px;flex:none}
-.inv{display:flex;align-items:center;gap:6px;border:0;background:var(--lav);color:var(--pd);border-radius:19px;padding:6px 11px 6px 6px;font-size:12px;font-weight:600}
-.inv .ip{width:26px;height:26px;border-radius:50%;background:var(--p);color:#fff;display:grid;place-items:center}.inv .ip svg{width:16px;height:16px}
-.inv b{font-size:14px}
-.bell{width:40px;height:40px;border-radius:50%;border:0;background:var(--cd);display:grid;place-items:center;position:relative;color:var(--ink);padding:0}
+.pb{border:0;border-radius:10px;background:var(--p);color:#fff;font-size:14px;font-weight:700;padding:8px 13px}
+.ch{display:inline-block;background:var(--lav);color:var(--pd);border-radius:8px;padding:3px 9px;font-size:13px;font-weight:700}
+.ch.g{background:var(--gnl);color:var(--gn)}.ch.n{background:var(--gy);color:var(--sub)}
+.co{color:var(--co)}.gtx{color:var(--gn)}.on{background:var(--p)!important;color:#fff!important}
+input,select,textarea{width:100%;background:var(--gy);border:0;border-radius:12px;padding:14px;margin-top:8px;font-size:16px}
+textarea{min-height:110px}label{display:block;font-size:14px;color:var(--ink2);margin-top:16px;font-weight:600}
+.pill{display:flex;gap:6px;padding:0 20px 16px}.pill button{border:0;border-radius:18px;padding:8px 16px;background:var(--gy);color:var(--ink2);font-size:15px;font-weight:600}
+.li{display:flex;align-items:center;gap:12px;padding:14px 0}.li>div{flex:1;min-width:0}
+.li .nm{font-size:16px;font-weight:600}.li small{font-size:13px}
+.d{width:12px;height:12px;border-radius:50%;border:2px solid var(--mute);flex:none}.d.dn{background:var(--p);border-color:var(--p)}
+.bar{height:8px;border-radius:4px;background:var(--gy);overflow:hidden;display:flex}.bar i{display:block;height:100%}
+.sh2{display:flex;align-items:center;gap:8px;font-weight:700;font-size:20px}
+.shd{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+/* 상단 */
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 20px 8px}
+.logo{display:flex;align-items:center;gap:8px;font-size:21px;font-weight:800;letter-spacing:-.6px}.logo svg{width:32px;height:32px;flex:none}
+.inv{display:flex;align-items:center;gap:6px;border:0;background:var(--lav);color:var(--pd);border-radius:20px;padding:5px 12px 5px 5px;font-size:13px;font-weight:600}
+.inv .ip{width:28px;height:28px;border-radius:50%;background:var(--p);color:#fff;display:grid;place-items:center}.inv .ip svg{width:17px;height:17px}.inv b{font-size:14px}
+.bell{width:40px;height:40px;border-radius:50%;border:0;background:var(--gy);display:grid;place-items:center;position:relative;color:var(--ink2);padding:0}
 .bell svg{width:22px;height:22px}.bell.off{color:var(--co);background:var(--offb)}
 .bell .x{position:absolute;top:4px;right:3px;width:16px;height:16px;border-radius:50%;background:var(--co);display:grid;place-items:center;border:2px solid var(--offb)}
 .bell .x svg{width:8px;height:8px;color:#fff}
 /* 히어로 */
-.hero{margin:2px 14px 0;border-radius:26px;padding:20px 20px 14px;color:#fff;background:linear-gradient(140deg,#8B5CFF,#5B33E0);box-shadow:0 14px 30px -12px rgba(91,51,224,.55)}
-.htop{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-.hs{font-size:13px;opacity:.85}.big{font-size:54px;font-weight:800;line-height:1.05;letter-spacing:-2px;margin:2px 0}
-.seg{display:flex;background:rgba(255,255,255,.16);border-radius:12px;padding:3px;flex:none}
-.seg button{border:0;background:none;color:#fff;opacity:.8;font-size:12px;padding:5px 9px;border-radius:9px}
-.seg button.on{background:#fff;color:#5B33E0;opacity:1;font-weight:700}
-.pc{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;font-size:12px}
-.pc b{color:#FFD43B;font-size:22px;font-weight:800}.pc span{opacity:.85}
-.yb{height:10px;border-radius:5px;background:rgba(255,255,255,.2);overflow:hidden;margin-top:6px}.yb i{display:block;height:100%;background:#FFD43B;border-radius:5px}
-.hero .metro{margin:20px -6px 4px}
-.hero .st i{background:#5B33E0;border-color:rgba(255,255,255,.45)}
-.hero .st::before{background:rgba(255,255,255,.22)}
-.hero .st.dn i{background:#3DDC97;border-color:#3DDC97}.hero .st.dn::before,.hero .st.cur::before{background:#3DDC97}
-.hero .st.cur i{background:#fff;border-color:#FFD43B;animation-name:py}
-.hero .st span{color:rgba(255,255,255,.65)}.hero .st b{opacity:.7;font-weight:500}
-.hero .st.dn b{opacity:1;color:#B6F5D8}.hero .st.cur b{opacity:1;color:#FFD43B;font-weight:800}
-@keyframes py{0%{box-shadow:0 0 0 0 rgba(255,212,59,.6)}100%{box-shadow:0 0 0 12px rgba(255,212,59,0)}}
-.lg2{display:flex;gap:10px;font-size:11px;opacity:.85;align-items:center}.lg2 i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
-.hed{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
-.hed button{border:0;background:rgba(255,255,255,.18);color:#fff;border-radius:10px;padding:7px 11px;font-size:12px;font-weight:600}
-@media(prefers-reduced-motion:reduce){.st.cur i{animation:none!important}}
-/* 아이콘 타일 */
-.ti{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;flex:none}.ti svg{width:21px;height:21px}.ti.dn{opacity:.45}
-.ti.sm{width:30px;height:30px;border-radius:10px}.ti.sm svg{width:17px;height:17px}
-.t1{background:var(--lav);color:var(--pd)}.t2{background:var(--t2);color:var(--f2)}.t3{background:var(--t3);color:var(--f3)}.t4{background:var(--t4);color:var(--f4)}
-.c1{color:var(--pd)}.c2{color:var(--f2)}.c3{color:var(--f3)}.c4{color:var(--f4)}
-.yl{background:#FFF6D6}
-.shd{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.sh2{display:flex;align-items:center;gap:9px;font-weight:700;font-size:17px}
-/* 체크박스 · 배지 */
-.cb{width:26px;height:26px;border-radius:8px;border:2px solid #C9CED6;background:var(--cd);flex:none;display:grid;place-items:center;padding:0;color:transparent}
-.cb svg{width:15px;height:15px}.cb.on{background:var(--gn);border-color:var(--gn);color:#fff}
-.dnx{color:var(--sub);text-decoration:line-through}
-.av{width:34px;height:34px;border-radius:50%;display:inline-grid;place-items:center;color:#fff;font-size:11px;font-weight:700;flex:none;letter-spacing:-.5px}
-.av.lg{width:60px;height:60px;font-size:17px}
-.sgh{display:flex;align-items:center;gap:10px;margin-bottom:4px}
-.sgh b{font-size:16px}
-.tile{display:flex;flex-direction:column;align-items:flex-start;gap:12px;border-radius:18px;padding:16px;background:var(--bg);font-weight:600;border:0;text-align:left}
-.tile small{display:block;font-weight:400}
-.gr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.chips button{border:1px solid var(--ln);background:var(--cd);border-radius:16px;padding:6px 12px;font-size:13px}
-.chips button.on{background:var(--p);border-color:var(--p);color:#fff}
-.est{background:var(--lav)}
-.est .v{font-size:26px;font-weight:700;color:var(--pd)}
-nav{display:flex;background:var(--cd);border-top:1px solid var(--ln);padding:6px 6px 4px}
-nav button{flex:1;border:0;background:none;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:500;color:var(--sub)}
-nav button svg{width:24px;height:24px}nav button.on{background:none;color:var(--p);font-weight:700}nav button.on svg{fill:var(--lav)}
-#sh{position:absolute;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;z-index:5}
-#sh>div{width:100%;background:var(--cd);border-radius:20px 20px 0 0;padding:20px 18px 24px;max-height:90%;overflow:auto}
-#tt{position:absolute;left:50%;bottom:84px;transform:translateX(-50%);background:#191F28;color:#fff;border-radius:12px;padding:10px 16px;font-size:13px;display:none;z-index:9;max-width:90%;text-align:center}
-.wr{background:#FFECEC;color:#C0282D;border-radius:12px;padding:10px 14px;margin:10px 14px;font-size:13px}
-.pk{display:flex;gap:8px;margin-top:8px}.pk button{width:32px;height:32px;border-radius:50%;border:3px solid transparent;padding:0}.pk button.on{border-color:var(--ink)}
-.hero{position:relative;overflow:hidden}.hero>*{position:relative}
+.hero{position:relative;overflow:hidden;margin:8px 20px 24px;border-radius:24px;padding:20px;color:#fff;background:linear-gradient(140deg,#8B5CFF,#5B33E0)}
+.hero>*{position:relative}
 .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.07)}
-.hero::before{width:220px;height:220px;right:-80px;top:-90px}.hero::after{width:170px;height:170px;right:-60px;top:150px}
-.loc{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.16);border-radius:16px;padding:6px 12px;font-size:13px;font-weight:600;min-width:0}.loc svg{width:16px;height:16px;flex:none}
-.big span{font-size:20px;font-weight:600;letter-spacing:0;margin-left:6px;opacity:.9}
-.hdv{height:1px;background:rgba(255,255,255,.25);margin:16px 0 0}
-.yb{background:rgba(40,10,120,.35)}
-.avs{display:flex}.avs .av{border:2.5px solid #fff;margin-left:-10px;width:36px;height:36px}.avs .av:first-child{margin-left:0}
-.sec{display:flex;justify-content:space-between;align-items:center;margin:22px 18px 4px}
-.stl{margin:8px 14px 0 20px;padding-left:14px;border-left:3px solid var(--lav)}
-.sc{display:block;width:100%;text-align:left;border:1.5px solid var(--ln);background:var(--cd);border-radius:20px;padding:16px;margin-bottom:12px}
-.sc b{display:block;font-size:16px;margin-top:10px}.sc small{display:block;margin-top:2px}
-.stg{display:inline-flex;align-items:center;gap:5px;border-radius:8px;padding:4px 9px;font-size:13px;font-weight:700}.stg svg{width:14px;height:14px}
-.sa{font-size:14px;font-weight:700;color:var(--sub)}
-.sc.dn .stg{background:var(--gnl);color:var(--gn)}
-.sc.cur{border-color:var(--p);box-shadow:0 6px 18px -10px rgba(122,77,255,.6)}.sc.cur .stg{background:var(--lav);color:var(--pd)}.sc.cur .sa{color:var(--pd)}
-.sc.fu{background:var(--bg)}.sc.fu .stg{background:var(--ln);color:var(--sub)}.sc.fu b{color:var(--sub)}
+.hero::before{width:220px;height:220px;right:-80px;top:-90px}.hero::after{width:170px;height:170px;right:-60px;top:160px}
+.htop{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.loc{display:flex;align-items:center;gap:6px;border:0;color:#fff;background:rgba(255,255,255,.18);border-radius:16px;padding:7px 12px;font-size:14px;font-weight:600;min-width:0}.loc svg{width:16px;height:16px;flex:none}.loc .ed{opacity:.7;font-size:12px}
+.hbt{border:0;background:rgba(255,255,255,.18);color:#fff;border-radius:12px;padding:7px 11px;font-size:13px;font-weight:600;flex:none}
+.hs{font-size:14px;opacity:.85}
+.big{font-size:56px;font-weight:800;line-height:1.05;letter-spacing:-2px;margin:4px 0 0}.big span{font-size:20px;font-weight:600;letter-spacing:0;margin-left:6px;opacity:.9}
+.nowc{display:inline-block;margin-top:12px;background:var(--pdd);color:#fff;border-radius:10px;padding:5px 11px;font-size:13px;font-weight:700}
+.hdv{height:1px;background:rgba(255,255,255,.25);margin:18px 0 0}
+.pc{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;font-size:14px}
+.pc b{color:#FFD43B;font-size:24px;font-weight:800}.pc span{opacity:.9}
+.yb{height:10px;border-radius:5px;background:rgba(40,10,120,.35);overflow:hidden;margin-top:8px}.yb i{display:block;height:100%;background:#FFD43B;border-radius:5px}
+.avs{display:flex}.avs .av{border:2px solid #fff;margin-left:-9px}.avs .av:first-child{margin-left:0}
+/* 아이콘 */
+.ti{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;flex:none;background:var(--lav);color:var(--pd)}.ti svg{width:21px;height:21px}
+.ti.sm{width:28px;height:28px;border-radius:9px}.ti.sm svg{width:17px;height:17px}.yl{background:#FFF6D6}
+/* 체크 · 배지 */
+.cb{width:26px;height:26px;border-radius:50%;border:2px solid #D1D6DB;background:#fff;flex:none;display:grid;place-items:center;padding:0;color:#D1D6DB}
+.cb svg{width:14px;height:14px}.cb.on{background:var(--p);border-color:var(--p);color:#fff}
+.dnx{color:var(--mute)!important;text-decoration:line-through}
+.av{width:32px;height:32px;border-radius:50%;display:inline-grid;place-items:center;color:#fff;font-size:11px;font-weight:700;flex:none;letter-spacing:-.5px}
+.av.lg{width:60px;height:60px;font-size:17px}
+.avs.sm .av{width:30px;height:30px;font-size:10px;margin-left:-6px}.avs.sm .av:first-child{margin-left:0}
+/* 단계 */
+.stp{position:relative;display:flex;gap:14px;padding:0 0 4px;width:100%;border:0;background:none;text-align:left}
+.stp .rl{display:flex;flex-direction:column;align-items:center;flex:none}
+.stp .rl i{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:14px;font-weight:800}
+.stp .rl i svg{width:16px;height:16px}
+.stp .rl::after{content:"";width:2px;flex:1;min-height:18px;background:var(--ln);margin:4px 0}
+.stp:last-child .rl::after{display:none}
+.stp .bx{flex:1;min-width:0;padding:3px 0 18px}
+.stp.cur .bx{background:var(--lav);border-radius:16px;padding:14px;margin:-11px 0 14px}
+.stp .t{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.stp .t b{font-size:17px}.stp .t span{font-size:15px;font-weight:700;white-space:nowrap}
+.stp .ds{font-size:14px;margin-top:2px;color:var(--ink2)}
+.stp.dn i{background:var(--gn);color:#fff}.stp.dn b,.stp.dn .t span{color:var(--gn)}
+.stp.cur i{background:var(--p);color:#fff;box-shadow:0 0 0 5px rgba(122,77,255,.18)}.stp.cur b,.stp.cur .t span{color:var(--pd)}
+.stp.fu i{background:var(--gy);color:var(--mute)}.stp.fu b,.stp.fu .t span,.stp.fu .ds{color:var(--mute)}
+.stp .bar{margin-top:10px;background:#fff}.stp .bar i{background:var(--p)}
+/* 일정 단계 묶음 */
+.sgh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.sgh i{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:14px;font-weight:800;flex:none}.sgh i svg{width:16px;height:16px}
+.sgh b{font-size:19px;flex:1}
+.g-dn .sgh i{background:var(--gn);color:#fff}.g-dn .sgh b{color:var(--gn)}
+.g-cur .sgh i{background:var(--p);color:#fff}.g-cur .sgh b{color:var(--pd)}
+.g-fu .sgh i{background:var(--gy);color:var(--mute)}.g-fu .sgh b{color:var(--mute)}
+.g-fu .li .nm{color:var(--ink2)}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:12px;border-radius:18px;padding:18px 16px;background:var(--gy);font-weight:700;font-size:16px;border:0;text-align:left}
+.tile .ti{background:#fff}.tile small{display:block;font-weight:500}
+.gr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chips button{border:0;background:var(--gy);color:var(--ink2);border-radius:18px;padding:8px 14px;font-size:14px;font-weight:600}
+.est{background:var(--lav);border-radius:20px;padding:20px;margin:0 20px 8px}
+.est .v{font-size:28px;font-weight:800;color:var(--pd);margin:2px 0}
+nav{display:flex;background:#fff;border-top:1px solid var(--ln);padding:6px 6px 4px}
+nav button{flex:1;border:0;background:none;padding:8px 0;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:600;color:var(--mute)}
+nav button svg{width:24px;height:24px}nav button.on{background:none!important;color:var(--ink)!important}
+#sh{position:absolute;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;z-index:5}
+#sh>div{width:100%;background:#fff;border-radius:24px 24px 0 0;padding:26px 20px 24px;max-height:90%;overflow:auto}
+#sh h2{font-size:22px}
+#tt{position:absolute;left:50%;bottom:84px;transform:translateX(-50%);background:#333D4B;color:#fff;border-radius:14px;padding:12px 18px;font-size:14px;display:none;z-index:9;max-width:90%;text-align:center}
+.wr{background:#FFEBEE;color:#C0282D;border-radius:14px;padding:12px 14px;margin:0 20px 16px;font-size:14px}
+.pk{display:flex;gap:8px;margin-top:8px}.pk button{width:34px;height:34px;border-radius:50%;border:3px solid transparent;padding:0}.pk button.on{border-color:var(--ink)}
+.kv{display:flex;justify-content:space-between;padding:10px 0;font-size:15px}.kv span{color:var(--sub)}.kv b{font-weight:600}
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--p);outline-offset:2px}
 </style></head>
 <body><div id="app"><div id="scr"></div><nav id="nv"></nav><div id="sh"></div><div id="tt"></div></div>
@@ -132,7 +118,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 const TODAY=Date.UTC(2026,10,5),DAY=864e5,$=s=>document.querySelector(s);
 const PC=['#7A4DFF','#FF8A4C','#3B82F6','#E64980','#F59F00','#15AABF'];
 const STG=[{k:1,n:'계약금 단계',m:'c1'},{k:2,n:'중도금 단계',m:'c2'},{k:3,n:'잔금 단계',m:'bal'},{k:4,n:'이사 단계',m:'mi'}];
-const S={pg:'onb',sub:'list',type:'매매',int:1,base:Date.UTC(2026,10,28),sh:null,svc:null,q:{},bell:1,
+const S={pg:'onb',sub:'list',type:'매매',int:1,base:Date.UTC(2026,10,28),sh:null,svc:null,q:{},bell:1,addr:{from:'서울 송파구 잠실동',to:'성남 분당구 정자동'},
 banks:[5000,4000,3000],
 docs:[['신분증',1],['인감증명서',0],['등기부등본',1],['계약서 사본',1],['대출 서류',0],['이사업체 계약서',0]],
 pp:[{id:'me',n:'유영',rel:'나',c:0},{id:'p2',n:'민수',rel:'배우자',c:1}],
@@ -187,75 +173,76 @@ doc:'<path d="M7 3h7l4 4v13H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>',coin:'<c
 const ic=(k,sw=1.8)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]}</svg>`;
 const BOLT='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2L4.5 13.5h6.5L9.5 22l10-12.5h-6.8z" fill="#FFC633" stroke="#E5A100" stroke-width="1.3" stroke-linejoin="round"/></svg>';
 const LOGO='<svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9B6BFF"/><stop offset="1" stop-color="#5B33E0"/></linearGradient></defs><rect width="40" height="40" rx="12" fill="url(#lg)"/><path d="M10 19.5L20 11l10 8.5V29a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 10 29z" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><path d="M15.5 22.5l3.3 3.3 6-6.3" fill="none" stroke="#FFD43B" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const et=(e,sm)=>`<span class="ti t${e.st}${sm?' sm':''}${done(e)?' dn':''}">${ic(e.i)}</span>`;
-const cb=e=>`<button class="cb ${done(e)?'on':''}" data-a="chk" data-id="${e.id}" aria-pressed="${done(e)}" aria-label="${e.n} 완료">${ic('check',2.6)}</button>`;
-const who=w=>w==='all'?{n:'함께',col:'#9AA3AF'}:(()=>{const p=S.pp.find(x=>x.id===w)||S.pp[0];return{n:p.n,col:PC[p.c]}})();
+const et=e=>`<span class="ti">${ic(e.i)}</span>`;
+const cb=e=>`<button class="cb ${done(e)?'on':''}" data-a="chk" data-id="${e.id}" aria-pressed="${done(e)}" aria-label="${e.n} 완료">${ic('check',3)}</button>`;
+const who=w=>{const p=S.pp.find(x=>x.id===w)||S.pp[0];return{n:p.n,col:PC[p.c]}};
 const short=n=>n.length>2?n.slice(-2):n;
-const bd=(w,lg)=>{const p=who(w);return`<span class="av${lg?' lg':''}" style="background:${p.col}" title="담당: ${esc(p.n)}">${esc(short(p.n))}</span>`};
-const wopt=s=>[...S.pp.map(p=>[p.id,p.n+(p.id==='me'?' (나)':'')]),['all','함께']].map(o=>`<option value="${o[0]}" ${s===o[0]?'selected':''}>${esc(o[1])}</option>`).join('');
-function metro(){const L=vis().filter(e=>e.big),k=L.findIndex(e=>!done(e));
-return'<div class="metro">'+L.map((e,i)=>`<div class="st ${done(e)?'dn':''} ${i===k?'cur':''}"><i></i><b>${e.mn||e.n}</b><span>${md(dt(e))}</span></div>`).join('')+'</div>'}
+const av=(w,lg)=>{const p=who(w);return`<span class="av${lg?' lg':''}" style="background:${p.col}" title="${esc(p.n)}">${esc(short(p.n))}</span>`};
+const bd=(w,lg)=>w==='all'?`<span class="avs sm" title="함께">${S.pp.map(p=>av(p.id)).join('')}</span>`:av(w,lg);
+const wopt=s=>[...S.pp.map(p=>[p.id,p.n+(p.id==='me'?' (나)':'')]),['all','함께 (모두)']].map(o=>`<option value="${o[0]}" ${s===o[0]?'selected':''}>${esc(o[1])}</option>`).join('');
+const stS=g=>{const G=vis().filter(e=>e.st===g.k);return G.every(done)?'dn':g===curStg()?'cur':'fu'};
+const stI=(g,st)=>st==='dn'?ic('check',3):g.k;
+const shortA=a=>a.split(' ').pop();
 function warn(){const c=E('cl'),m=E('mv');return dt(c)>=dt(m)?'<div class="wr">입주청소 날짜가 이사일과 겹쳐요. 청소는 이사 전날까지 잡아주세요.</div>':''}
 
 const P={};
-P.onb=()=>`<div class="hd"><div><div class="logo">${LOGO}24dday</div><h1 style="margin-top:14px">어떤 이사를<br>준비하세요?</h1></div></div><div class="c"><b>거래 유형</b><div class="row" style="margin-top:10px;flex-wrap:wrap">${['매매','전세','월세'].map(t=>`<button class="b2 ${S.type===t?'on':''}" data-a="type" data-v="${t}">${t}</button>`).join('')}</div>
+P.onb=()=>`<div class="hd"><div><div class="logo">${LOGO}24dday</div><h1 style="margin-top:20px">어떤 이사를<br>준비하세요?</h1></div></div><div class="c" style="border-top:0"><label style="margin:0">거래 유형</label><div class="row" style="margin-top:10px;flex-wrap:wrap">${['매매','전세','월세'].map(t=>`<button class="b2 ${S.type===t?'on':''}" data-a="type" data-v="${t}">${t}</button>`).join('')}</div>
 <label>잔금일 (이사 들어가는 날이 아니라 돈을 다 치르는 날)</label><input type="date" id="ob" value="${iso(S.base)}">
-<label>인테리어를 하나요?</label><div class="row">${[1,0].map(t=>`<button class="b2 ${S.int===t?'on':''}" data-a="int" data-v="${t}">${t?'해요':'안 해요'}</button>`).join('')}</div></div>
-<div class="c"><button class="btn" style="margin:0" data-a="start">시작하기</button><p class="sb" style="margin:10px 0 0">오늘 날짜는 시연용으로 2026년 11월 5일에 맞춰져 있어요.</p></div>`;
+<label>인테리어를 하나요?</label><div class="row" style="margin-top:10px">${[1,0].map(t=>`<button class="b2 ${S.int===t?'on':''}" data-a="int" data-v="${t}">${t?'해요':'안 해요'}</button>`).join('')}</div>
+<button class="btn" style="margin-top:28px" data-a="start">시작하기</button><p class="sb" style="margin:10px 0 0">오늘 날짜는 시연용으로 2026년 11월 5일에 맞춰져 있어요.</p></div>`;
 
 P.home=()=>{const L=vis(),n=L.filter(done).length,pct=Math.round(n/L.length*100),cs=curStg(),T=L.filter(e=>e.st===cs.k),td=T.filter(done).length,d=dday();
 return`<div class="top"><div class="logo">${LOGO}24dday</div><div class="row" style="gap:8px">
 <button class="inv" data-a="inv" aria-label="일정 함께 관리할 사람 초대하기"><span class="ip">${ic('uplus',2)}</span><span>공유 <b>${S.pp.length}</b>명 참여중</span></button>
 <button class="bell ${S.bell?'':'off'}" data-a="bell" aria-pressed="${!S.bell}" aria-label="${S.bell?'알림 끄기':'알림 켜기'}">${ic('bell',2)}${S.bell?'':`<span class="x">${ic('x',3.5)}</span>`}</button></div></div>
-<div class="hero"><div class="htop"><span class="loc">${ic('pin',2)}잠실동 → 정자동</span>
-<div class="seg" role="group" aria-label="거래 유형">${['매매','전세','월세'].map(t=>`<button class="${S.type===t?'on':''}" data-a="type" data-v="${t}">${t}</button>`).join('')}</div></div>
-<div class="hs" style="margin-top:16px">잔금까지 · ${md(S.base)} 잔금일</div><div class="big">${d>0?'D-'+d:d===0?'D-day':'D+'+(-d)}<span>${d>0?'일 남음':''}</span></div>
+<div class="hero"><div class="htop"><button class="loc" data-a="addr" aria-label="이사 주소 수정">${ic('pin',2)}${esc(shortA(S.addr.from))} → ${esc(shortA(S.addr.to))}</button><button class="hbt" data-a="go" data-p="tl" data-s="list">날짜 편집 ›</button></div>
+<div class="hs" style="margin-top:18px">${md(S.base)} 잔금일</div><div class="big">${d>0?'D-'+d:d===0?'D-day':'D+'+(-d)}<span>${d>0?'일 남음':''}</span></div>
+<span class="nowc">지금은 ${cs.n}</span>
 <div class="hdv"></div>
-<div class="pc"><span>공동 체크리스트 진행률</span><b>${pct}%</b></div><div class="yb"><i style="width:${pct}%"></i></div>
-<div class="row sp" style="margin-top:10px"><span class="hs">지금까지 <b>${n}개</b> 완료 · 전체 ${L.length}개</span><span class="avs">${S.pp.map(p=>bd(p.id)).join('')}</span></div>
-${metro()}
-<div class="hed"><div class="lg2"><span><i style="background:#3DDC97"></i>완료</span><span><i style="background:#FFD43B"></i>지금</span><span><i style="background:rgba(255,255,255,.45)"></i>예정</span></div><button data-a="go" data-p="tl" data-s="list">날짜 편집 ›</button></div></div>
-<div class="c"><div class="shd"><div class="sh2"><span class="ti sm yl">${BOLT}</span>해야 할 일</div><span class="ch">${cs.n} · ${td}/${T.length}</span></div>
-${T.map(e=>`<div class="li">${cb(e)}<div><div class="${done(e)?'dnx':''}">${e.n}</div><small>${md(dt(e))} · ${done(e)?'<span class="gtx">완료</span>':dl(e)}</small></div>${bd(e.w)}</div>`).join('')}</div>
-<div class="sec"><div class="sh2"><span class="ti sm t1">${ic('tl')}</span>단계별 주요일정</div><a data-a="go" data-p="tl" data-s="list">자세히 보기 ›</a></div>
-<div class="stl">${STG.map(g=>{const G=L.filter(e=>e.st===g.k),m=E(g.m),dn=G.every(done),cur=g===cs,K=G.filter(e=>!e.big),p=S.plan[g.m];
-const tag=dn?`${ic('check',2.6)}${g.k}단계: ${g.n.replace(' 단계','')} 완료`:cur?`${g.k}단계: ${g.n} (현재)`:`${g.k}단계: ${g.n} (${dl(m)})`;
-return`<button class="sc ${dn?'dn':cur?'cur':'fu'}" data-a="go" data-p="tl" data-s="list"><div class="row sp"><span class="stg">${tag}</span><span class="sa">${p?esc(p.amt):md(dt(m))}</span></div>
-<b>${K.slice(0,3).map(e=>e.n.replace(/ (송금|받기|비교|확인|알아보기)$/,'')).join(' · ')||g.n}${K.length>3?` 외 ${K.length-3}개`:''}</b><small>${md(dt(G[0]))} ~ ${md(dt(G[G.length-1]))} · 할 일 ${G.filter(done).length}/${G.length}</small></button>`}).join('')}</div>`};
+<div class="pc"><span>진행률</span><b>${pct}%</b></div><div class="yb"><i style="width:${pct}%"></i></div>
+<div class="row sp" style="margin-top:12px"><span class="hs">지금까지 <b>${n}개</b> 완료 · 전체 ${L.length}개</span><span class="avs">${S.pp.map(p=>av(p.id)).join('')}</span></div></div>
+<div class="c"><div class="shd"><div class="sh2"><span class="ti sm yl">${BOLT}</span>해야 할 일</div><span class="ch">${cs.n} ${td}/${T.length}</span></div>
+${T.map(e=>`<div class="li">${cb(e)}<div><div class="nm ${done(e)?'dnx':''}">${e.n}</div><small>${md(dt(e))} · ${done(e)?'완료':dl(e)}</small></div>${bd(e.w)}</div>`).join('')}</div>
+<div class="c"><div class="shd" style="margin-bottom:18px"><div class="sh2"><span class="ti sm">${ic('tl')}</span>단계별 주요일정</div><a data-a="go" data-p="tl" data-s="list">자세히 보기 ›</a></div>
+${STG.map(g=>{const G=L.filter(e=>e.st===g.k),m=E(g.m),st=stS(g),p=S.plan[g.m],dn=G.filter(done).length;
+const lab=st==='dn'?'완료':st==='cur'?'진행 중':dl(G[0])+' 시작';
+return`<button class="stp ${st}" data-a="go" data-p="tl" data-s="list"><div class="rl"><i>${stI(g,st)}</i></div><div class="bx"><div class="t"><b>${g.n}</b><span>${p?esc(p.amt):md(dt(m))}</span></div>
+<div class="ds">${lab} · ${md(dt(G[0]))} ~ ${md(dt(G[G.length-1]))} · 할 일 ${dn}/${G.length}</div>${st==='cur'?`<div class="bar"><i style="width:${dn/G.length*100}%"></i></div>`:''}</div></button>`}).join('')}</div>`};
 
-P.tl=()=>{const s=S.sub,L=vis(),cs=curStg();
+P.tl=()=>{const s=S.sub,L=vis();
 const hd=`<div class="hd"><h2>일정</h2></div><div class="pill">${[['list','전체'],['rec','추천'],['doc','서류']].map(x=>`<button class="${s===x[0]?'on':''}" data-a="sub" data-v="${x[0]}">${x[1]}</button>`).join('')}</div>`;
-if(s==='rec'){const R=L.filter(e=>e.s&&!done(e));return hd+`<div class="c" style="background:var(--lav)"><b style="color:var(--pd)">지금 하면 좋은 일</b><div class="sb">날짜가 가까운 순서예요</div></div>`+R.map(e=>`<div class="c"><div class="row sp"><span class="row">${et(e)}<b>${e.n}</b></span><span class="${dt(e)-TODAY<8*DAY?'co':'sb'}">${dl(e)}</span></div><p class="sb" style="margin:6px 0 0">${e.r||''}</p><button class="btn" data-a="svc" data-k="${e.s}">견적 보러 가기</button></div>`).join('')}
-if(s==='doc'){const n=S.docs.filter(d=>d[1]).length;return hd+`<div class="c"><div class="row sp"><b>서류 보관함</b><span class="sb">${n} / ${S.docs.length}</span></div>${S.docs.map((d,i)=>`<div class="li" data-a="doc" data-i="${i}"><span class="d ${d[1]?'dn':''}"></span><div>${d[0]}</div></div>`).join('')}</div>`}
+if(s==='rec'){const R=L.filter(e=>e.s&&!done(e));return hd+`<div class="c"><div class="sh2">지금 하면 좋은 일</div><div class="sb">날짜가 가까운 순서예요</div></div>`+R.map(e=>`<div class="c"><div class="row sp"><span class="row">${et(e)}<b style="font-size:17px">${e.n}</b></span><span class="${dt(e)-TODAY<8*DAY?'co':'sb'}" style="font-weight:700">${dl(e)}</span></div><p class="sb" style="margin:8px 0 0">${e.r||''}</p><button class="btn lv" data-a="svc" data-k="${e.s}">견적 보러 가기</button></div>`).join('')}
+if(s==='doc'){const n=S.docs.filter(d=>d[1]).length;return hd+`<div class="c"><div class="shd"><div class="sh2">서류 보관함</div><span class="sb">${n} / ${S.docs.length}</span></div>${S.docs.map((d,i)=>`<div class="li" data-a="doc" data-i="${i}"><button class="cb ${d[1]?'on':''}" aria-pressed="${!!d[1]}" aria-label="${d[0]}">${ic('check',3)}</button><div class="nm">${d[0]}</div></div>`).join('')}</div>`}
 return hd+warn()+`<div class="c"><label style="margin:0">잔금일 (바꾸면 나머지 일정이 같이 움직여요)</label><input type="date" id="bs" value="${iso(S.base)}"></div>
-${STG.map(g=>{const T=L.filter(e=>e.st===g.k),d=T.filter(done).length,all=d===T.length;
-return`<div class="c"><div class="sgh"><span class="ti sm t${g.k}">${ic(['coin','coin','key','truck'][g.k-1])}</span><b class="c${g.k}">${g.n}</b><span style="flex:1"></span>${all?'<span class="ch g">완료</span>':g===cs?'<span class="ch">진행 중</span>':''}<small>${d}/${T.length}</small></div>
-${T.map(e=>`<div class="li">${cb(e)}<div><div class="${done(e)?'dnx':''}">${e.n}</div><small>${md(dt(e))}${e.f?' · 직접 정함':''} · ${done(e)?'<span class="gtx">완료</span>':dl(e)}</small></div>${bd(e.w)}<button class="bo" data-a="edit" data-id="${e.id}">수정</button></div>`).join('')}</div>`}).join('')}`};
+${STG.map(g=>{const T=L.filter(e=>e.st===g.k),d=T.filter(done).length,st=stS(g);
+return`<div class="c g-${st}"><div class="sgh"><i>${stI(g,st)}</i><b>${g.n}</b>${st==='dn'?'<span class="ch g">완료</span>':st==='cur'?'<span class="ch">진행 중</span>':'<span class="ch n">예정</span>'}<small>${d}/${T.length}</small></div>
+${T.map(e=>`<div class="li">${cb(e)}<div><div class="nm ${done(e)?'dnx':''}">${e.n}</div><small>${md(dt(e))}${e.f?' · 직접 정함':''} · ${done(e)?'완료':dl(e)}</small></div>${bd(e.w)}<button class="bo" data-a="edit" data-id="${e.id}">수정</button></div>`).join('')}</div>`}).join('')}`};
 
-P.fund=()=>{const need=15000,tot=S.banks.reduce((a,b)=>a+b,0),gap=Math.max(need-tot,0),nm=['국민은행','신한은행','카카오뱅크'],cl=['#7A4DFF','#B9A2FF','#12B886'];
-return`<div class="hd"><h2>자금</h2></div><div class="c"><small>필요 금액</small><div style="font-size:24px;font-weight:700">${mny(need)}</div>
-<div class="bar" style="margin:12px 0 6px">${S.banks.map((b,i)=>`<i style="width:${Math.min(b/need*100,100)}%;background:${cl[i]}"></i>`).join('')}</div>
-<div class="row sp"><small>준비 ${mny(tot)}</small><small class="${gap?'co':'gtx'}">${gap?'부족 '+mny(gap):'충분해요'}</small></div></div>
-<div class="c"><div class="row sp"><b>은행별 보유액 (만원)</b><button class="pb" data-a="recalc">다시 계산</button></div>${nm.map((n,i)=>`<label>${n}</label><input type="number" inputmode="numeric" data-b="${i}" value="${S.banks[i]}">`).join('')}<p class="sb" style="margin:12px 0 0">금액을 고친 뒤 다시 계산을 눌러 주세요. 계좌 자동 연결은 다음 버전에서 만나요.</p></div>
-<div class="c"><b>입출금 계획</b>${Object.keys(S.plan).map(id=>{const e=E(id),p=S.plan[id];return`<div class="li"><div><small class="${done(e)?'gtx':''}" style="font-weight:600">${md(dt(e))} · ${done(e)?'완료':dl(e)}</small><div><b>${e.mn}</b> · ${esc(p.bank)}</div><small>${esc(p.amt)}</small></div>${bd(e.w)}<button class="bo" data-a="pedit" data-id="${id}">수정</button></div>`}).join('')}</div>`};
+P.fund=()=>{const need=15000,tot=S.banks.reduce((a,b)=>a+b,0),gap=Math.max(need-tot,0),nm=['국민은행','신한은행','카카오뱅크'],cl=['#7A4DFF','#B9A2FF','#5B33E0'];
+return`<div class="hd"><h2>자금</h2></div><div class="c" style="border-top:0;padding-top:4px"><small>필요 금액</small><div style="font-size:30px;font-weight:800">${mny(need)}</div>
+<div class="bar" style="margin:14px 0 8px;height:10px">${S.banks.map((b,i)=>`<i style="width:${Math.min(b/need*100,100)}%;background:${cl[i]}"></i>`).join('')}</div>
+<div class="row sp"><small>준비 ${mny(tot)}</small><small class="${gap?'co':'gtx'}" style="font-weight:700">${gap?'부족 '+mny(gap):'충분해요'}</small></div></div>
+<div class="c"><div class="shd"><div class="sh2">은행별 보유액 <small style="font-weight:500">(만원)</small></div><button class="pb" data-a="recalc">다시 계산</button></div>${nm.map((n,i)=>`<label>${n}</label><input type="number" inputmode="numeric" data-b="${i}" value="${S.banks[i]}">`).join('')}<p class="sb" style="margin:14px 0 0">금액을 고친 뒤 다시 계산을 눌러 주세요. 계좌 자동 연결은 다음 버전에서 만나요.</p></div>
+<div class="c"><div class="sh2" style="margin-bottom:4px">입출금 계획</div>${Object.keys(S.plan).map(id=>{const e=E(id),p=S.plan[id];return`<div class="li"><div><small style="font-weight:700;color:var(--pd)">${md(dt(e))}</small><div class="nm">${e.mn} · ${esc(p.bank)}</div><small>${esc(p.amt)}</small></div>${bd(e.w)}<button class="bo" data-a="pedit" data-id="${id}">수정</button></div>`}).join('')}</div>`};
 
-P.svc=()=>`<div class="hd"><div><h2>서비스</h2><p class="sb" style="margin:4px 0 0">견적을 보고 메시지나 전화로 바로 문의해요</p></div></div><div class="c gr">${SO.map(k=>{const v=SV[k];return`<button class="tile" data-a="svc" data-k="${k}"><span class="ti t${v.ts}">${ic(v.i)}</span>${v.n}<small>견적 확인</small></button>`}).join('')}</div>`;
+P.svc=()=>`<div class="hd"><div><h2>서비스</h2><p class="sb" style="margin:6px 0 0">견적을 보고 메시지나 전화로 바로 문의해요</p></div></div><div class="c gr" style="border-top:0;padding-top:0">${SO.map(k=>{const v=SV[k];return`<button class="tile" data-a="svc" data-k="${k}"><span class="ti">${ic(v.i)}</span>${v.n}<small>견적 확인</small></button>`}).join('')}</div>`;
 
 P.q=()=>{const v=SV[S.svc];
-return`<div class="hd"><div><a data-a="go" data-p="svc">‹ 서비스</a><h2 style="margin-top:6px">${v.n}</h2></div></div>
-<div class="c est"><small style="color:var(--pd)">예상 견적</small><div id="est" class="v"></div><small>실제 견적은 업체마다 달라요.</small></div>
-<div class="c">${v.f.map(f=>f[2]==='n'?`<label>${f[1]}</label><input type="number" inputmode="numeric" data-q="${f[0]}" value="${S.q[f[0]]}">`:f[2]==='m'?`<label>${f[1]}</label><div class="chips">${f[3].map(o=>`<button class="${S.q[f[0]].includes(o)?'on':''}" data-a="qm" data-k="${f[0]}" data-v="${o}" aria-pressed="${S.q[f[0]].includes(o)}">${o}</button>`).join('')}</div>`:`<label>${f[1]}</label><select data-q="${f[0]}">${f[3].map(o=>`<option ${S.q[f[0]]===o?'selected':''}>${o}</option>`).join('')}</select>`).join('')}<label>희망 날짜</label><input type="date" data-q="dt" value="${S.q.dt}"></div>
-<div class="c"><b>업체에 문의하기</b>${[['A','4.9','212'],['B','4.7','96'],['C','4.6','58']].map(x=>`<div class="li"><div>${v.v} ${x[0]}<br><small>★ ${x[1]} · 후기 ${x[2]}개</small></div><button class="b2" data-a="msg" data-v="${v.v} ${x[0]}">메시지</button><button class="bo" data-a="call" data-v="${v.v} ${x[0]}">전화</button></div>`).join('')}</div>
-<div class="c"><b>${v.n} 업체이신가요?</b><p class="sb" style="margin:4px 0 0">24dday에 업체를 등록하면 이사 준비 중인 고객에게 견적을 보낼 수 있어요.</p><button class="btn ol" data-a="reg">업체 등록 문의하기</button></div>`};
+return`<div class="hd"><div><a data-a="go" data-p="svc">‹ 서비스</a><h2 style="margin-top:8px">${v.n}</h2></div></div>
+<div class="est"><small style="color:var(--pd);font-weight:600">예상 견적</small><div id="est" class="v"></div><small>실제 견적은 업체마다 달라요.</small></div>
+<div class="c" style="border-top:0;padding-top:8px">${v.f.map(f=>f[2]==='n'?`<label>${f[1]}</label><input type="number" inputmode="numeric" data-q="${f[0]}" value="${S.q[f[0]]}">`:f[2]==='m'?`<label>${f[1]}</label><div class="chips">${f[3].map(o=>`<button class="${S.q[f[0]].includes(o)?'on':''}" data-a="qm" data-k="${f[0]}" data-v="${o}" aria-pressed="${S.q[f[0]].includes(o)}">${o}</button>`).join('')}</div>`:`<label>${f[1]}</label><select data-q="${f[0]}">${f[3].map(o=>`<option ${S.q[f[0]]===o?'selected':''}>${o}</option>`).join('')}</select>`).join('')}<label>희망 날짜</label><input type="date" data-q="dt" value="${S.q.dt}"></div>
+<div class="c"><div class="sh2" style="margin-bottom:4px">업체에 문의하기</div>${[['A','4.9','212'],['B','4.7','96'],['C','4.6','58']].map(x=>`<div class="li"><div><div class="nm">${v.v} ${x[0]}</div><small>★ ${x[1]} · 후기 ${x[2]}개</small></div><button class="bo" style="background:var(--lav);color:var(--pd)" data-a="msg" data-v="${v.v} ${x[0]}">메시지</button><button class="bo" data-a="call" data-v="${v.v} ${x[0]}">전화</button></div>`).join('')}</div>
+<div class="c"><b style="font-size:17px">${v.n} 업체이신가요?</b><p class="sb" style="margin:6px 0 0">24dday에 업체를 등록하면 이사 준비 중인 고객에게 견적을 보낼 수 있어요.</p><button class="btn gy" data-a="reg">업체 등록 문의하기</button></div>`};
 
 P.my=()=>{const me=S.pp[0],L=vis(),mine=L.filter(e=>e.w==='me'),md2=mine.filter(done).length,O=S.pp.slice(1);
 return`<div class="hd"><h2>마이페이지</h2></div>
-<div class="c row">${bd('me',1)}<div style="flex:1"><b style="font-size:18px">${esc(me.n)} (나)</b><br><small>담당 ${mine.length}개 · 완료 ${md2}개</small></div><button class="bo" data-a="pe" data-id="me">수정</button></div>
-<div class="c"><div class="shd"><b style="font-size:17px">공유자 관리</b><small>${O.length}명</small></div>
-${O.length?O.map(p=>{const a=L.filter(e=>e.w===p.id);return`<div class="li">${bd(p.id)}<div><div><b>${esc(p.n)}</b> <small>${esc(p.rel||'')}</small></div><small>담당 ${a.length}개 · 완료 ${a.filter(done).length}개</small></div><button class="bo" data-a="pe" data-id="${p.id}">수정</button><button class="bo dl" data-a="pdel" data-id="${p.id}">삭제</button></div>`}).join(''):'<p class="sb">아직 함께하는 사람이 없어요.</p>'}
-<button class="btn" data-a="pe" data-id="">+ 공유자 추가</button></div>
-<div class="c"><b>업무 분배</b>${[...S.pp.map(p=>p.id),'all'].map(w=>{const a=L.filter(e=>e.w===w),d=a.filter(done).length;return`<div style="margin-top:14px"><div class="row sp"><span class="row" style="gap:8px">${bd(w)}${esc(who(w).n)}</span><small>${d} / ${a.length} 완료</small></div><div class="bar" style="margin-top:8px;background:var(--gnl)"><i style="width:${a.length?d/a.length*100:0}%;background:var(--gn)"></i></div></div>`}).join('')}</div>
-<div class="c"><button class="btn lv" style="margin:0" data-a="go" data-p="onb">처음 화면 다시 보기</button></div>`};
+<div class="c row" style="border-top:0;padding-top:4px">${av('me',1)}<div style="flex:1"><b style="font-size:20px">${esc(me.n)} (나)</b><br><small>담당 ${mine.length}개 · 완료 ${md2}개</small></div><button class="bo" data-a="pe" data-id="me">수정</button></div>
+<div class="c"><div class="shd"><div class="sh2">이사 정보</div><button class="bo" data-a="addr">수정</button></div>
+<div class="kv"><span>지금 사는 집</span><b>${esc(S.addr.from)}</b></div><div class="kv"><span>이사 갈 집</span><b>${esc(S.addr.to)}</b></div><div class="kv"><span>거래 유형</span><b>${S.type}</b></div><div class="kv"><span>잔금일</span><b>${md(S.base)}</b></div></div>
+<div class="c"><div class="shd"><div class="sh2">공유자 관리</div><small>${O.length}명</small></div>
+${O.length?O.map(p=>{const a=L.filter(e=>e.w===p.id);return`<div class="li">${av(p.id)}<div><div class="nm">${esc(p.n)} <small>${esc(p.rel||'')}</small></div><small>담당 ${a.length}개 · 완료 ${a.filter(done).length}개</small></div><button class="bo" data-a="pe" data-id="${p.id}">수정</button><button class="bo dl" data-a="pdel" data-id="${p.id}">삭제</button></div>`}).join(''):'<p class="sb">아직 함께하는 사람이 없어요.</p>'}
+<button class="btn lv" data-a="pe" data-id="">+ 공유자 추가</button></div>
+<div class="c"><div class="sh2">업무 분배</div>${[...S.pp.map(p=>p.id),'all'].map(w=>{const a=L.filter(e=>e.w===w),d=a.filter(done).length;return`<div style="margin-top:16px"><div class="row sp"><span class="row" style="gap:8px">${bd(w)}<span style="font-weight:600">${w==='all'?'함께':esc(who(w).n)}</span></span><small>${d} / ${a.length} 완료</small></div><div class="bar" style="margin-top:8px"><i style="width:${a.length?d/a.length*100:0}%;background:var(--gn)"></i></div></div>`}).join('')}</div>`};
 
 function sheet(){const x=S.sh,h=$('#sh');if(!x){h.style.display='none';return}
 let b='';
@@ -265,6 +252,7 @@ if(x.t==='pl'){const e=E(x.id),p=S.plan[x.id];b=`<h2>${e.mn} 계획 수정</h2><
 if(x.t==='pe'){const p=S.pp.find(q=>q.id===x.id),nw=!p,me=x.id==='me';b=`<h2>${nw?'공유자 추가':me?'내 프로필 수정':'공유자 프로필 수정'}</h2><label>이름</label><input id="pn" value="${p?esc(p.n):''}" placeholder="예: 민수">${me?'':`<label>관계</label><input id="pr" value="${p?esc(p.rel||''):''}" placeholder="배우자, 가족, 친구 등"><label>배지 색</label><div class="pk">${PC.slice(1).map((c,i)=>`<button data-a="pc" data-v="${i+1}" class="${(x.c??p?.c??1)===i+1?'on':''}" style="background:${c}" aria-label="색 ${i+1}"></button>`).join('')}</div>`}
 ${me?'<p class="sb">내 배지는 보라색으로 표시돼요.</p>':''}<button class="btn" data-a="psv">${nw?'추가하고 초대 링크 보내기':'저장하기'}</button>`}
 if(x.t==='pdel'){const p=S.pp.find(q=>q.id===x.id);b=`<h2>${esc(p.n)}님을 삭제할까요?</h2><p class="sb">일정을 더 이상 함께 볼 수 없어요. ${esc(p.n)}님이 맡은 일은 ${esc(S.pp[0].n)}(나)에게 넘어가요.</p><button class="btn rd" data-a="pdx" data-id="${p.id}">삭제하기</button>`}
+if(x.t==='addr')b=`<h2>이사 정보 수정</h2><label>지금 사는 집</label><input id="af" value="${esc(S.addr.from)}"><label>이사 갈 집</label><input id="at" value="${esc(S.addr.to)}"><label>거래 유형</label><select id="aty">${['매매','전세','월세'].map(t=>`<option ${S.type===t?'selected':''}>${t}</option>`).join('')}</select><button class="btn" data-a="asave">저장하기</button>`;
 if(x.t==='inv')b=`<h2>일정 함께 관리하기</h2><p class="sb">초대 링크를 받은 사람은 같은 일정을 보고, 할 일을 나눠 맡을 수 있어요. 지금 ${S.pp.length}명이 참여 중이에요.</p><button class="btn" data-a="share">메시지로 초대 링크 보내기</button><button class="btn lv" data-a="copy">링크 복사</button><button class="btn lv" data-a="go" data-p="my">공유자 관리로 가기</button>`;
 if(x.t==='msg'){const v=SV[S.svc];b=`<h2>${x.v}에 메시지 보내기</h2><label>문의 내용</label><textarea id="mt">안녕하세요. ${v.n} 견적을 문의드려요. 희망 날짜는 ${S.q.dt.slice(5).replace('-','/')}이고, ${v.f.map(f=>f[1].replace(/ \(.*\)/,'')+' '+(Array.isArray(S.q[f[0]])?S.q[f[0]].join('·'):S.q[f[0]])).join(', ')}이에요.</textarea><button class="btn" data-a="send">메시지 보내기</button>`}
 if(x.t==='call')b=`<h2>${x.v}에 전화할까요?</h2><p class="sb">실제 앱에서는 전화 앱으로 바로 연결돼요.</p><button class="btn" data-a="dial">전화 걸기</button>`;
@@ -281,9 +269,11 @@ const LINK='https://24dday.app/invite/jamsil-jeongja';
 function act(a,d){
 if(a==='go'){S.pg=d.p;if(d.s)S.sub=d.s;S.sh=null;$('#scr').scrollTop=0}
 else if(a==='sub')S.sub=d.v;
-else if(a==='type'){S.type=d.v;if(S.pg==='home')toast(d.v+' 일정으로 바꿨어요')}
+else if(a==='type')S.type=d.v;
 else if(a==='int')S.int=+d.v;
 else if(a==='start'){S.base=Date.parse($('#ob').value)||S.base;if(!S.int){const m={cl:0,mv:1,mi:2,fx:2,dis:-3,ad:7};for(const k in m)E(k).o=m[k]}S.pg='home'}
+else if(a==='addr'){S.pg='my';S.sh={t:'addr'}}
+else if(a==='asave'){S.addr={from:$('#af').value.trim()||S.addr.from,to:$('#at').value.trim()||S.addr.to};S.type=$('#aty').value;S.sh=null;toast('이사 정보를 저장했어요')}
 else if(a==='bell'){S.bell^=1;toast(S.bell?'알림을 켰어요':'알림을 껐어요')}
 else if(a==='inv')S.sh={t:'inv'};
 else if(a==='share'){const data={title:'24dday 이사 일정',text:'우리 이사 일정을 24dday에서 같이 관리해요',url:LINK};
