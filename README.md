@@ -4,3 +4,6 @@
 
 - `index.html` — 프로토타입 (브라우저로 열면 바로 실행)
 - `PLANNING.md` — 기획 노트
+
+## 이미지 출처
+`img/` 폴더의 업체 사진은 [Unsplash](https://unsplash.com) 무료 사진이에요 (Unsplash License, 프로토타입 시연용).
