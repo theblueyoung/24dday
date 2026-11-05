@@ -248,7 +248,7 @@ ev:[
 {id:'ad',n:'주소 변경 (은행·카드)',o:20,w:'p2',st:4,i:'pin'}]};
 const CL=o=>JSON.parse(JSON.stringify(o)),DEMO=CL(S);
 function resetTo(fresh,name){const k=CL(DEMO);for(const x in S)delete S[x];Object.assign(S,k);
-if(fresh){S.fresh=1;S.pp=[{id:'me',n:name||'나',rel:'나',c:0}];S.ev.forEach(e=>{e.dn=false;e.w='me'});S.banks=[0,0,0];for(const id in S.plan)S.plan[id]={bank:'은행 미입력',amt:''};S.addr={from:'입력 전',to:'입력 전'};S.docs.forEach(d=>d[1]=0)}}
+if(fresh){S.fresh=1;S.pp=[{id:'me',n:name||'나',rel:'나',c:0}];S.ev.forEach(e=>{e.dn=false;e.w='me'});S.banks=[0,0,0];for(const id in S.plan)S.plan[id]={bank:'은행 미입력',amt:''};S.addr={from:'',to:''};S.docs.forEach(d=>d[1]=0)}}
 const INS=[['도배',2,3.5,'p'],['장판·마루',3,7,'p'],['욕실',400,800,'f'],['주방',400,900,'f'],['샷시(창호)',25,40,'p'],['조명·전기',1.5,3,'p'],['중문·현관',150,300,'f'],['붙박이장',200,500,'f'],['발코니 확장',300,700,'f'],['전체 리모델링',150,300,'p']];
 const SV={
 lw:{sn:'법무사',col:'#7A4DFF',ib:'#F1ECFF',n:'법무사',e:'bal',v:'법무사 사무소',i:'doc',ts:1,f:[['pr','매매가(억원)','n',7]],c:v=>v.pr<6?[40,60]:v.pr<9?[50,80]:[60,100]},
@@ -324,7 +324,7 @@ P.land=()=>`<button class="land" data-a="go" data-p="intro" aria-label="눌러�
 
 P.intro=()=>`<div class="land in"><button class="lgb" data-a="go" data-p="land" aria-label="앞 화면으로">${LOGO}</button>
 <h1 style="margin:18px 0 0;color:#fff">24dday로<br>이렇게 준비해요</h1>
-<ul class="lf"><li>${ic('tl',2)}<span><b>잔금일만 넣으면</b>할 일 순서를 자동으로 짜요</span></li><li>${ic('uplus',2)}<span><b>같이 사는 사람과</b>일정을 나눠 맡아요</span></li><li>${ic('svc',2)}<span><b>이사·청소·법무사</b>견적을 한 번에 봐요</span></li></ul>
+<ul class="lf"><li>${ic('tl',2)}<span><b>잔금일만 넣으면</b>할 일 순서를 자동으로 짜고, 수정도 할 수 있어요</span></li><li>${ic('uplus',2)}<span><b>함께 진행할 사람과</b>일정을 나눠 맡아요</span></li><li>${ic('svc',2)}<span><b>이사·청소·법무사</b>견적을 한 번에 봐요</span></li></ul>
 <button class="btn wt" data-a="go" data-p="auth">시작하기</button></div>`;
 
 P.auth=()=>{const m=S.am||'join';return`<div class="hd"><div><button class="logo lgk" data-a="go" data-p="intro" aria-label="앞 화면으로">${LOGO}24dday</button><h1 style="margin-top:20px">${m==='login'?'다시 오셨네요!':'처음 오셨군요!'}</h1><p class="sb" style="margin:6px 0 0">${m==='login'?'로그인하고 준비하던 이사를 이어서 해요.':'가입하고 새 이사를 등록해요.'}</p></div></div>
@@ -334,12 +334,12 @@ P.auth=()=>{const m=S.am||'join';return`<div class="hd"><div><button class="logo
 <label>비밀번호</label><input id="ap" type="password" placeholder="8자 이상" value="">
 <button class="btn" style="margin-top:24px" data-a="${m==='login'?'login':'join'}">${m==='login'?'로그인':'가입하고 이사 등록하기'}</button>
 ${m==='login'?'<p class="sb" style="text-align:center;margin-top:14px">비밀번호를 잊으셨나요?</p>':''}
-<p class="sb" style="margin-top:20px">${m==='login'?'시연용이에요. 로그인하면 이미 준비 중인 예시 사용자(유영)의 화면이 나와요.':'시연용이에요. 아무 값이나 넣어도 넘어가요.'}</p></div>`};
+</div>`};
 
-P.onb=()=>`<div class="hd"><div><button class="logo lgk" data-a="go" data-p="auth" aria-label="앞 화면으로">${LOGO}24dday</button><span class="ch" style="margin-top:20px">처음 설정</span><h1 style="margin-top:8px">어떤 이사를<br>준비하세요?</h1><p class="sb" style="margin:6px 0 0">세 가지만 알려주시면 할 일 순서를 짜 드려요. 처음 한 번만 물어봐요.</p></div></div><div class="c" style="border-top:0"><label style="margin:0">거래 유형</label><div class="seg2" style="margin:10px 0 0">${['매매','전세','월세'].map(t=>`<button class="${S.type===t?'sel':''}" data-a="type" data-v="${t}">${t}</button>`).join('')}</div>
+P.onb=()=>`<div class="hd"><div><button class="logo lgk" data-a="go" data-p="auth" aria-label="앞 화면으로">${LOGO}24dday</button><h1 style="margin-top:20px">어떤 이사를<br>준비하세요?</h1><p class="sb" style="margin:6px 0 0">세 가지만 알려주시면 할 일 순서를 짜 드려요. 나중에 마이페이지에서 바꿀 수 있어요.</p></div></div><div class="c" style="border-top:0"><label style="margin:0">거래 유형</label><div class="seg2" style="margin:10px 0 0">${['매매','전세','월세'].map(t=>`<button class="${S.type===t?'sel':''}" data-a="type" data-v="${t}">${t}</button>`).join('')}</div>
 <label>잔금일</label><input type="date" id="ob" value="${iso(S.base)}"><small style="display:block;margin-top:6px">이사 들어가는 날이 아니라, 돈을 다 치르는 날이에요.</small>
 <label>계약금은 이미 냈나요?</label><div class="seg2" style="margin:10px 0 0">${[[0,'아직이요'],[1,'냈어요']].map(x=>`<button class="${(S.paid||0)===x[0]?'sel':''}" data-a="paid" data-v="${x[0]}">${x[1]}</button>`).join('')}</div><small style="display:block;margin-top:6px">냈다면 계약 단계 할 일을 완료로 표시해 드려요.</small>
-<button class="btn" style="margin-top:28px" data-a="start">시작하기</button><p class="sb" style="margin:10px 0 0">오늘 날짜는 시연용으로 2026년 11월 5일에 맞춰져 있어요.</p></div>`;
+<button class="btn" style="margin-top:28px" data-a="start">시작하기</button></div>`;
 
 P.home=()=>{const L=vis(),n=L.filter(done).length,pct=Math.round(n/L.length*100),cs=curStg(),T=L.filter(e=>sof(e)===cs.k),td=T.filter(done).length,d=dday();
 return`<div class="top"><div class="logo">${LOGO}24dday</div><div class="row" style="gap:8px">
@@ -383,7 +383,7 @@ P.my=()=>{const me=S.pp[0],L=vis(),mine=L.filter(e=>e.w==='me'),md2=mine.filter(
 return`<div class="hd"><h2>마이페이지</h2></div>
 <div class="c row" style="border-top:0;padding-top:4px">${av('me',1)}<div style="flex:1"><b style="font-size:20px">${esc(me.n)} (나)</b><br><small>담당 ${mine.length}개 · 완료 ${md2}개</small></div><button class="bo" data-a="pe" data-id="me">수정</button></div>
 <div class="c"><div class="shd"><div class="sh2">이사 정보</div><button class="bo" data-a="addr">수정</button></div>
-<div class="kv"><span>지금 사는 집</span><b>${esc(S.addr.from)}</b></div><div class="kv"><span>이사 갈 집</span><b>${esc(S.addr.to)}</b></div><div class="kv"><span>거래 유형</span><b>${S.type}</b></div><div class="kv"><span>잔금일</span><b>${md(S.base)}</b></div></div>
+<div class="kv"><span>지금 사는 집</span><b>${esc(S.addr.from)||'<span class="sb">입력 전</span>'}</b></div><div class="kv"><span>이사 갈 집</span><b>${esc(S.addr.to)||'<span class="sb">입력 전</span>'}</b></div><div class="kv"><span>계약금</span><b>${done(E('c1'))?'냈어요':'아직이요'}</b></div><div class="kv"><span>거래 유형</span><b>${S.type}</b></div><div class="kv"><span>잔금일</span><b>${md(S.base)}</b></div></div>
 <div class="c"><div class="shd"><div class="sh2">공유자 관리</div><small>${O.length}명</small></div>
 ${O.length?O.map(p=>{const a=L.filter(e=>e.w===p.id);return`<div class="li">${av(p.id)}<div><div class="nm">${esc(p.n)} <small>${esc(p.rel||'')}</small></div><small>담당 ${a.length}개 · 완료 ${a.filter(done).length}개</small></div><button class="bo" data-a="pe" data-id="${p.id}">수정</button></div>`}).join(''):'<p class="sb">아직 함께하는 사람이 없어요.</p>'}
 <button class="btn" data-a="pe" data-id="">+ 공유자 추가</button></div>
@@ -401,7 +401,7 @@ if(x.t==='pl'){const e=E(x.id),p=S.plan[x.id];b=`<h2>${e.mn} 계획 수정</h2><
 if(x.t==='pe'){const p=S.pp.find(q=>q.id===x.id),nw=!p,me=x.id==='me';b=`<h2>${nw?'공유자 추가':me?'내 프로필 수정':'공유자 프로필 수정'}</h2><label>이름</label><input id="pn" value="${p?esc(p.n):''}" placeholder="예: 민희">${me?'':`<label>관계</label><input id="pr" value="${p?esc(p.rel||''):''}" placeholder="배우자, 가족, 친구 등">`}
 <button class="btn" data-a="psv">${nw?'추가하기':'저장하기'}</button>${!nw&&!me?`<button class="btn gh" style="color:var(--co)" data-a="pdel" data-id="${p.id}">공유자 삭제하기</button>`:''}`}
 if(x.t==='pdel'){const p=S.pp.find(q=>q.id===x.id);b=`<h2>${esc(p.n)}님을 삭제할까요?</h2><p class="sb">일정을 더 이상 함께 볼 수 없어요. ${esc(p.n)}님이 맡은 일은 ${esc(S.pp[0].n)}(나)에게 넘어가요.</p><button class="btn rd" data-a="pdx" data-id="${p.id}">삭제하기</button><button class="btn gy" data-a="pe" data-id="${p.id}">취소</button>`}
-if(x.t==='addr')b=`<h2>이사 정보 수정</h2><p class="sb">잔금일을 바꾸면 직접 정하지 않은 일정이 같이 움직여요.</p><label>지금 사는 집</label><input id="af" value="${esc(S.addr.from)}"><label>이사 갈 집</label><input id="at" value="${esc(S.addr.to)}"><label>잔금일</label><input type="date" id="abs" value="${iso(S.base)}"><label>거래 유형</label><select id="aty">${['매매','전세','월세'].map(t=>`<option ${S.type===t?'selected':''}>${t}</option>`).join('')}</select><button class="btn" data-a="asave">저장하기</button>`;
+if(x.t==='addr')b=`<h2>이사 정보 수정</h2><p class="sb">잔금일을 바꾸면 직접 정하지 않은 일정이 같이 움직여요.</p><label>지금 사는 집</label><input id="af" value="${esc(S.addr.from)}" placeholder="예: 서울 송파구 잠실동"><label>이사 갈 집</label><input id="at" value="${esc(S.addr.to)}" placeholder="예: 성남 분당구 정자동"><label>잔금일</label><input type="date" id="abs" value="${iso(S.base)}"><label>거래 유형</label><select id="aty">${['매매','전세','월세'].map(t=>`<option ${S.type===t?'selected':''}>${t}</option>`).join('')}</select><label>계약금은 냈나요?</label><select id="apd"><option value="0" ${E('c1')&&!done(E('c1'))?'selected':''}>아직이요</option><option value="1" ${E('c1')&&done(E('c1'))?'selected':''}>냈어요 (계약 단계 할 일을 완료로 표시)</option></select><button class="btn" data-a="asave">저장하기</button>`;
 if(x.t==='add')b=`<h2>할 일 추가</h2><label>할 일</label><input id="nn" placeholder="예: 에어컨 이전 설치 예약"><label>단계</label><select id="ns">${SG().map(g=>`<option value="${g.k}" ${g===curStg()?'selected':''}>${g.n}</option>`).join('')}</select><label>날짜</label><input type="date" id="nd" value="${iso(TODAY+7*DAY)}"><label>담당자</label><select id="nw">${wopt('me')}</select><button class="btn" data-a="addsv">추가하기</button>`;
 if(x.t==='ntl'){const N=notes(),U=N.filter(n=>!S.rd[n.k]),R=[...N.filter(n=>S.rd[n.k]),...PAST().map(n=>({...n,old:1}))];
 const row=(n,u)=>`<button class="nli${u?' un':''}" ${u?`data-a="nrd" data-k="${n.k}"`:''}><span class="nic">${ic(n.ic,2)}</span><div><b>${esc(n.t)}</b><small>${esc(n.b)}</small></div><em>${n.tm}</em>${u?'<i class="ndot" aria-label="안 읽음"></i>':''}</button>`;
@@ -437,7 +437,7 @@ else if(a==='start'){applyType();S.base=Date.parse($('#ob').value)||S.base;if(!S
 else if(a==='addr'){S.pg='my';S.sh={t:'addr'}}
 else if(a==='add')S.sh={t:'add'};
 else if(a==='addsv'){const n=$('#nn').value.trim();if(!n)return toast('할 일을 적어 주세요');const f=Date.parse($('#nd').value)||TODAY;S.ev.push({id:'u'+Date.now(),n,o:Math.round((f-S.base)/DAY),f,w:$('#nw').value,st:+$('#ns').value,i:'doc'});S.sh=null;toast('할 일을 추가했어요')}
-else if(a==='asave'){const nb=Date.parse($('#abs').value);if(nb)S.base=nb;S.addr={from:$('#af').value.trim()||S.addr.from,to:$('#at').value.trim()||S.addr.to};S.type=$('#aty').value;applyType();S.sh=null;toast('이사 정보를 저장했어요')}
+else if(a==='asave'){const nb=Date.parse($('#abs').value);if(nb)S.base=nb;S.addr={from:$('#af').value.trim()||S.addr.from,to:$('#at').value.trim()||S.addr.to};S.type=$('#aty').value;applyType();const pd=$('#apd').value==='1';if(pd!==done(E('c1')))S.ev.forEach(e=>{if(e.st===1)e.dn=pd});S.sh=null;toast('이사 정보를 저장했어요')}
 else if(a==='nt'){S.nt[d.k]^=1}
 else if(a==='nrd'){S.rd[d.k]=1}
 else if(a==='nall'){notes().forEach(n=>S.rd[n.k]=1)}
