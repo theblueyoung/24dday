@@ -408,7 +408,7 @@ const row=(n,u)=>`<button class="nli${u?' un':''}" ${u?`data-a="nrd" data-k="${n
 b=`<h2>알림</h2>${!S.bell?'<p class="sb">알림이 꺼져 있어요. 마이페이지에서 켤 수 있어요.</p><button class="btn" data-a="gont">알림 설정으로 가기</button>':
 `<div class="nh"><b>새 알림 ${U.length}</b>${U.length?'<button class="lk" data-a="nall">모두 읽음</button>':''}</div>${U.length?U.map(n=>row(n,1)).join(''):'<p class="sb" style="padding:8px 0 4px">새 알림이 없어요.</p>'}
 <div class="nh" style="margin-top:18px"><b>읽은 알림</b></div>${R.map(n=>row(n,0)).join('')}
-<p class="sb" style="font-size:12.5px;margin-top:12px">읽은 알림은 14일이 지나면 자동으로 지워져요.</p><button class="btn gy" data-a="gont">알림 설정</button>`}`}
+<p class="sb" style="font-size:12.5px;margin-top:12px">읽은 알림은 14일이 지나면 자동으로 지워져요.</p><button class="btn" data-a="gont">알림 설정</button>`}`}
 if(x.t==='inv')b=`<h2>일정 함께 관리하기</h2><p class="sb">초대 링크를 받은 사람은 같은 일정을 보고, 할 일을 나눠 맡을 수 있어요. 지금 ${S.pp.length}명이 참여 중이에요.</p><button class="btn" data-a="copy">초대 링크 복사</button><button class="btn lv" data-a="go" data-p="my">공유자 관리로 가기</button>`;
 if(x.t==='msg'){const v=SV[S.svc];b=`<h2>${x.v}에 상담 신청</h2><label>문의 내용</label><textarea id="mt">안녕하세요. ${v.n} 견적을 문의드려요. 희망 날짜는 ${S.q.dt.slice(5).replace('-','/')}이고, ${v.f.map(f=>f[1].replace(/ \(.*\)/,'')+' '+(Array.isArray(S.q[f[0]])?S.q[f[0]].join('·'):S.q[f[0]])).join(', ')}이에요.</textarea><button class="btn" data-a="send">상담 신청 보내기</button><button class="btn lv" data-a="dial">전화로 문의하기</button>`}
 if(x.t==='call')b=`<h2>${x.v}에 전화할까요?</h2><p class="sb">실제 앱에서는 전화 앱으로 바로 연결돼요.</p><button class="btn" data-a="dial">전화 걸기</button>`;
