@@ -3,172 +3,296 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>24dday</title>
 <style>
-:root{--bg:#F2F4F6;--cd:#fff;--ink:#191F28;--sub:#8B95A1;--ln:#E5E8EB;--p:#7A4DFF;--pd:#4B2BBF;--lav:#EEE9FF;--co:#FF5A5F;--mi:#12B886;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101216;--cd:#1C1F26;--ink:#F2F4F6;--sub:#9AA3AF;--ln:#2B303A;--lav:#2A2250;--pd:#C9B8FF;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#101216;--cd:#1C1F26;--ink:#F2F4F6;--sub:#9AA3AF;--ln:#2B303A;--lav:#2A2250;--pd:#C9B8FF;color-scheme:dark}
-*{box-sizing:border-box}html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+:root{--bg:#F2F4F6;--cd:#fff;--ink:#191F28;--sub:#8B95A1;--ln:#E5E8EB;--p:#7A4DFF;--pd:#4B2BBF;--lav:#EEE9FF;--co:#F03E3E;--gn:#12B886;--gnl:#E6F8F1;--offb:#FFE3E3;
+--t2:#FFEDE3;--f2:#D9531E;--t3:#FFF3D1;--f3:#A66A00;--t4:#E3F0FF;--f4:#2F6FE0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101216;--cd:#1C1F26;--ink:#F2F4F6;--sub:#9AA3AF;--ln:#2B303A;--lav:#2A2250;--pd:#C9B8FF;--gnl:#13332A;--offb:#3A1A1C;--t2:#3A2418;--f2:#FF9A6B;--t3:#38301A;--f3:#F2C14E;--t4:#172A45;--f4:#7AB0FF;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#101216;--cd:#1C1F26;--ink:#F2F4F6;--sub:#9AA3AF;--ln:#2B303A;--lav:#2A2250;--pd:#C9B8FF;--gnl:#13332A;--offb:#3A1A1C;--t2:#3A2418;--f2:#FF9A6B;--t3:#38301A;--f3:#F2C14E;--t4:#172A45;--f4:#7AB0FF;color-scheme:dark}
+*{box-sizing:border-box}html{height:100%}
 body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:15px/1.5 Pretendard,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif}
 #app{position:relative;max-width:430px;height:100%;margin:0 auto;display:flex;flex-direction:column;background:var(--bg);overflow:hidden}
 #scr{flex:1;overflow-y:auto;padding-bottom:24px}
-h1{font-size:25px;line-height:1.35;margin:6px 0 0;font-weight:700}h1 em{font-style:normal;color:var(--p)}
+h1{font-size:25px;line-height:1.35;margin:6px 0 0;font-weight:700}
 h2{font-size:22px;margin:0;font-weight:700}small,.sb{color:var(--sub);font-size:13px}
 .hd{display:flex;justify-content:space-between;align-items:flex-start;padding:22px 20px 6px}
-.c{background:var(--cd);border-radius:16px;padding:16px;margin:10px 14px}
+.c{background:var(--cd);border-radius:22px;padding:18px;margin:12px 14px}
 .row{display:flex;align-items:center;gap:10px}.sp{justify-content:space-between}
-a,[data-a]{cursor:pointer}a{color:var(--pd);font-size:13px}
+a,[data-a]{cursor:pointer}a{color:var(--pd);font-size:13px;text-decoration:none;font-weight:600}
 button,select,input,textarea{font:inherit;color:inherit}
-.btn{display:block;width:100%;border:0;border-radius:12px;background:var(--p);color:#fff;font-weight:600;padding:13px;margin-top:12px}
+.btn{display:block;width:100%;border:0;border-radius:16px;background:var(--p);color:#fff;font-weight:600;padding:15px;margin-top:12px;font-size:16px}
+.btn.lv{background:var(--lav);color:var(--pd)}.btn.gh{background:none;color:var(--sub)}.btn.rd{background:var(--co)}
+.btn.ol{background:none;border:1.5px solid var(--p);color:var(--pd)}
 .b2{border:0;border-radius:10px;background:var(--lav);color:var(--pd);padding:8px 12px;font-size:13px;font-weight:600}
-.bo{border:1px solid var(--p);border-radius:8px;background:none;color:var(--pd);padding:7px 11px;font-size:13px}
-.ch{display:inline-block;background:var(--lav);color:var(--pd);border-radius:10px;padding:2px 9px;font-size:12px}
-.co{color:var(--co)}.on{background:var(--p);color:#fff}
+.bo{border:1px solid var(--ln);border-radius:9px;background:var(--cd);color:var(--ink);padding:5px 10px;font-size:12px;font-weight:600;flex:none}
+.bo.dl{color:var(--co)}
+.pb{border:0;border-radius:10px;background:var(--p);color:#fff;font-size:13px;font-weight:600;padding:7px 12px}
+.ch{display:inline-block;background:var(--lav);color:var(--pd);border-radius:10px;padding:2px 9px;font-size:12px;font-weight:600}
+.ch.g{background:var(--gnl);color:var(--gn)}
+.co{color:var(--co)}.gtx{color:var(--gn)}.on{background:var(--p);color:#fff}
 input,select,textarea{width:100%;background:var(--bg);border:0;border-radius:10px;padding:11px 12px;margin-top:6px}
 textarea{min-height:110px}label{display:block;font-size:13px;color:var(--sub);margin-top:12px}
 .pill{display:flex;gap:6px;padding:4px 14px 0}.pill button{border:0;border-radius:16px;padding:7px 14px;background:var(--cd);font-size:14px}.pill button.on{background:var(--p);color:#fff}
-.li{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--ln)}.li:first-child{border-top:0}.li>div{flex:1}
-.d{width:12px;height:12px;border-radius:50%;border:2px solid #B9AEE8;flex:none}.d.dn{background:var(--p);border-color:var(--p)}
+.li{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--ln)}.li:first-child,.shd+.li,.sgh+.li,b+.li{border-top:0}.li>div{flex:1;min-width:0}
+.d{width:12px;height:12px;border-radius:50%;border:2px solid #B9AEE8;flex:none}.d.dn{background:var(--gn);border-color:var(--gn)}
+/* 진행 스트립 */
 .metro{display:flex;margin:18px 0 6px}
 .st{flex:1;text-align:center;position:relative;font-size:11px}
 .st i{display:block;width:14px;height:14px;border-radius:50%;margin:2px auto 8px;background:var(--cd);border:2px solid #B9AEE8;position:relative;z-index:1}
-.st.dn i{background:var(--p);border-color:var(--p)}.st.cur i{width:20px;height:20px;margin:-1px auto 5px;border:5px solid var(--p)}
+.st.dn i{background:var(--gn);border-color:var(--gn)}.st.cur i{width:20px;height:20px;margin:-1px auto 5px;border:5px solid var(--p)}
 .st::before{content:"";position:absolute;top:8px;left:-50%;width:100%;height:3px;background:var(--lav)}
-.st:first-child::before{display:none}.st.dn::before,.st.cur::before{background:var(--p)}
-.st b{display:block;font-size:12px;font-weight:600}.st span{color:var(--sub)}
+.st:first-child::before{display:none}.st.dn::before{background:var(--gn)}.st.cur::before{background:var(--gn)}
+.st b{display:block;font-size:12px;font-weight:600;white-space:nowrap}.st span{color:var(--sub)}
+.st.cur i{animation:pl 2.2s ease-out infinite}@keyframes pl{0%{box-shadow:0 0 0 0 rgba(122,77,255,.45)}100%{box-shadow:0 0 0 12px rgba(122,77,255,0)}}
 .bar{height:8px;border-radius:4px;background:var(--lav);overflow:hidden;display:flex}.bar i{display:block;height:100%}
-.gr{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{background:var(--bg);border-radius:14px;padding:16px 14px;font-weight:600;border:0;text-align:left}
+/* 상단 바 */
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 16px 10px}
+.logo{display:flex;align-items:center;gap:8px;font-size:21px;font-weight:800;letter-spacing:-.6px}.logo svg{width:34px;height:34px;flex:none}
+.inv{display:flex;align-items:center;gap:6px;border:0;background:var(--lav);color:var(--pd);border-radius:19px;padding:6px 11px 6px 6px;font-size:12px;font-weight:600}
+.inv .ip{width:26px;height:26px;border-radius:50%;background:var(--p);color:#fff;display:grid;place-items:center}.inv .ip svg{width:16px;height:16px}
+.inv b{font-size:14px}
+.bell{width:40px;height:40px;border-radius:50%;border:0;background:var(--cd);display:grid;place-items:center;position:relative;color:var(--ink);padding:0}
+.bell svg{width:22px;height:22px}.bell.off{color:var(--co);background:var(--offb)}
+.bell .x{position:absolute;top:4px;right:3px;width:16px;height:16px;border-radius:50%;background:var(--co);display:grid;place-items:center;border:2px solid var(--offb)}
+.bell .x svg{width:8px;height:8px;color:#fff}
+/* 히어로 */
+.hero{margin:2px 14px 0;border-radius:26px;padding:20px 20px 14px;color:#fff;background:linear-gradient(140deg,#8B5CFF,#5B33E0);box-shadow:0 14px 30px -12px rgba(91,51,224,.55)}
+.htop{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.hs{font-size:13px;opacity:.85}.big{font-size:54px;font-weight:800;line-height:1.05;letter-spacing:-2px;margin:2px 0}
+.seg{display:flex;background:rgba(255,255,255,.16);border-radius:12px;padding:3px;flex:none}
+.seg button{border:0;background:none;color:#fff;opacity:.8;font-size:12px;padding:5px 9px;border-radius:9px}
+.seg button.on{background:#fff;color:#5B33E0;opacity:1;font-weight:700}
+.pc{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;font-size:12px}
+.pc b{color:#FFD43B;font-size:22px;font-weight:800}.pc span{opacity:.85}
+.yb{height:10px;border-radius:5px;background:rgba(255,255,255,.2);overflow:hidden;margin-top:6px}.yb i{display:block;height:100%;background:#FFD43B;border-radius:5px}
+.hero .metro{margin:20px -6px 4px}
+.hero .st i{background:#5B33E0;border-color:rgba(255,255,255,.45)}
+.hero .st::before{background:rgba(255,255,255,.22)}
+.hero .st.dn i{background:#3DDC97;border-color:#3DDC97}.hero .st.dn::before,.hero .st.cur::before{background:#3DDC97}
+.hero .st.cur i{background:#fff;border-color:#FFD43B;animation-name:py}
+.hero .st span{color:rgba(255,255,255,.65)}.hero .st b{opacity:.7;font-weight:500}
+.hero .st.dn b{opacity:1;color:#B6F5D8}.hero .st.cur b{opacity:1;color:#FFD43B;font-weight:800}
+@keyframes py{0%{box-shadow:0 0 0 0 rgba(255,212,59,.6)}100%{box-shadow:0 0 0 12px rgba(255,212,59,0)}}
+.lg2{display:flex;gap:10px;font-size:11px;opacity:.85;align-items:center}.lg2 i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
+.hed{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.hed button{border:0;background:rgba(255,255,255,.18);color:#fff;border-radius:10px;padding:7px 11px;font-size:12px;font-weight:600}
+@media(prefers-reduced-motion:reduce){.st.cur i{animation:none!important}}
+/* 아이콘 타일 */
+.ti{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;flex:none}.ti svg{width:21px;height:21px}.ti.dn{opacity:.45}
+.ti.sm{width:30px;height:30px;border-radius:10px}.ti.sm svg{width:17px;height:17px}
+.t1{background:var(--lav);color:var(--pd)}.t2{background:var(--t2);color:var(--f2)}.t3{background:var(--t3);color:var(--f3)}.t4{background:var(--t4);color:var(--f4)}
+.c1{color:var(--pd)}.c2{color:var(--f2)}.c3{color:var(--f3)}.c4{color:var(--f4)}
+.yl{background:#FFF6D6}
+.shd{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.sh2{display:flex;align-items:center;gap:9px;font-weight:700;font-size:17px}
+/* 체크박스 · 배지 */
+.cb{width:26px;height:26px;border-radius:8px;border:2px solid #C9CED6;background:var(--cd);flex:none;display:grid;place-items:center;padding:0;color:transparent}
+.cb svg{width:15px;height:15px}.cb.on{background:var(--gn);border-color:var(--gn);color:#fff}
+.dnx{color:var(--sub);text-decoration:line-through}
+.av{width:34px;height:34px;border-radius:50%;display:inline-grid;place-items:center;color:#fff;font-size:11px;font-weight:700;flex:none;letter-spacing:-.5px}
+.av.lg{width:60px;height:60px;font-size:17px}
+.sgh{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.sgh b{font-size:16px}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:12px;border-radius:18px;padding:16px;background:var(--bg);font-weight:600;border:0;text-align:left}
 .tile small{display:block;font-weight:400}
-nav{display:flex;background:var(--cd);border-top:1px solid var(--ln);padding:6px 0}
-nav button{flex:1;border:0;background:none;padding:10px 0;font-size:12px;color:var(--sub)}nav button.on{background:none;color:var(--p);font-weight:700}
+.gr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chips button{border:1px solid var(--ln);background:var(--cd);border-radius:16px;padding:6px 12px;font-size:13px}
+.chips button.on{background:var(--p);border-color:var(--p);color:#fff}
+.est{background:var(--lav)}
+.est .v{font-size:26px;font-weight:700;color:var(--pd)}
+nav{display:flex;background:var(--cd);border-top:1px solid var(--ln);padding:6px 6px 4px}
+nav button{flex:1;border:0;background:none;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:500;color:var(--sub)}
+nav button svg{width:24px;height:24px}nav button.on{background:none;color:var(--p);font-weight:700}nav button.on svg{fill:var(--lav)}
 #sh{position:absolute;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;z-index:5}
 #sh>div{width:100%;background:var(--cd);border-radius:20px 20px 0 0;padding:20px 18px 24px;max-height:90%;overflow:auto}
-#tt{position:absolute;left:50%;bottom:80px;transform:translateX(-50%);background:#191F28;color:#fff;border-radius:12px;padding:10px 16px;font-size:13px;display:none;z-index:9;max-width:90%;text-align:center}
+#tt{position:absolute;left:50%;bottom:84px;transform:translateX(-50%);background:#191F28;color:#fff;border-radius:12px;padding:10px 16px;font-size:13px;display:none;z-index:9;max-width:90%;text-align:center}
 .wr{background:#FFECEC;color:#C0282D;border-radius:12px;padding:10px 14px;margin:10px 14px;font-size:13px}
+.pk{display:flex;gap:8px;margin-top:8px}.pk button{width:32px;height:32px;border-radius:50%;border:3px solid transparent;padding:0}.pk button.on{border-color:var(--ink)}
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--p);outline-offset:2px}
-:root{--t2:#FFEDE3;--f2:#D9531E;--t3:#FFF3D1;--f3:#A66A00;--t4:#DDF6EC;--f4:#0B8A63}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--t2:#3A2418;--f2:#FF9A6B;--t3:#38301A;--f3:#F2C14E;--t4:#13332A;--f4:#4FD1A5}}
-:root[data-theme="dark"]{--t2:#3A2418;--f2:#FF9A6B;--t3:#38301A;--f3:#F2C14E;--t4:#13332A;--f4:#4FD1A5}
-.c{border-radius:22px;padding:18px}.li{gap:14px}.btn{border-radius:16px;padding:15px;font-size:16px}
-.hero{margin:6px 14px 0;border-radius:26px;padding:22px;color:#fff;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(140deg,#8B5CFF,#5B33E0);box-shadow:0 14px 30px -12px rgba(91,51,224,.55)}
-.hero .hs{font-size:14px;opacity:.85}.hero .big{font-size:64px;font-weight:800;line-height:1.05;letter-spacing:-2px}.hero .big span{font-size:22px;font-weight:600;margin-left:3px;letter-spacing:0}
-.rg{position:relative;width:104px;height:104px;flex:none}.rg svg{width:100%;height:100%}.rg div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}.rg b{font-size:22px}.rg span{font-size:11px;opacity:.85}
-.ti{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;flex:none}.ti svg{width:21px;height:21px}.ti.dn{opacity:.45}
-.t1{background:var(--lav);color:var(--pd)}.t2{background:var(--t2);color:var(--f2)}.t3{background:var(--t3);color:var(--f3)}.t4{background:var(--t4);color:var(--f4)}
-.tile{display:flex;flex-direction:column;align-items:flex-start;gap:12px;border-radius:18px;padding:16px}
-nav{padding:6px 6px 4px}nav button{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:500}nav button svg{width:24px;height:24px}nav button.on svg{fill:var(--lav)}
-.hd .b2{display:flex;align-items:center;gap:6px}.hd .b2 svg{width:16px;height:16px}
-.st.cur i{animation:pl 2.2s ease-out infinite}@keyframes pl{0%{box-shadow:0 0 0 0 rgba(122,77,255,.45)}100%{box-shadow:0 0 0 12px rgba(122,77,255,0)}}@media(prefers-reduced-motion:reduce){.st.cur i{animation:none}}
 </style></head>
 <body><div id="app"><div id="scr"></div><nav id="nv"></nav><div id="sh"></div><div id="tt"></div></div>
 <script>
 const TODAY=Date.UTC(2026,10,5),DAY=864e5,$=s=>document.querySelector(s);
-const S={pg:'onb',sub:'list',type:'매매',int:1,base:Date.UTC(2026,10,28),sh:null,svc:null,q:{},banks:[5000,4000,3000],docs:[['신분증',1],['인감증명서',0],['등기부등본',1],['계약서 사본',1],['대출 서류',0],['이사업체 계약서',0]],
+const PC=['#7A4DFF','#FF8A4C','#3B82F6','#E64980','#F59F00','#15AABF'];
+const STG=[{k:1,n:'계약금 단계',m:'c1'},{k:2,n:'중도금 단계',m:'c2'},{k:3,n:'잔금 단계',m:'bal'},{k:4,n:'이사 단계',m:'mi'}];
+const S={pg:'onb',sub:'list',type:'매매',int:1,base:Date.UTC(2026,10,28),sh:null,svc:null,q:{},bell:1,
+banks:[5000,4000,3000],
+docs:[['신분증',1],['인감증명서',0],['등기부등본',1],['계약서 사본',1],['대출 서류',0],['이사업체 계약서',0]],
+pp:[{id:'me',n:'유영',rel:'나',c:0},{id:'p2',n:'민수',rel:'배우자',c:1}],
+plan:{c2:{bank:'국민은행',amt:'5,000만원'},bal:{bank:'신한은행 · 카카오뱅크',amt:'7,000만원 + 대출'}},
 ev:[
-{id:'doc',n:'서류·자금 준비',o:-35,w:'지은'},
-{id:'c1',n:'계약금',o:-77,w:'함께',big:1},
-{id:'in',n:'인테리어 견적',o:-21,w:'함께',t:'int',s:'in',r:'중도금 시점에 견적을 받아두면 공사 일정이 여유로워요'},
-{id:'ln',n:'대출 상담',o:-21,w:'민수',r:'은행은 잔금 한 달 전부터 상담해주는 곳이 많아요'},
-{id:'c2',n:'중도금',o:-20,w:'민수',big:1},
-{id:'lw',n:'법무사 견적',o:-14,w:'지은',t:'buy',s:'lw',r:'잔금 4주 전부터 2~3곳을 비교해요'},
-{id:'mr',n:'이삿짐 예약',o:-11,w:'함께',s:'mv',r:'이사 25일 전쯤 업체를 확정해요'},
-{id:'ib',n:'인테리어 시공',o:-5,w:'지은',t:'int'},
-{id:'bal',n:'잔금',o:0,w:'함께',big:1},
-{id:'dis',n:'폐가전 정리',o:3,w:'민수',s:'ds',r:'큰 가전과 가구는 수거 예약이 필요해요'},
-{id:'cl',n:'입주청소',o:12,w:'지은',s:'cl',r:'공사가 끝난 뒤, 이사 하루나 이틀 전에 해요'},
-{id:'mv',n:'이사일',o:14,w:'함께',big:1},
-{id:'mi',n:'전입신고',o:15,w:'함께',big:1}]};
+{id:'reg',n:'등기부등본 확인',o:-80,w:'me',st:1,i:'doc',t:'buy'},
+{id:'ct',n:'계약서 작성',o:-77,w:'all',st:1,i:'doc'},
+{id:'c1',n:'계약금 송금',mn:'계약금',o:-77,w:'all',st:1,i:'coin',big:1,main:1},
+{id:'lq',n:'대출 한도 알아보기',o:-70,w:'p2',st:1,i:'bank'},
+{id:'mq',n:'이삿짐센터 견적 비교',o:-23,w:'me',st:2,i:'truck',s:'mv',r:'2~3곳을 비교하면 가격 차이가 꽤 나요'},
+{id:'in',n:'인테리어 견적 받기',o:-21,w:'all',st:2,i:'brush',t:'int',s:'in',main:1,r:'중도금 시점에 견적을 받아두면 공사 일정이 여유로워요'},
+{id:'ln',n:'대출 상담 받기',o:-21,w:'p2',st:2,i:'bank',r:'은행은 잔금 한 달 전부터 상담해주는 곳이 많아요'},
+{id:'c2',n:'중도금 송금',mn:'중도금',o:-20,w:'p2',st:2,i:'coin',big:1},
+{id:'lw',n:'법무사 견적 비교',o:-14,w:'me',st:3,i:'scale',t:'buy',s:'lw',main:1,r:'잔금 4주 전부터 2~3곳을 비교해요'},
+{id:'mr',n:'이삿짐 예약',o:-11,w:'all',st:3,i:'truck',s:'mv',main:1,r:'이사 25일 전쯤 업체를 확정해요'},
+{id:'doc',n:'서류·자금 준비',o:-7,w:'me',st:3,i:'doc',main:1},
+{id:'ib',n:'인테리어 시공',o:-5,w:'me',st:3,i:'brush',t:'int',main:1},
+{id:'lx',n:'대출 실행 확인',o:-1,w:'p2',st:3,i:'bank'},
+{id:'bal',n:'잔금 송금',mn:'잔금',o:0,w:'all',st:3,i:'key',big:1,main:1},
+{id:'rg2',n:'소유권 이전 등기',o:0,w:'me',st:3,i:'scale',t:'buy'},
+{id:'fee',n:'관리비·공과금 정산',o:0,w:'p2',st:3,i:'coin'},
+{id:'dis',n:'폐가전 정리',o:3,w:'p2',st:4,i:'trash',s:'ds',main:1,r:'큰 가전과 가구는 수거 예약이 필요해요'},
+{id:'cl',n:'입주청소',o:12,w:'me',st:4,i:'spark',s:'cl',main:1,r:'공사가 끝난 뒤, 이사 하루나 이틀 전에 해요'},
+{id:'mv',n:'이사일',mn:'이사',o:14,w:'all',st:4,i:'truck',big:1,main:1},
+{id:'mi',n:'전입신고',o:15,w:'all',st:4,i:'pin',big:1,main:1},
+{id:'fx',n:'확정일자 받기',o:15,w:'me',st:4,i:'doc',t:'rent'},
+{id:'ad',n:'주소 변경 (은행·카드)',o:20,w:'p2',st:4,i:'pin'}]};
+const INS=[['도배',2,3.5,'p'],['장판·마루',3,7,'p'],['욕실',400,800,'f'],['주방',400,900,'f'],['샷시(창호)',25,40,'p'],['조명·전기',1.5,3,'p'],['중문·현관',150,300,'f'],['붙박이장',200,500,'f'],['발코니 확장',300,700,'f'],['전체 리모델링',150,300,'p']];
 const SV={
-cl:{n:'입주청소',e:'cl',v:'청소 업체',f:[['py','평수','n',32],['st','집 상태','s',['구축','공사 후']]],c:v=>{const m=v.st==='공사 후'?1.2:1;return[v.py*1.1*m,v.py*1.4*m]}},
-mv:{n:'이삿짐센터',e:'mv',v:'이삿짐 업체',f:[['py','평수','n',32],['el','엘리베이터','s',['있음','없음']]],c:v=>{const m=v.el==='없음'?1.15:1;return[v.py*5*m,v.py*8*m]}},
-in:{n:'인테리어',e:'ib',v:'인테리어 업체',f:[['py','평수','n',32],['sc','공사 범위','s',['부분(도배·장판)','전체']]],c:v=>v.sc==='전체'?[v.py*150,v.py*300]:[v.py*15,v.py*25]},
-lw:{n:'법무사',e:'bal',v:'법무사 사무소',f:[['pr','매매가(억원)','n',7]],c:v=>v.pr<6?[40,60]:v.pr<9?[50,80]:[60,100]},
-ds:{n:'폐가전·폐가구',e:'dis',v:'수거 업체',f:[['it','품목 수','n',5]],c:v=>[v.it,v.it*3]}};
+lw:{n:'법무사',e:'bal',v:'법무사 사무소',i:'scale',ts:1,f:[['pr','매매가(억원)','n',7]],c:v=>v.pr<6?[40,60]:v.pr<9?[50,80]:[60,100]},
+mv:{n:'이삿짐센터',e:'mv',v:'이삿짐 업체',i:'truck',ts:2,f:[['py','평수','n',32],['el','엘리베이터','s',['있음','없음']],['ty','이사 방식','s',['포장이사','반포장이사','일반이사']]],c:v=>{const m=(v.el==='없음'?1.15:1)*({'포장이사':1,'반포장이사':.8,'일반이사':.6}[v.ty]);return[v.py*5*m,v.py*8*m]}},
+cl:{n:'입주청소',e:'cl',v:'청소 업체',i:'spark',ts:4,f:[['py','평수','n',32]],c:v=>[v.py*1.1,v.py*1.4]},
+in:{n:'인테리어',e:'ib',v:'인테리어 업체',i:'brush',ts:3,f:[['py','평수','n',32],['sc','공사 범위 (여러 개 고를 수 있어요)','m',INS.map(x=>x[0]),['도배','장판·마루']]],
+ c:v=>{const L=INS.filter(x=>v.sc.includes(x[0]));if(!L.length)return[0,0];const all=L.find(x=>x[0]==='전체 리모델링');const U=all?[all]:L;return U.reduce((a,x)=>{const k=x[3]==='p'?v.py:1;return[a[0]+x[1]*k,a[1]+x[2]*k]},[0,0])}},
+ds:{n:'폐가전·폐가구',e:'dis',v:'수거 업체',i:'trash',ts:3,f:[['it','품목 수','n',5],['el','엘리베이터','s',['있음','없음']]],c:v=>{const m=v.el==='없음'?1.3:1;return[v.it*m,v.it*3*m]}}};
+const SO=['lw','mv','cl','in','ds'];
 const iso=t=>new Date(t).toISOString().slice(0,10),md=t=>{const d=new Date(t);return(d.getUTCMonth()+1)+'/'+d.getUTCDate()};
 const dt=e=>e.f??S.base+e.o*DAY,E=id=>S.ev.find(e=>e.id===id);
 const done=e=>e.dn!==undefined?e.dn:dt(e)<TODAY;
-const vis=()=>S.ev.filter(e=>!(e.t==='int'&&!S.int)&&!(e.t==='buy'&&S.type!=='매매')).sort((a,b)=>dt(a)-dt(b));
-const mny=n=>n>=1e4?(n/1e4).toFixed(1).replace('.0','')+'억':Math.round(n).toLocaleString('ko-KR')+'만원';
+const ok=e=>!(e.t==='int'&&!S.int)&&!(e.t==='buy'&&S.type!=='매매')&&!(e.t==='rent'&&S.type==='매매');
+const vis=()=>S.ev.filter(ok).sort((a,b)=>dt(a)-dt(b));
+const mny=n=>n>=1e4?(n/1e4).toFixed(1).replace('.0','')+'억원':Math.round(n).toLocaleString('ko-KR')+'만원';
+const dl=e=>{const d=Math.round((dt(e)-TODAY)/DAY);return d>0?'D-'+d:d===0?'D-day':'D+'+(-d)};
 const dday=()=>Math.round((S.base-TODAY)/DAY);
+const curStg=()=>STG.find(s=>!done(E(s.m)))||STG[3];
 function toast(t){const x=$('#tt');x.textContent=t;x.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(()=>x.style.display='none',2200)}
-function metro(){const L=vis().filter(e=>e.big),k=L.findIndex(e=>!done(e));
-return'<div class="metro">'+L.map((e,i)=>`<div class="st ${done(e)?'dn':''} ${i===k?'cur':''}"><i></i><b>${e.n}</b><span>${md(dt(e))}</span></div>`).join('')+'</div>'}
-function warn(){const c=E('cl'),m=E('mv');return dt(c)>=dt(m)?'<div class="wr">입주청소 날짜가 이사일과 겹쳐요. 청소는 이사 전날까지 잡아주세요.</div>':''}
-const IC={home:'<path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/>',tl:'<rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/>',fund:'<path d="M4 8a3 3 0 0 1 3-3h11v4"/><rect x="4" y="8" width="16" height="12" rx="3"/><circle cx="16" cy="14" r="1.2"/>',svc:'<path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>',com:'<circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.6 5.5-4.6s4.9 1.6 5.5 4.6"/><circle cx="17" cy="9" r="2.4"/><path d="M16.5 14.6c2.3 0 3.6 1.3 4 3.4"/>',
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+const IC={home:'<path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/>',tl:'<rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/>',fund:'<path d="M4 8a3 3 0 0 1 3-3h11v4"/><rect x="4" y="8" width="16" height="12" rx="3"/><circle cx="16" cy="14" r="1.2"/>',svc:'<path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>',my:'<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c.8-3.8 3.8-5.8 7.5-5.8s6.7 2 7.5 5.8"/>',
+uplus:'<circle cx="9" cy="8" r="3.4"/><path d="M3 19.5c.6-3.3 3-5 6-5s5.4 1.7 6 5"/><path d="M18.5 7.5v6M15.5 10.5h6"/>',bell:'<path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.6 1.8H4.4z"/><path d="M10 21a2.2 2.2 0 0 0 4 0"/>',x:'<path d="M6 6l12 12M18 6L6 18"/>',check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
 doc:'<path d="M7 3h7l4 4v13H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>',coin:'<circle cx="12" cy="12" r="8"/><path d="M8.5 10l1.5 5 2-4 2 4 1.5-5"/>',key:'<circle cx="8" cy="12" r="3.5"/><path d="M11.5 12H21M17 12v3M20 12v2.5"/>',brush:'<rect x="4" y="4" width="13" height="5" rx="1.5"/><path d="M17 6.5h2.5v5H11v3.5M9.5 15h3v6h-3z"/>',spark:'<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18 16l.8 2.2L21 19l-2.2.8L18 22l-.8-2.2L15 19l2.2-.8z"/>',truck:'<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/>',pin:'<path d="M12 21s6-5.5 6-11a6 6 0 0 0-12 0c0 5.5 6 11 6 11z"/><circle cx="12" cy="10" r="2.2"/>',trash:'<path d="M5 7h14M9 7V4h6v3M7 7l1 13h8l1-13"/>',scale:'<path d="M12 4v16M6 20h12M5 8h14M5 8l-2.5 6a3 3 0 0 0 5 0zM19 8l-2.5 6a3 3 0 0 0 5 0z"/>',bank:'<path d="M3 9l9-5 9 5M5 10v7M10 10v7M14 10v7M19 10v7M3 20h18"/>'};
-const ic=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k==='users'?'com':k]}</svg>`;
-const EI={doc:['doc',4],c1:['coin',1],c2:['coin',1],in:['brush',2],ln:['bank',1],lw:['scale',2],mr:['truck',2],ib:['brush',2],bal:['key',1],dis:['trash',3],cl:['spark',2],mv:['truck',2],mi:['pin',4]};
-const et=e=>`<span class="ti t${EI[e.id][1]}${done(e)?' dn':''}">${ic(EI[e.id][0])}</span>`;
-const TS={cl:4,mv:2,in:1,lw:3,ds:3},SI={cl:'spark',mv:'truck',in:'brush',lw:'scale',ds:'trash'};
-const ring=()=>{const L=vis(),n=L.filter(done).length,p=n/L.length,c=2*Math.PI*42;return`<div class="rg"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="9"/><circle cx="50" cy="50" r="42" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-dasharray="${c*p} ${c}" transform="rotate(-90 50 50)"/></svg><div><b>${Math.round(p*100)}%</b><span>${n}/${L.length} 완료</span></div></div>`};
+const ic=(k,sw=1.8)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]}</svg>`;
+const BOLT='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2L4.5 13.5h6.5L9.5 22l10-12.5h-6.8z" fill="#FFC633" stroke="#E5A100" stroke-width="1.3" stroke-linejoin="round"/></svg>';
+const LOGO='<svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9B6BFF"/><stop offset="1" stop-color="#5B33E0"/></linearGradient></defs><rect width="40" height="40" rx="12" fill="url(#lg)"/><path d="M10 19.5L20 11l10 8.5V29a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 10 29z" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><path d="M15.5 22.5l3.3 3.3 6-6.3" fill="none" stroke="#FFD43B" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const et=(e,sm)=>`<span class="ti t${e.st}${sm?' sm':''}${done(e)?' dn':''}">${ic(e.i)}</span>`;
+const cb=e=>`<button class="cb ${done(e)?'on':''}" data-a="chk" data-id="${e.id}" aria-pressed="${done(e)}" aria-label="${e.n} 완료">${ic('check',2.6)}</button>`;
+const who=w=>w==='all'?{n:'함께',col:'#9AA3AF'}:(()=>{const p=S.pp.find(x=>x.id===w)||S.pp[0];return{n:p.n,col:PC[p.c]}})();
+const short=n=>n.length>2?n.slice(-2):n;
+const bd=(w,lg)=>{const p=who(w);return`<span class="av${lg?' lg':''}" style="background:${p.col}" title="담당: ${esc(p.n)}">${esc(short(p.n))}</span>`};
+const wopt=s=>[...S.pp.map(p=>[p.id,p.n+(p.id==='me'?' (나)':'')]),['all','함께']].map(o=>`<option value="${o[0]}" ${s===o[0]?'selected':''}>${esc(o[1])}</option>`).join('');
+function metro(){const L=vis().filter(e=>e.big),k=L.findIndex(e=>!done(e));
+return'<div class="metro">'+L.map((e,i)=>`<div class="st ${done(e)?'dn':''} ${i===k?'cur':''}"><i></i><b>${e.mn||e.n}</b><span>${md(dt(e))}</span></div>`).join('')+'</div>'}
+function warn(){const c=E('cl'),m=E('mv');return dt(c)>=dt(m)?'<div class="wr">입주청소 날짜가 이사일과 겹쳐요. 청소는 이사 전날까지 잡아주세요.</div>':''}
+
 const P={};
-P.onb=()=>`<div class="hd"><div><div style="font-size:15px;font-weight:800;color:var(--p);letter-spacing:-.3px">24dday</div><h1>어떤 이사를<br>준비하세요?</h1></div></div><div class="c"><b>거래 유형</b><div class="row" style="margin-top:10px;flex-wrap:wrap">${['매매','전세','월세'].map(t=>`<button class="b2 ${S.type===t?'on':''}" data-a="type" data-v="${t}">${t}</button>`).join('')}</div>
+P.onb=()=>`<div class="hd"><div><div class="logo">${LOGO}24dday</div><h1 style="margin-top:14px">어떤 이사를<br>준비하세요?</h1></div></div><div class="c"><b>거래 유형</b><div class="row" style="margin-top:10px;flex-wrap:wrap">${['매매','전세','월세'].map(t=>`<button class="b2 ${S.type===t?'on':''}" data-a="type" data-v="${t}">${t}</button>`).join('')}</div>
 <label>잔금일 (이사 들어가는 날이 아니라 돈을 다 치르는 날)</label><input type="date" id="ob" value="${iso(S.base)}">
 <label>인테리어를 하나요?</label><div class="row">${[1,0].map(t=>`<button class="b2 ${S.int===t?'on':''}" data-a="int" data-v="${t}">${t?'해요':'안 해요'}</button>`).join('')}</div></div>
 <div class="c"><button class="btn" style="margin:0" data-a="start">시작하기</button><p class="sb" style="margin:10px 0 0">오늘 날짜는 시연용으로 2026년 11월 5일에 맞춰져 있어요.</p></div>`;
-P.home=()=>{const L=vis().filter(e=>!done(e));const t=L[0],nx=L.slice(1,3);
-return`<div class="hd"><div><small>잠실동 → 정자동</small><div style="font-size:18px;font-weight:700;margin-top:2px">지은 · 민수네 이사</div></div><button class="b2" data-a="go" data-p="fam" aria-label="가족 공유">${ic('users')}가족</button></div>
-<div class="hero"><div><div class="hs">잔금까지</div><div class="big">${dday()}<span>일</span></div><div class="hs">${md(S.base)} 잔금일</div></div>${ring()}</div>
-<div class="c"><div class="row sp"><b>큰 일정</b><a data-a="go" data-p="tl" data-s="list">자세히 보기 ›</a></div>${metro()}
-<div class="row" style="margin-top:12px"><button class="b2" data-a="go" data-p="tl" data-s="list">날짜 편집</button><button class="b2" data-a="go" data-p="tl" data-s="rec">추천 받기</button></div></div>
-${t?`<div class="c"><div class="row sp"><b>다음 할 일</b><span class="ch">${t.w}</span></div><div style="font-size:17px;margin-top:8px">${t.n}</div><small>${md(dt(t))}까지 · D-${Math.round((dt(t)-TODAY)/DAY)}</small><button class="btn" data-a="done" data-id="${t.id}">완료했어요</button></div>`:''}
-${nx.length?'<div class="c">'+nx.map(e=>`<div class="li">${et(e)}<div>${e.n}<br><small>D-${Math.round((dt(e)-TODAY)/DAY)}</small></div><small class="${e.s?'co':''}">${md(dt(e))}</small></div>`).join('')+'</div>':''}`};
-P.tl=()=>{const s=S.sub,L=vis();
+
+P.home=()=>{const L=vis(),n=L.filter(done).length,pct=Math.round(n/L.length*100),cs=curStg(),T=L.filter(e=>e.st===cs.k),td=T.filter(done).length,M=L.filter(e=>e.main),d=dday();
+return`<div class="top"><div class="logo">${LOGO}24dday</div><div class="row" style="gap:8px">
+<button class="inv" data-a="inv" aria-label="일정 함께 관리할 사람 초대하기"><span class="ip">${ic('uplus',2)}</span><span>공유 <b>${S.pp.length}</b>명 참여중</span></button>
+<button class="bell ${S.bell?'':'off'}" data-a="bell" aria-pressed="${!S.bell}" aria-label="${S.bell?'알림 끄기':'알림 켜기'}">${ic('bell',2)}${S.bell?'':`<span class="x">${ic('x',3.5)}</span>`}</button></div></div>
+<div class="hero"><div class="htop"><div><div class="hs">잔금까지</div><div class="big">${d>0?'D-'+d:d===0?'D-day':'D+'+(-d)}</div><div class="hs">${md(S.base)} 잔금일<br>잠실동 → 정자동</div></div>
+<div class="seg" role="group" aria-label="거래 유형">${['매매','전세','월세'].map(t=>`<button class="${S.type===t?'on':''}" data-a="type" data-v="${t}">${t}</button>`).join('')}</div></div>
+<div class="pc"><span>전체 진행률 · ${n}/${L.length} 완료</span><b>${pct}%</b></div><div class="yb"><i style="width:${pct}%"></i></div>
+${metro()}
+<div class="hed"><div class="lg2"><span><i style="background:#3DDC97"></i>완료</span><span><i style="background:#FFD43B"></i>지금</span><span><i style="background:rgba(255,255,255,.45)"></i>예정</span></div><button data-a="go" data-p="tl" data-s="list">날짜 편집 ›</button></div></div>
+<div class="c"><div class="shd"><div class="sh2"><span class="ti sm yl">${BOLT}</span>해야 할 일</div><span class="ch">${cs.n} · ${td}/${T.length}</span></div>
+${T.map(e=>`<div class="li">${cb(e)}<div><div class="${done(e)?'dnx':''}">${e.n}</div><small>${md(dt(e))} · ${done(e)?'<span class="gtx">완료</span>':dl(e)}</small></div>${bd(e.w)}</div>`).join('')}</div>
+<div class="c"><div class="shd"><div class="sh2"><span class="ti sm t1">${ic('tl')}</span>단계별 주요일정</div><a data-a="go" data-p="tl" data-s="list">자세히 보기 ›</a></div>
+${M.map(e=>`<div class="li">${et(e)}<div><div>${e.n}</div><small><span class="c${e.st}">${STG[e.st-1].n}</span> · ${done(e)?'<span class="gtx">완료</span>':dl(e)}</small></div><small class="${done(e)?'':'c'+e.st}" style="font-weight:600">${md(dt(e))}</small></div>`).join('')}</div>`};
+
+P.tl=()=>{const s=S.sub,L=vis(),cs=curStg();
 const hd=`<div class="hd"><h2>일정</h2></div><div class="pill">${[['list','전체'],['rec','추천'],['doc','서류']].map(x=>`<button class="${s===x[0]?'on':''}" data-a="sub" data-v="${x[0]}">${x[1]}</button>`).join('')}</div>`;
-if(s==='rec'){const R=L.filter(e=>e.s&&!done(e));return hd+`<div class="c" style="background:var(--lav)"><b style="color:var(--pd)">지금 하면 좋은 일</b><div class="sb">날짜가 가까운 순서예요</div></div>`+R.map(e=>`<div class="c"><div class="row sp"><span class="row">${et(e)}<b>${e.n}</b></span><span class="${dt(e)-TODAY<8*DAY?'co':'sb'}">D-${Math.round((dt(e)-TODAY)/DAY)}</span></div><p class="sb" style="margin:6px 0 0">${e.r}</p><button class="btn" data-a="svc" data-k="${e.s}">견적 보러 가기</button></div>`).join('')}
+if(s==='rec'){const R=L.filter(e=>e.s&&!done(e));return hd+`<div class="c" style="background:var(--lav)"><b style="color:var(--pd)">지금 하면 좋은 일</b><div class="sb">날짜가 가까운 순서예요</div></div>`+R.map(e=>`<div class="c"><div class="row sp"><span class="row">${et(e)}<b>${e.n}</b></span><span class="${dt(e)-TODAY<8*DAY?'co':'sb'}">${dl(e)}</span></div><p class="sb" style="margin:6px 0 0">${e.r||''}</p><button class="btn" data-a="svc" data-k="${e.s}">견적 보러 가기</button></div>`).join('')}
 if(s==='doc'){const n=S.docs.filter(d=>d[1]).length;return hd+`<div class="c"><div class="row sp"><b>서류 보관함</b><span class="sb">${n} / ${S.docs.length}</span></div>${S.docs.map((d,i)=>`<div class="li" data-a="doc" data-i="${i}"><span class="d ${d[1]?'dn':''}"></span><div>${d[0]}</div></div>`).join('')}</div>`}
-return hd+warn()+`<div class="c"><label style="margin:0">잔금일 (바꾸면 나머지 일정이 같이 움직여요)</label><input type="date" id="bs" value="${iso(S.base)}"></div><div class="c">${metro()}</div>
-<div class="c"><b>전체 일정</b><p class="sb" style="margin:2px 0 6px">누르면 날짜와 담당자를 바꿀 수 있어요</p>${L.map(e=>`<div class="li" data-a="edit" data-id="${e.id}">${et(e)}<div>${e.n}<br><small>${done(e)?'완료 · ':''}${md(dt(e))}${e.f?' · 직접 정함':''}</small></div><span class="ch">${e.w}</span></div>`).join('')}</div>`};
+return hd+warn()+`<div class="c"><label style="margin:0">잔금일 (바꾸면 나머지 일정이 같이 움직여요)</label><input type="date" id="bs" value="${iso(S.base)}"></div>
+${STG.map(g=>{const T=L.filter(e=>e.st===g.k),d=T.filter(done).length,all=d===T.length;
+return`<div class="c"><div class="sgh"><span class="ti sm t${g.k}">${ic(['coin','coin','key','truck'][g.k-1])}</span><b class="c${g.k}">${g.n}</b><span style="flex:1"></span>${all?'<span class="ch g">완료</span>':g===cs?'<span class="ch">진행 중</span>':''}<small>${d}/${T.length}</small></div>
+${T.map(e=>`<div class="li">${cb(e)}<div><div class="${done(e)?'dnx':''}">${e.n}</div><small>${md(dt(e))}${e.f?' · 직접 정함':''} · ${done(e)?'<span class="gtx">완료</span>':dl(e)}</small></div>${bd(e.w)}<button class="bo" data-a="edit" data-id="${e.id}">수정</button></div>`).join('')}</div>`}).join('')}`};
+
 P.fund=()=>{const need=15000,tot=S.banks.reduce((a,b)=>a+b,0),gap=Math.max(need-tot,0),nm=['국민은행','신한은행','카카오뱅크'],cl=['#7A4DFF','#B9A2FF','#12B886'];
-return`<div class="hd"><h2>자금</h2></div><div class="c"><small>필요 금액 (예시)</small><div style="font-size:24px;font-weight:700">${mny(need)}</div>
-<div class="bar" style="margin:12px 0 6px">${S.banks.map((b,i)=>`<i style="width:${b/need*100}%;background:${cl[i]}"></i>`).join('')}</div>
-<div class="row sp"><small>준비 ${mny(tot)}</small><small class="${gap?'co':''}">${gap?'부족 '+mny(gap):'충분해요'}</small></div></div>
-<div class="c"><b>은행별 보유액 (만원)</b>${nm.map((n,i)=>`<label>${n}</label><input type="number" data-b="${i}" value="${S.banks[i]}">`).join('')}<p class="sb" style="margin:12px 0 0">계좌 자동 연결은 다음 버전에서 만나요. 지금은 직접 입력해요.</p></div>
-<div class="c"><b>입출금 계획 (예시)</b>${[['c2','국민은행','5,000만원'],['bal','신한은행 · 카카오뱅크','7,000만원 + 대출']].map(r=>`<div class="li"><div>${E(r[0]).n} · ${r[1]}<br><small>${r[2]}</small></div><span class="ch">${md(dt(E(r[0])))}</span></div>`).join('')}</div>`};
-P.svc=()=>`<div class="hd"><div><h2>서비스</h2><p class="sb" style="margin:4px 0 0">견적을 보고 메시지나 전화로 바로 문의해요</p></div></div><div class="c gr">${Object.entries(SV).map(([k,v])=>`<button class="tile" data-a="svc" data-k="${k}"><span class="ti t${TS[k]}">${ic(SI[k])}</span>${v.n}<small>견적 확인</small></button>`).join('')}</div>`;
-P.q=()=>{const v=SV[S.svc],e=E(v.e);
-return`<div class="hd"><div><a data-a="go" data-p="svc">‹ 서비스</a><h2 style="margin-top:6px">${v.n}</h2></div></div><div class="c">${v.f.map(f=>f[2]==='n'?`<label>${f[1]}</label><input type="number" data-q="${f[0]}" value="${S.q[f[0]]}">`:`<label>${f[1]}</label><select data-q="${f[0]}">${f[3].map(o=>`<option ${S.q[f[0]]===o?'selected':''}>${o}</option>`).join('')}</select>`).join('')}<label>희망 날짜</label><input type="date" data-q="dt" value="${S.q.dt}"></div>
-<div class="c" style="background:var(--lav)"><small style="color:var(--pd)">예상 견적</small><div id="est" style="font-size:26px;font-weight:700;color:var(--pd)"></div><small>예시 계산이에요. 실제 견적은 업체마다 달라요.</small></div>
-<div class="c"><b>업체에 문의하기</b>${['A','B','C'].map(x=>`<div class="li"><div>${v.v} ${x}<br><small>예시 업체</small></div><button class="b2" data-a="msg" data-v="${v.v} ${x}">메시지</button><button class="bo" data-a="call" data-v="${v.v} ${x}">전화</button></div>`).join('')}</div>`};
-P.com=()=>`<div class="hd"><div><h2>중고거래</h2><p class="sb" style="margin:4px 0 0">이사 전에 안 쓰는 물건을 정리해요</p></div></div><div class="c">${[['건조기','12만원','정자동 · 4시간 전'],['4인 식탁','8만원','잠실동 · 어제'],['책장 세트','5만원','잠실동 · 2일 전']].map(r=>`<div class="li"><div>${r[0]}<br><small>${r[2]}</small></div><b>${r[1]}</b></div>`).join('')}<button class="btn" data-a="cm">내 물건 올리기</button></div>`;
-P.fam=()=>{const L=vis();return`<div class="hd"><div><a data-a="go" data-p="home">‹ 홈</a><h2 style="margin-top:6px">함께하는 사람</h2></div></div>
-<div class="c"><b>업무 분배</b>${['지은','민수','함께'].map(w=>{const a=L.filter(e=>e.w===w),d=a.filter(done).length;return`<div style="margin-top:14px"><div class="row sp"><span>${w}</span><small>${d} / ${a.length} 완료</small></div><div class="bar" style="margin-top:6px"><i style="width:${a.length?d/a.length*100:0}%;background:var(--p)"></i></div></div>`}).join('')}<p class="sb" style="margin:14px 0 0">일정에서 항목을 눌러 담당자를 바꿀 수 있어요.</p></div>
-<div class="c"><b>초대하기</b><p class="sb" style="margin:4px 0 0">앱을 깔지 않아도 링크로 일정을 볼 수 있어요.</p><button class="btn" data-a="copy">초대 링크 복사</button><button class="btn" style="background:var(--lav);color:var(--pd)" data-a="go" data-p="onb">처음 화면 다시 보기</button></div>`};
+return`<div class="hd"><h2>자금</h2></div><div class="c"><small>필요 금액</small><div style="font-size:24px;font-weight:700">${mny(need)}</div>
+<div class="bar" style="margin:12px 0 6px">${S.banks.map((b,i)=>`<i style="width:${Math.min(b/need*100,100)}%;background:${cl[i]}"></i>`).join('')}</div>
+<div class="row sp"><small>준비 ${mny(tot)}</small><small class="${gap?'co':'gtx'}">${gap?'부족 '+mny(gap):'충분해요'}</small></div></div>
+<div class="c"><div class="row sp"><b>은행별 보유액 (만원)</b><button class="pb" data-a="recalc">다시 계산</button></div>${nm.map((n,i)=>`<label>${n}</label><input type="number" inputmode="numeric" data-b="${i}" value="${S.banks[i]}">`).join('')}<p class="sb" style="margin:12px 0 0">금액을 고친 뒤 다시 계산을 눌러 주세요. 계좌 자동 연결은 다음 버전에서 만나요.</p></div>
+<div class="c"><b>입출금 계획</b>${Object.keys(S.plan).map(id=>{const e=E(id),p=S.plan[id];return`<div class="li"><div><small class="${done(e)?'gtx':''}" style="font-weight:600">${md(dt(e))} · ${done(e)?'완료':dl(e)}</small><div><b>${e.mn}</b> · ${esc(p.bank)}</div><small>${esc(p.amt)}</small></div>${bd(e.w)}<button class="bo" data-a="pedit" data-id="${id}">수정</button></div>`}).join('')}</div>`};
+
+P.svc=()=>`<div class="hd"><div><h2>서비스</h2><p class="sb" style="margin:4px 0 0">견적을 보고 메시지나 전화로 바로 문의해요</p></div></div><div class="c gr">${SO.map(k=>{const v=SV[k];return`<button class="tile" data-a="svc" data-k="${k}"><span class="ti t${v.ts}">${ic(v.i)}</span>${v.n}<small>견적 확인</small></button>`}).join('')}</div>`;
+
+P.q=()=>{const v=SV[S.svc];
+return`<div class="hd"><div><a data-a="go" data-p="svc">‹ 서비스</a><h2 style="margin-top:6px">${v.n}</h2></div></div>
+<div class="c est"><small style="color:var(--pd)">예상 견적</small><div id="est" class="v"></div><small>실제 견적은 업체마다 달라요.</small></div>
+<div class="c">${v.f.map(f=>f[2]==='n'?`<label>${f[1]}</label><input type="number" inputmode="numeric" data-q="${f[0]}" value="${S.q[f[0]]}">`:f[2]==='m'?`<label>${f[1]}</label><div class="chips">${f[3].map(o=>`<button class="${S.q[f[0]].includes(o)?'on':''}" data-a="qm" data-k="${f[0]}" data-v="${o}" aria-pressed="${S.q[f[0]].includes(o)}">${o}</button>`).join('')}</div>`:`<label>${f[1]}</label><select data-q="${f[0]}">${f[3].map(o=>`<option ${S.q[f[0]]===o?'selected':''}>${o}</option>`).join('')}</select>`).join('')}<label>희망 날짜</label><input type="date" data-q="dt" value="${S.q.dt}"></div>
+<div class="c"><b>업체에 문의하기</b>${[['A','4.9','212'],['B','4.7','96'],['C','4.6','58']].map(x=>`<div class="li"><div>${v.v} ${x[0]}<br><small>★ ${x[1]} · 후기 ${x[2]}개</small></div><button class="b2" data-a="msg" data-v="${v.v} ${x[0]}">메시지</button><button class="bo" data-a="call" data-v="${v.v} ${x[0]}">전화</button></div>`).join('')}</div>
+<div class="c"><b>${v.n} 업체이신가요?</b><p class="sb" style="margin:4px 0 0">24dday에 업체를 등록하면 이사 준비 중인 고객에게 견적을 보낼 수 있어요.</p><button class="btn ol" data-a="reg">업체 등록 문의하기</button></div>`};
+
+P.my=()=>{const me=S.pp[0],L=vis(),mine=L.filter(e=>e.w==='me'),md2=mine.filter(done).length,O=S.pp.slice(1);
+return`<div class="hd"><h2>마이페이지</h2></div>
+<div class="c row">${bd('me',1)}<div style="flex:1"><b style="font-size:18px">${esc(me.n)} (나)</b><br><small>담당 ${mine.length}개 · 완료 ${md2}개</small></div><button class="bo" data-a="pe" data-id="me">수정</button></div>
+<div class="c"><div class="shd"><b style="font-size:17px">공유자 관리</b><small>${O.length}명</small></div>
+${O.length?O.map(p=>{const a=L.filter(e=>e.w===p.id);return`<div class="li">${bd(p.id)}<div><div><b>${esc(p.n)}</b> <small>${esc(p.rel||'')}</small></div><small>담당 ${a.length}개 · 완료 ${a.filter(done).length}개</small></div><button class="bo" data-a="pe" data-id="${p.id}">수정</button><button class="bo dl" data-a="pdel" data-id="${p.id}">삭제</button></div>`}).join(''):'<p class="sb">아직 함께하는 사람이 없어요.</p>'}
+<button class="btn" data-a="pe" data-id="">+ 공유자 추가</button></div>
+<div class="c"><b>업무 분배</b>${[...S.pp.map(p=>p.id),'all'].map(w=>{const a=L.filter(e=>e.w===w),d=a.filter(done).length;return`<div style="margin-top:14px"><div class="row sp"><span class="row" style="gap:8px">${bd(w)}${esc(who(w).n)}</span><small>${d} / ${a.length} 완료</small></div><div class="bar" style="margin-top:8px;background:var(--gnl)"><i style="width:${a.length?d/a.length*100:0}%;background:var(--gn)"></i></div></div>`}).join('')}</div>
+<div class="c"><button class="btn lv" style="margin:0" data-a="go" data-p="onb">처음 화면 다시 보기</button></div>`};
+
 function sheet(){const x=S.sh,h=$('#sh');if(!x){h.style.display='none';return}
 let b='';
-if(x.t==='ev'){const e=E(x.id);b=`<h2>${e.n}</h2><label>날짜</label><input type="date" id="ed" value="${iso(dt(e))}"><label>담당자</label><select id="ew">${['지은','민수','함께'].map(w=>`<option ${e.w===w?'selected':''}>${w}</option>`).join('')}</select>
-<label><input type="checkbox" id="edn" style="width:auto;margin:0 8px 0 0" ${done(e)?'checked':''}>완료했어요</label><button class="btn" data-a="save" data-id="${e.id}">저장하기</button>${e.f?`<button class="btn" style="background:var(--lav);color:var(--pd)" data-a="unfix" data-id="${e.id}">자동 날짜로 되돌리기</button>`:''}`}
-if(x.t==='msg'){const v=SV[S.svc];b=`<h2>${x.v}에 메시지 보내기</h2><label>문의 내용</label><textarea id="mt">안녕하세요. ${v.n} 견적을 문의드려요. 희망 날짜는 ${S.q.dt.slice(5).replace('-','/')}이고, ${v.f.map(f=>f[1]+' '+S.q[f[0]]).join(', ')}이에요.</textarea><button class="btn" data-a="send">메시지 보내기</button>`}
+if(x.t==='ev'){const e=E(x.id);b=`<h2>${e.n}</h2><label>날짜</label><input type="date" id="ed" value="${iso(dt(e))}"><label>담당자</label><select id="ew">${wopt(e.w)}</select>
+<label><input type="checkbox" id="edn" style="width:auto;margin:0 8px 0 0" ${done(e)?'checked':''}>완료했어요</label><button class="btn" data-a="save" data-id="${e.id}">저장하기</button>${e.f?`<button class="btn lv" data-a="unfix" data-id="${e.id}">자동 날짜로 되돌리기</button>`:''}`}
+if(x.t==='pl'){const e=E(x.id),p=S.plan[x.id];b=`<h2>${e.mn} 계획 수정</h2><label>날짜</label><input type="date" id="pd" value="${iso(dt(e))}"><label>출금 은행</label><input id="pbk" value="${esc(p.bank)}"><label>금액</label><input id="pam" value="${esc(p.amt)}"><label>담당자</label><select id="pw">${wopt(e.w)}</select><button class="btn" data-a="psave" data-id="${x.id}">저장하기</button>`}
+if(x.t==='pe'){const p=S.pp.find(q=>q.id===x.id),nw=!p,me=x.id==='me';b=`<h2>${nw?'공유자 추가':me?'내 프로필 수정':'공유자 프로필 수정'}</h2><label>이름</label><input id="pn" value="${p?esc(p.n):''}" placeholder="예: 민수">${me?'':`<label>관계</label><input id="pr" value="${p?esc(p.rel||''):''}" placeholder="배우자, 가족, 친구 등"><label>배지 색</label><div class="pk">${PC.slice(1).map((c,i)=>`<button data-a="pc" data-v="${i+1}" class="${(x.c??p?.c??1)===i+1?'on':''}" style="background:${c}" aria-label="색 ${i+1}"></button>`).join('')}</div>`}
+${me?'<p class="sb">내 배지는 보라색으로 표시돼요.</p>':''}<button class="btn" data-a="psv">${nw?'추가하고 초대 링크 보내기':'저장하기'}</button>`}
+if(x.t==='pdel'){const p=S.pp.find(q=>q.id===x.id);b=`<h2>${esc(p.n)}님을 삭제할까요?</h2><p class="sb">일정을 더 이상 함께 볼 수 없어요. ${esc(p.n)}님이 맡은 일은 ${esc(S.pp[0].n)}(나)에게 넘어가요.</p><button class="btn rd" data-a="pdx" data-id="${p.id}">삭제하기</button>`}
+if(x.t==='inv')b=`<h2>일정 함께 관리하기</h2><p class="sb">초대 링크를 받은 사람은 같은 일정을 보고, 할 일을 나눠 맡을 수 있어요. 지금 ${S.pp.length}명이 참여 중이에요.</p><button class="btn" data-a="share">메시지로 초대 링크 보내기</button><button class="btn lv" data-a="copy">링크 복사</button><button class="btn lv" data-a="go" data-p="my">공유자 관리로 가기</button>`;
+if(x.t==='msg'){const v=SV[S.svc];b=`<h2>${x.v}에 메시지 보내기</h2><label>문의 내용</label><textarea id="mt">안녕하세요. ${v.n} 견적을 문의드려요. 희망 날짜는 ${S.q.dt.slice(5).replace('-','/')}이고, ${v.f.map(f=>f[1].replace(/ \(.*\)/,'')+' '+(Array.isArray(S.q[f[0]])?S.q[f[0]].join('·'):S.q[f[0]])).join(', ')}이에요.</textarea><button class="btn" data-a="send">메시지 보내기</button>`}
 if(x.t==='call')b=`<h2>${x.v}에 전화할까요?</h2><p class="sb">실제 앱에서는 전화 앱으로 바로 연결돼요.</p><button class="btn" data-a="dial">전화 걸기</button>`;
-h.innerHTML='<div>'+b+'<button class="btn" style="background:none;color:var(--sub)" data-a="close">닫기</button></div>';h.style.display='flex'}
+if(x.t==='reg')b=`<h2>업체 등록 문의</h2><p class="sb">${SV[S.svc].n} 업체 정보를 남겨주시면 담당자가 연락드려요.</p><label>업체명</label><input id="rn"><label>연락처</label><input id="rp" type="tel" inputmode="tel"><label>활동 지역</label><input id="ra" placeholder="예: 서울 송파구, 성남 분당구"><button class="btn" data-a="regs">문의 보내기</button>`;
+h.innerHTML='<div role="dialog" aria-modal="true">'+b+'<button class="btn gh" data-a="close">닫기</button></div>';h.style.display='flex'}
+
 function render(){const o=S.pg==='onb';$('#scr').innerHTML=P[S.pg]();
-const T=[['home','홈'],['tl','일정'],['fund','자금'],['svc','서비스'],['com','커뮤니티']],cur={q:'svc',fam:'home'}[S.pg]||S.pg;
+const T=[['home','홈'],['tl','일정'],['fund','자금'],['svc','서비스'],['my','마이']],cur={q:'svc'}[S.pg]||S.pg;
 $('#nv').style.display=o?'none':'flex';$('#nv').innerHTML=T.map(t=>`<button class="${cur===t[0]?'on':''}" data-a="go" data-p="${t[0]}">${ic(t[0])}${t[1]}</button>`).join('');
 if(S.pg==='q')est();sheet()}
-function est(){const[a,b]=SV[S.svc].c(S.q);$('#est').textContent=mny(a)+' ~ '+mny(b)}
-function openSvc(k){const v=SV[k];S.svc=k;S.q={dt:iso(dt(E(v.e)))};v.f.forEach(f=>S.q[f[0]]=f[2]==='n'?f[3]:f[3][0]);S.pg='q'}
+function est(){const[a,b]=SV[S.svc].c(S.q);$('#est').textContent=a?mny(a)+' ~ '+mny(b):'공사 범위를 골라 주세요'}
+function openSvc(k){const v=SV[k];S.svc=k;S.q={dt:iso(dt(E(v.e)))};v.f.forEach(f=>S.q[f[0]]=f[2]==='n'?f[3]:f[2]==='m'?[...f[4]]:f[3][0]);S.pg='q'}
+const LINK='https://24dday.app/invite/jamsil-jeongja';
 function act(a,d){
-if(a==='go'){S.pg=d.p;if(d.s)S.sub=d.s;S.sh=null}
+if(a==='go'){S.pg=d.p;if(d.s)S.sub=d.s;S.sh=null;$('#scr').scrollTop=0}
 else if(a==='sub')S.sub=d.v;
-else if(a==='type')S.type=d.v;
+else if(a==='type'){S.type=d.v;if(S.pg==='home')toast(d.v+' 일정으로 바꿨어요')}
 else if(a==='int')S.int=+d.v;
-else if(a==='start'){S.base=Date.parse($('#ob').value)||S.base;if(!S.int){const m={cl:0,mv:1,mi:2,dis:-3};for(const k in m)E(k).o=m[k]}S.pg='home'}
-else if(a==='done'){const e=E(d.id);e.dn=true;toast(e.n+' 완료')}
+else if(a==='start'){S.base=Date.parse($('#ob').value)||S.base;if(!S.int){const m={cl:0,mv:1,mi:2,fx:2,dis:-3,ad:7};for(const k in m)E(k).o=m[k]}S.pg='home'}
+else if(a==='bell'){S.bell^=1;toast(S.bell?'알림을 켰어요':'알림을 껐어요')}
+else if(a==='inv')S.sh={t:'inv'};
+else if(a==='share'){const data={title:'24dday 이사 일정',text:'우리 이사 일정을 24dday에서 같이 관리해요',url:LINK};
+ if(navigator.share){navigator.share(data).catch(()=>{});return}S.sh=null;toast('메시지 앱으로 초대 링크를 보내요 (시연)')}
+else if(a==='copy'){try{navigator.clipboard.writeText(LINK)}catch(_){}S.sh=null;toast('초대 링크를 복사했어요')}
+else if(a==='chk'){const e=E(d.id);e.dn=!done(e);if(e.dn)toast(e.n+' 완료')}
 else if(a==='edit')S.sh={t:'ev',id:d.id};
 else if(a==='save'){const e=E(d.id),n=Date.parse($('#ed').value);if(n&&n!==dt(e))e.f=n;e.w=$('#ew').value;e.dn=$('#edn').checked;S.sh=null;toast('저장했어요')}
 else if(a==='unfix'){delete E(d.id).f;S.sh=null;toast('자동 날짜로 되돌렸어요')}
+else if(a==='pedit')S.sh={t:'pl',id:d.id};
+else if(a==='psave'){const e=E(d.id),n=Date.parse($('#pd').value);if(n&&n!==dt(e))e.f=n;S.plan[d.id]={bank:$('#pbk').value,amt:$('#pam').value};e.w=$('#pw').value;S.sh=null;toast('입출금 계획을 저장했어요')}
+else if(a==='recalc'){document.querySelectorAll('[data-b]').forEach(i=>S.banks[+i.dataset.b]=Math.max(+i.value||0,0));toast('다시 계산했어요')}
+else if(a==='pe')S.sh={t:'pe',id:d.id||null};
+else if(a==='pc'){S.sh.c=+d.v;document.querySelectorAll('.pk button').forEach(b=>b.classList.toggle('on',b.dataset.v===d.v));return}
+else if(a==='psv'){const x=S.sh,n=$('#pn').value.trim();if(!n)return toast('이름을 적어 주세요');const r=$('#pr')?.value.trim()||'';
+ let p=S.pp.find(q=>q.id===x.id);if(p){p.n=n;if(x.id!=='me')p.rel=r;if(x.c)p.c=x.c;S.sh=null;toast('프로필을 저장했어요')}
+ else{S.pp.push({id:'p'+Date.now(),n,rel:r,c:x.c||1+(S.pp.length-1)%5});S.sh=null;toast(n+'님에게 초대 링크를 보냈어요')}}
+else if(a==='pdel')S.sh={t:'pdel',id:d.id};
+else if(a==='pdx'){const p=S.pp.find(q=>q.id===d.id);S.ev.forEach(e=>{if(e.w===d.id)e.w='me'});S.pp=S.pp.filter(q=>q.id!==d.id);S.sh=null;toast(p.n+'님을 삭제했어요')}
 else if(a==='doc')S.docs[+d.i][1]^=1;
 else if(a==='svc')openSvc(d.k);
+else if(a==='qm'){const L=S.q[d.k],i=L.indexOf(d.v);i<0?L.push(d.v):L.splice(i,1)}
 else if(a==='msg')S.sh={t:'msg',v:d.v};
 else if(a==='call')S.sh={t:'call',v:d.v};
+else if(a==='reg')S.sh={t:'reg'};
+else if(a==='regs'){S.sh=null;toast('업체 등록 문의를 보냈어요. 곧 연락드릴게요')}
 else if(a==='send'){S.sh=null;toast('문의를 보냈어요. 답변은 알림으로 알려드려요')}
 else if(a==='dial'){S.sh=null;toast('전화 앱으로 연결돼요 (시연)')}
 else if(a==='close')S.sh=null;
-else if(a==='copy')return toast('초대 링크를 복사했어요');
-else if(a==='cm')return toast('중고거래는 다음 버전에서 만나요');
 render()}
 document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(t)act(t.dataset.a,t.dataset)});
-document.addEventListener('change',e=>{if(e.target.dataset.b!==undefined){S.banks[+e.target.dataset.b]=+e.target.value||0;render();return}if(e.target.id==='bs'){const n=Date.parse(e.target.value);if(n){S.base=n;render();toast('고정하지 않은 일정이 같이 움직였어요')}}});
-document.addEventListener('input',e=>{const t=e.target;
-if(0){}
-else if(t.dataset.q){S.q[t.dataset.q]=t.type==='number'?+t.value:t.value;est()}});
+document.addEventListener('change',e=>{if(e.target.id==='bs'){const n=Date.parse(e.target.value);if(n){S.base=n;render();toast('직접 정하지 않은 일정이 같이 움직였어요')}}});
+document.addEventListener('input',e=>{const t=e.target;if(t.dataset.q){S.q[t.dataset.q]=t.type==='number'?+t.value:t.value;est()}});
 render();
 </script></body></html>
