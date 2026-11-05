@@ -159,13 +159,28 @@ nav button svg{width:24px;height:24px}nav button.on{background:none!important;co
 .li.off{opacity:.45}
 .bell .nd{position:absolute;top:2px;right:2px;min-width:17px;height:17px;border-radius:9px;background:var(--co);color:#fff;font-size:11px;font-weight:800;display:grid;place-items:center;padding:0 4px;border:2px solid #fff}
 #bn{position:absolute;left:12px;right:12px;top:10px;z-index:8;display:flex;align-items:center;gap:12px;text-align:left;background:rgba(255,255,255,.97);border:1px solid var(--ln);border-radius:20px;padding:13px 14px;box-shadow:0 14px 34px -12px rgba(30,20,70,.35);transform:translateY(-140%);transition:transform .35s cubic-bezier(.2,.9,.3,1.2)}
-#bn.show{transform:none}#bn>div{flex:1;min-width:0}#bn b{display:block;font-size:15px}#bn small{display:block;font-size:13px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#bn em{font-style:normal;font-size:12px;color:var(--sub);align-self:flex-start}
+#bn{visibility:hidden}#bn.show{transform:none;visibility:visible}#bn>div{flex:1;min-width:0}#bn b{display:block;font-size:15px}#bn small{display:block;font-size:13px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#bn em{font-style:normal;font-size:12px;color:var(--sub);align-self:flex-start}
 .nic{width:38px;height:38px;border-radius:12px;background:var(--lav);color:var(--p);display:grid;place-items:center;flex:none}.nic svg{width:20px;height:20px}
 .nli{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--ln)}.nli>div{flex:1;min-width:0}.nli b{display:block;font-size:15px}.nli small{display:block;font-size:13px;color:var(--ink2);margin-top:2px}.nli em{font-style:normal;font-size:12px;color:var(--sub);white-space:nowrap}
 .nbig{display:flex;align-items:center;gap:12px;background:var(--gy);border-radius:18px;padding:16px;margin-bottom:8px}.nbig>div{flex:1}.nbig b{font-size:17px;display:block}.nbig small{display:block;font-size:13px;margin-top:2px}
 .nbig.yes{background:var(--lav)}
 .tg.big{width:62px;height:36px;border-radius:18px}.tg.big i{width:30px;height:30px}.tg.big.on i{left:29px}
 @media(prefers-reduced-motion:reduce){#bn{transition:none}}
+.shx{position:absolute;top:16px;right:14px;width:40px;height:40px;border:0;border-radius:50%;background:var(--lav);color:var(--p);display:grid;place-items:center;padding:0}.shx svg{width:20px;height:20px}
+#sh>div{position:relative}#sh h2{padding-right:48px}
+.nh{display:flex;justify-content:space-between;align-items:center;margin-top:12px}.nh b{font-size:14px;color:var(--ink2)}
+.lk{border:0;background:none;color:var(--p);font-size:14px;font-weight:700;padding:4px 0}
+button.nli{width:100%;border:0;border-bottom:1px solid var(--ln);background:none;text-align:left;position:relative}
+.nli.un b{color:var(--ink)}.nli:not(.un){opacity:.6}.nli:not(.un) .nic{background:var(--gy);color:var(--sub)}
+.ndot{position:absolute;right:2px;bottom:16px;width:8px;height:8px;border-radius:50%;background:var(--co)}
+.land{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;width:100%;min-height:100%;border:0;padding:40px 28px;text-align:center;color:#fff;background:linear-gradient(160deg,#8B5CFF,#5B33E0 70%,#4320C4)}
+.land .lg svg{width:84px;height:84px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.25))}.land .lg rect{fill:#fff}.land .lg path[stroke="#fff"]{stroke:#6B3FF0}.land .lg path[fill="#fff"]{fill:#6B3FF0}
+.ln{font-size:40px;font-weight:800;letter-spacing:-1px;margin-top:6px}.lt{margin:0;font-size:20px;font-weight:600;line-height:1.45;opacity:.95}
+.lf{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:10px;width:100%;max-width:320px}
+.lf li{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.14);border-radius:16px;padding:13px 14px;text-align:left;font-size:15px}.lf svg{width:22px;height:22px;flex:none}
+.tap{margin-top:34px;font-size:14px;opacity:.85;animation:tp 1.8s ease-in-out infinite}@keyframes tp{50%{opacity:.4}}
+@media(prefers-reduced-motion:reduce){.tap{animation:none}}
+#scr:has(.land){padding-bottom:0}
 .dk{background:linear-gradient(140deg,#8B5CFF,#5B33E0);color:#fff;border-radius:20px;padding:20px}
 .dk small{color:rgba(255,255,255,.75)}.dk .v{color:#fff}
 .addb{width:36px;height:36px;border-radius:50%;border:0;background:var(--p);color:#fff;display:grid;place-items:center;padding:0;flex:none}.addb svg{width:20px;height:20px}
@@ -176,7 +191,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 const TODAY=Date.UTC(2026,10,5),DAY=864e5,$=s=>document.querySelector(s);
 const PC=['#7A4DFF','#FF8A4C','#3B82F6','#E64980','#F59F00','#15AABF'];
 const STG=[{k:1,n:'계약금 단계',m:'c1'},{k:2,n:'중도금 단계',m:'c2'},{k:3,n:'잔금 단계',m:'bal'},{k:4,n:'이사 단계',m:'mi'}];
-const S={pg:'onb',sub:'list',type:'매매',int:1,base:Date.UTC(2026,10,28),sh:null,svc:null,q:{},bell:1,nt:{due:1,mate:1,svc:1,stg:0},addr:{from:'서울 송파구 잠실동',to:'성남 분당구 정자동'},
+const S={pg:'land',rd:{},sub:'list',type:'매매',int:1,base:Date.UTC(2026,10,28),sh:null,svc:null,q:{},bell:1,nt:{due:1,mate:1,svc:1,stg:0},addr:{from:'서울 송파구 잠실동',to:'성남 분당구 정자동'},
 banks:[5000,4000,3000],
 docs:[['신분증',1],['인감증명서',0],['등기부등본',1],['계약서 사본',1],['대출 서류',0],['이사업체 계약서',0]],
 pp:[{id:'me',n:'유영',rel:'나',c:0},{id:'p2',n:'민희',rel:'배우자',c:1}],
@@ -282,19 +297,33 @@ if(S.nt.svc)R.push({k:'svc',ic:'svc',t:'상담 답변이 왔어요',b:'늘봄익
 const done1=SG().filter(g=>stS(g)==='dn').pop();
 if(S.nt.stg&&done1)R.push({k:'stg',ic:'key',t:`${done1.n}를 모두 마쳤어요`,b:`이제 ${curStg().n}예요. 지금 챙길 일을 확인해 보세요.`,tm:'2일 전'});
 return R}
+const PAST=()=>[...(S.nt.svc?[{ic:'svc',t:'상담 답변이 왔어요',b:'한결 법무사사무소: 등기 비용 견적을 보내드렸어요.',tm:'11/1'}]:[]),{ic:'uplus',t:'민희님이 일정 공유에 참여했어요',b:'이제 할 일을 나눠 맡을 수 있어요.',tm:'10/30'}];
 function banner(n){if(!n)return;const x=$('#bn');x.innerHTML=`<span class="nic">${ic(n.ic,2)}</span><div><b>${esc(n.t)}</b><small>${esc(n.b)}</small></div><em>지금</em>`;x.classList.add('show');clearTimeout(banner.h);banner.h=setTimeout(()=>x.classList.remove('show'),3800)}
 function warn(){const c=E('cl'),m=E('mv');return dt(c)>=dt(m)?'<div class="wr">입주청소 날짜가 이사일과 겹쳐요. 청소는 이사 전날까지 잡아주세요.</div>':''}
 
 const P={};
-P.onb=()=>`<div class="hd"><div><div class="logo">${LOGO}24dday</div><h1 style="margin-top:20px">어떤 이사를<br>준비하세요?</h1></div></div><div class="c" style="border-top:0"><label style="margin:0">거래 유형</label><div class="row" style="margin-top:10px;flex-wrap:wrap">${['매매','전세','월세'].map(t=>`<button class="b2 ${S.type===t?'on':''}" data-a="type" data-v="${t}">${t}</button>`).join('')}</div>
-<label>잔금일 (이사 들어가는 날이 아니라 돈을 다 치르는 날)</label><input type="date" id="ob" value="${iso(S.base)}">
-<label>인테리어를 하나요?</label><div class="row" style="margin-top:10px">${[1,0].map(t=>`<button class="b2 ${S.int===t?'on':''}" data-a="int" data-v="${t}">${t?'해요':'안 해요'}</button>`).join('')}</div>
+P.land=()=>`<button class="land" data-a="go" data-p="auth" aria-label="눌러서 시작하기">
+<div class="lg">${LOGO}</div><div class="ln">24dday</div><p class="lt">처음 하는 이사도<br>순서대로, 함께</p>
+<ul class="lf"><li>${ic('tl',2)}<span>잔금일만 넣으면 할 일 순서를 자동으로 짜요</span></li><li>${ic('uplus',2)}<span>같이 사는 사람과 일정을 나눠 맡아요</span></li><li>${ic('svc',2)}<span>이사·청소·법무사 견적을 한 번에 봐요</span></li></ul>
+<span class="tap">화면을 눌러 시작하기</span></button>`;
+
+P.auth=()=>{const m=S.am||'login';return`<div class="hd"><div><div class="logo">${LOGO}24dday</div><h1 style="margin-top:20px">${m==='login'?'다시 오셨네요!':'처음 오셨군요!'}</h1><p class="sb" style="margin:6px 0 0">${m==='login'?'로그인하고 준비하던 이사를 이어서 해요.':'가입하고 새 이사를 등록해요.'}</p></div></div>
+<div class="seg2" style="margin-top:4px">${[['login','로그인'],['join','회원가입']].map(x=>`<button class="${m===x[0]?'sel':''}" data-a="am" data-v="${x[0]}">${x[1]}</button>`).join('')}</div>
+<div class="c" style="border-top:0;padding-top:0">${m==='join'?'<label>이름</label><input id="jn" placeholder="예: 유영" value="유영">':''}
+<label>이메일</label><input id="ae" type="email" inputmode="email" placeholder="you@example.com" value="${m==='login'?'yuyoung@example.com':''}">
+<label>비밀번호</label><input id="ap" type="password" placeholder="8자 이상" value="${m==='login'?'password':''}">
+<button class="btn" style="margin-top:24px" data-a="${m==='login'?'login':'join'}">${m==='login'?'로그인':'가입하고 이사 등록하기'}</button>
+${m==='login'?'<p class="sb" style="text-align:center;margin-top:14px">비밀번호를 잊으셨나요?</p>':''}
+<p class="sb" style="margin-top:20px">시연용 화면이에요. 아무 값이나 넣어도 넘어가요.</p></div>`};
+
+P.onb=()=>`<div class="hd"><div><div class="logo">${LOGO}24dday</div><h1 style="margin-top:20px">어떤 이사를<br>준비하세요?</h1><p class="sb" style="margin:6px 0 0">두 가지만 알려주시면 할 일 순서를 짜 드려요.</p></div></div><div class="c" style="border-top:0"><label style="margin:0">거래 유형</label><div class="seg2" style="margin:10px 0 0">${['매매','전세','월세'].map(t=>`<button class="${S.type===t?'sel':''}" data-a="type" data-v="${t}">${t}</button>`).join('')}</div>
+<label>잔금일</label><input type="date" id="ob" value="${iso(S.base)}"><small style="display:block;margin-top:6px">이사 들어가는 날이 아니라, 돈을 다 치르는 날이에요.</small>
 <button class="btn" style="margin-top:28px" data-a="start">시작하기</button><p class="sb" style="margin:10px 0 0">오늘 날짜는 시연용으로 2026년 11월 5일에 맞춰져 있어요.</p></div>`;
 
 P.home=()=>{const L=vis(),n=L.filter(done).length,pct=Math.round(n/L.length*100),cs=curStg(),T=L.filter(e=>sof(e)===cs.k),td=T.filter(done).length,d=dday();
 return`<div class="top"><div class="logo">${LOGO}24dday</div><div class="row" style="gap:8px">
 <button class="inv" data-a="inv" aria-label="일정 함께 관리할 사람 초대하기"><span class="ip">${ic('uplus',2)}</span><span>공유 <b>${S.pp.length}</b>명 참여중</span></button>
-<button class="bell ${S.bell?'':'off'}" data-a="ntl" aria-label="알림 목록${S.bell?'':' (알림 꺼짐)'}">${S.bell&&notes().length?`<span class="nd">${notes().length}</span>`:''}${S.bell?ic('bell',2):BELLOFF}</button></div></div>
+<button class="bell ${S.bell?'':'off'}" data-a="ntl" aria-label="알림 목록${S.bell?'':' (알림 꺼짐)'}">${S.bell&&notes().filter(n=>!S.rd[n.k]).length?`<span class="nd">${notes().filter(n=>!S.rd[n.k]).length}</span>`:''}${S.bell?ic('bell',2):BELLOFF}</button></div></div>
 <div class="hero"><div class="htop"><div class="hs">${md(S.base)} 잔금일</div><button class="hbt" data-a="addr">수정</button></div><div class="big" style="margin-top:0">${d>0?'D-'+d:d===0?'D-day':'D+'+(-d)}<span>${d>0?'일 남음':''}</span></div>
 <div class="hdv"></div>
 <div class="pc"><span>진행률</span><b>${pct}%</b></div><div class="yb"><i style="width:${pct}%"></i></div>
@@ -339,7 +368,8 @@ ${O.length?O.map(p=>{const a=L.filter(e=>e.w===p.id);return`<div class="li">${av
 <button class="btn" data-a="pe" data-id="">+ 공유자 추가</button></div>
 <div class="c"><div class="sh2">업무 분배</div>${[...S.pp.map(p=>p.id),'all'].map(w=>{const a=L.filter(e=>e.w===w),d=a.filter(done).length;return`<div style="margin-top:16px"><div class="row sp"><span class="row" style="gap:8px">${bd(w)}<span style="font-weight:600">${w==='all'?'함께':esc(who(w).n)}</span></span><small>${d} / ${a.length} 완료</small></div><div class="bar" style="margin-top:8px"><i style="width:${a.length?d/a.length*100:0}%;background:var(--p)"></i></div></div>`}).join('')}</div>
 <div class="c" id="ntc"><div class="sh2" style="margin-bottom:14px">알림 설정</div><div class="nbig ${S.bell?'yes':''}"><div><b>알림 받기</b><small>${S.bell?'켜져 있어요. 받고 싶은 알림을 골라 주세요.':'꺼져 있어요. 알림을 하나도 받지 않아요.'}</small></div><button class="tg big ${S.bell?'on':''}" data-a="bell" role="switch" aria-checked="${!!S.bell}" aria-label="알림 받기"><i></i></button></div>
-${[['due','할 일 날짜 하루 전','D-1에 미리 알려드려요'],['mate','공유자가 할 일을 끝냈을 때','함께하는 사람이 체크하면 알려드려요'],['svc','업체 상담 답변','상담 신청에 답이 오면 알려드려요'],['stg','다음 단계로 넘어갈 때','한 단계를 모두 마치면 알려드려요']].map(n=>`<div class="li${S.bell?'':' off'}"><button class="cb ${S.nt[n[0]]&&S.bell?'on':''}" data-a="nt" data-k="${n[0]}" aria-pressed="${!!S.nt[n[0]]}" aria-label="${n[1]}" ${S.bell?'':'disabled'}>${ic('check',3)}</button><div><div class="nm">${n[1]}</div><small>${n[2]}</small></div></div>`).join('')}</div>`};
+${[['due','할 일 날짜 하루 전','D-1에 미리 알려드려요'],['mate','공유자가 할 일을 끝냈을 때','함께하는 사람이 체크하면 알려드려요'],['svc','업체 상담 답변','상담 신청에 답이 오면 알려드려요'],['stg','다음 단계로 넘어갈 때','한 단계를 모두 마치면 알려드려요']].map(n=>`<div class="li${S.bell?'':' off'}"><button class="cb ${S.nt[n[0]]&&S.bell?'on':''}" data-a="nt" data-k="${n[0]}" aria-pressed="${!!S.nt[n[0]]}" aria-label="${n[1]}" ${S.bell?'':'disabled'}>${ic('check',3)}</button><div><div class="nm">${n[1]}</div><small>${n[2]}</small></div></div>`).join('')}</div>
+<div style="padding:8px 20px 0;text-align:center"><button class="btn gh" data-a="logout">로그아웃</button></div>`};
 
 function sheet(){const x=S.sh,h=$('#sh');if(!x){h.style.display='none';return}
 let b='';
@@ -348,18 +378,23 @@ if(x.t==='ev'){const e=E(x.id);b=`<h2>${e.n}</h2><label>날짜</label><input typ
 if(x.t==='edel'){const e=E(x.id);b=`<h2>‘${esc(e.n)}’을(를) 삭제할까요?</h2><p class="sb">삭제한 할 일은 되돌릴 수 없어요.</p><button class="btn rd" data-a="edx" data-id="${e.id}">삭제하기</button><button class="btn gy" data-a="edit" data-id="${e.id}">취소</button>`}
 if(x.t==='pl'){const e=E(x.id),p=S.plan[x.id];b=`<h2>${e.mn} 계획 수정</h2><label>날짜</label><input type="date" id="pd" value="${iso(dt(e))}"><label>출금 은행</label><input id="pbk" value="${esc(p.bank)}"><label>금액</label><input id="pam" value="${esc(p.amt)}"><label>담당자</label><select id="pw">${wopt(e.w)}</select><button class="btn" data-a="psave" data-id="${x.id}">저장하기</button>`}
 if(x.t==='pe'){const p=S.pp.find(q=>q.id===x.id),nw=!p,me=x.id==='me';b=`<h2>${nw?'공유자 추가':me?'내 프로필 수정':'공유자 프로필 수정'}</h2><label>이름</label><input id="pn" value="${p?esc(p.n):''}" placeholder="예: 민희">${me?'':`<label>관계</label><input id="pr" value="${p?esc(p.rel||''):''}" placeholder="배우자, 가족, 친구 등">`}
-<button class="btn" data-a="psv">${nw?'추가하고 초대 링크 보내기':'저장하기'}</button>${!nw&&!me?`<button class="btn gh" style="color:var(--co)" data-a="pdel" data-id="${p.id}">공유자 삭제하기</button>`:''}`}
+<button class="btn" data-a="psv">${nw?'추가하기':'저장하기'}</button>${!nw&&!me?`<button class="btn gh" style="color:var(--co)" data-a="pdel" data-id="${p.id}">공유자 삭제하기</button>`:''}`}
 if(x.t==='pdel'){const p=S.pp.find(q=>q.id===x.id);b=`<h2>${esc(p.n)}님을 삭제할까요?</h2><p class="sb">일정을 더 이상 함께 볼 수 없어요. ${esc(p.n)}님이 맡은 일은 ${esc(S.pp[0].n)}(나)에게 넘어가요.</p><button class="btn rd" data-a="pdx" data-id="${p.id}">삭제하기</button><button class="btn gy" data-a="pe" data-id="${p.id}">취소</button>`}
 if(x.t==='addr')b=`<h2>이사 정보 수정</h2><p class="sb">잔금일을 바꾸면 직접 정하지 않은 일정이 같이 움직여요.</p><label>지금 사는 집</label><input id="af" value="${esc(S.addr.from)}"><label>이사 갈 집</label><input id="at" value="${esc(S.addr.to)}"><label>잔금일</label><input type="date" id="abs" value="${iso(S.base)}"><label>거래 유형</label><select id="aty">${['매매','전세','월세'].map(t=>`<option ${S.type===t?'selected':''}>${t}</option>`).join('')}</select><button class="btn" data-a="asave">저장하기</button>`;
 if(x.t==='add')b=`<h2>할 일 추가</h2><label>할 일</label><input id="nn" placeholder="예: 에어컨 이전 설치 예약"><label>단계</label><select id="ns">${SG().map(g=>`<option value="${g.k}" ${g===curStg()?'selected':''}>${g.n}</option>`).join('')}</select><label>날짜</label><input type="date" id="nd" value="${iso(TODAY+7*DAY)}"><label>담당자</label><select id="nw">${wopt('me')}</select><button class="btn" data-a="addsv">추가하기</button>`;
-if(x.t==='ntl'){const N=notes();b=`<h2>알림</h2>${!S.bell?'<p class="sb">알림이 꺼져 있어요. 마이페이지에서 켤 수 있어요.</p><button class="btn" data-a="gont">알림 설정으로 가기</button>':N.length?N.map(n=>`<div class="nli"><span class="nic">${ic(n.ic,2)}</span><div><b>${esc(n.t)}</b><small>${esc(n.b)}</small></div><em>${n.tm}</em></div>`).join('')+'<button class="btn gy" data-a="gont">알림 설정</button>':'<p class="sb">새 알림이 없어요.</p>'}`}
+if(x.t==='ntl'){const N=notes(),U=N.filter(n=>!S.rd[n.k]),R=[...N.filter(n=>S.rd[n.k]),...PAST().map(n=>({...n,old:1}))];
+const row=(n,u)=>`<button class="nli${u?' un':''}" ${u?`data-a="nrd" data-k="${n.k}"`:''}><span class="nic">${ic(n.ic,2)}</span><div><b>${esc(n.t)}</b><small>${esc(n.b)}</small></div><em>${n.tm}</em>${u?'<i class="ndot" aria-label="안 읽음"></i>':''}</button>`;
+b=`<h2>알림</h2>${!S.bell?'<p class="sb">알림이 꺼져 있어요. 마이페이지에서 켤 수 있어요.</p><button class="btn" data-a="gont">알림 설정으로 가기</button>':
+`<div class="nh"><b>새 알림 ${U.length}</b>${U.length?'<button class="lk" data-a="nall">모두 읽음</button>':''}</div>${U.length?U.map(n=>row(n,1)).join(''):'<p class="sb" style="padding:8px 0 4px">새 알림이 없어요.</p>'}
+<div class="nh" style="margin-top:18px"><b>읽은 알림</b></div>${R.map(n=>row(n,0)).join('')}
+<p class="sb" style="font-size:12.5px;margin-top:12px">읽은 알림은 14일이 지나면 자동으로 지워져요.</p><button class="btn gy" data-a="gont">알림 설정</button>`}`}
 if(x.t==='inv')b=`<h2>일정 함께 관리하기</h2><p class="sb">초대 링크를 받은 사람은 같은 일정을 보고, 할 일을 나눠 맡을 수 있어요. 지금 ${S.pp.length}명이 참여 중이에요.</p><button class="btn" data-a="copy">초대 링크 복사</button><button class="btn lv" data-a="go" data-p="my">공유자 관리로 가기</button>`;
 if(x.t==='msg'){const v=SV[S.svc];b=`<h2>${x.v}에 상담 신청</h2><label>문의 내용</label><textarea id="mt">안녕하세요. ${v.n} 견적을 문의드려요. 희망 날짜는 ${S.q.dt.slice(5).replace('-','/')}이고, ${v.f.map(f=>f[1].replace(/ \(.*\)/,'')+' '+(Array.isArray(S.q[f[0]])?S.q[f[0]].join('·'):S.q[f[0]])).join(', ')}이에요.</textarea><button class="btn" data-a="send">상담 신청 보내기</button><button class="btn lv" data-a="dial">전화로 문의하기</button>`}
 if(x.t==='call')b=`<h2>${x.v}에 전화할까요?</h2><p class="sb">실제 앱에서는 전화 앱으로 바로 연결돼요.</p><button class="btn" data-a="dial">전화 걸기</button>`;
 if(x.t==='reg')b=`<h2>업체 등록 문의</h2><p class="sb">${SV[S.svc].n} 업체 정보를 남겨주시면 담당자가 연락드려요.</p><label>업체명</label><input id="rn"><label>연락처</label><input id="rp" type="tel" inputmode="tel"><label>활동 지역</label><input id="ra" placeholder="예: 서울 송파구, 성남 분당구"><button class="btn" data-a="regs">문의 보내기</button>`;
-h.innerHTML='<div role="dialog" aria-modal="true">'+b+(['edel','pdel'].includes(x.t)?'':'<button class="btn gh" data-a="close">닫기</button>')+'</div>';h.style.display='flex'}
+h.innerHTML='<div role="dialog" aria-modal="true"><button class="shx" data-a="close" aria-label="닫기">'+ic('x',2.4)+'</button>'+b+'</div>';h.style.display='flex'}
 
-function render(){const o=S.pg==='onb';$('#scr').innerHTML=P[S.pg]();
+function render(){const o=['land','auth','onb'].includes(S.pg);$('#scr').innerHTML=P[S.pg]();
 const T=[['home','홈'],['tl','일정'],['fund','자금'],['svc','서비스'],['my','마이']],cur={q:'svc'}[S.pg]||S.pg;
 $('#nv').style.display=o?'none':'flex';$('#nv').innerHTML=T.map(t=>`<button class="${cur===t[0]?'on':''}" data-a="go" data-p="${t[0]}">${ic(t[0])}${t[1]}</button>`).join('');
 if(S.pg==='svc')est();sheet()}
@@ -370,14 +405,20 @@ const LINK='https://24dday.app/invite/jamsil-jeongja';
 function act(a,d){
 if(a==='go'){S.pg=d.p;if(d.p==='svc'&&!S.svc)openSvc('lw');if(d.s)S.sub=d.s;S.sh=null;$('#scr').scrollTop=0}
 else if(a==='sub')S.sub=d.v;
+else if(a==='am')S.am=d.v;
+else if(a==='login'){S.pg='home';$('#scr').scrollTop=0;applyType();setTimeout(()=>banner(notes().find(n=>!S.rd[n.k])),700)}
+else if(a==='join'){const n=$('#jn').value.trim();if(n)S.pp[0].n=n;S.pg='onb'}
+else if(a==='logout'){S.pg='land';S.am='login'}
 else if(a==='type')S.type=d.v;
 else if(a==='int')S.int=+d.v;
-else if(a==='start'){applyType();S.base=Date.parse($('#ob').value)||S.base;if(!S.int){const m={cl:0,mv:1,mi:2,fx:2,pho:1,hug:3,pay:3,gm:3,dis:-3,ad:7};for(const k in m)E(k).o=m[k]}applyType();S.pg='home';setTimeout(()=>banner(notes()[0]),700)}
+else if(a==='start'){applyType();S.base=Date.parse($('#ob').value)||S.base;if(!S.int){const m={cl:0,mv:1,mi:2,fx:2,pho:1,hug:3,pay:3,gm:3,dis:-3,ad:7};for(const k in m)E(k).o=m[k]}applyType();S.pg='home';setTimeout(()=>banner(notes().find(n=>!S.rd[n.k])),700)}
 else if(a==='addr'){S.pg='my';S.sh={t:'addr'}}
 else if(a==='add')S.sh={t:'add'};
 else if(a==='addsv'){const n=$('#nn').value.trim();if(!n)return toast('할 일을 적어 주세요');const f=Date.parse($('#nd').value)||TODAY;S.ev.push({id:'u'+Date.now(),n,o:Math.round((f-S.base)/DAY),f,w:$('#nw').value,st:+$('#ns').value,i:'doc'});S.sh=null;toast('할 일을 추가했어요')}
 else if(a==='asave'){const nb=Date.parse($('#abs').value);if(nb)S.base=nb;S.addr={from:$('#af').value.trim()||S.addr.from,to:$('#at').value.trim()||S.addr.to};S.type=$('#aty').value;applyType();S.sh=null;toast('이사 정보를 저장했어요')}
 else if(a==='nt'){S.nt[d.k]^=1}
+else if(a==='nrd'){S.rd[d.k]=1}
+else if(a==='nall'){notes().forEach(n=>S.rd[n.k]=1)}
 else if(a==='ntl'){$('#bn').classList.remove('show');S.sh={t:'ntl'}}
 else if(a==='gont'){S.pg='my';S.sh=null;setTimeout(()=>{const t=$('#ntc');t&&t.scrollIntoView({block:'start'})},0)}
 else if(a==='bell'){S.bell^=1;toast(S.bell?'알림을 켰어요':'알림을 껐어요')}
@@ -398,7 +439,7 @@ else if(a==='pe')S.sh={t:'pe',id:d.id||null};
 else if(a==='pc'){S.sh.c=+d.v;document.querySelectorAll('.pk button').forEach(b=>b.classList.toggle('on',b.dataset.v===d.v));return}
 else if(a==='psv'){const x=S.sh,n=$('#pn').value.trim();if(!n)return toast('이름을 적어 주세요');const r=$('#pr')?.value.trim()||'';
  let p=S.pp.find(q=>q.id===x.id);if(p){p.n=n;if(x.id!=='me')p.rel=r;if(x.c)p.c=x.c;S.sh=null;toast('프로필을 저장했어요')}
- else{S.pp.push({id:'p'+Date.now(),n,rel:r,c:x.c||1+(S.pp.length-1)%5});S.sh=null;toast(n+'님에게 초대 링크를 보냈어요')}}
+ else{S.pp.push({id:'p'+Date.now(),n,rel:r,c:x.c||1+(S.pp.length-1)%5});S.sh=null;toast(n+'님을 공유자로 추가했어요')}}
 else if(a==='pdel')S.sh={t:'pdel',id:d.id};
 else if(a==='pdx'){const p=S.pp.find(q=>q.id===d.id);S.ev.forEach(e=>{if(e.w===d.id)e.w='me'});S.pp=S.pp.filter(q=>q.id!==d.id);S.sh=null;toast(p.n+'님을 삭제했어요')}
 else if(a==='doc')S.docs[+d.i][1]^=1;
