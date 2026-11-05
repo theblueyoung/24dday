@@ -108,6 +108,23 @@ nav button svg{width:24px;height:24px}nav button.on{background:none;color:var(--
 #tt{position:absolute;left:50%;bottom:84px;transform:translateX(-50%);background:#191F28;color:#fff;border-radius:12px;padding:10px 16px;font-size:13px;display:none;z-index:9;max-width:90%;text-align:center}
 .wr{background:#FFECEC;color:#C0282D;border-radius:12px;padding:10px 14px;margin:10px 14px;font-size:13px}
 .pk{display:flex;gap:8px;margin-top:8px}.pk button{width:32px;height:32px;border-radius:50%;border:3px solid transparent;padding:0}.pk button.on{border-color:var(--ink)}
+.hero{position:relative;overflow:hidden}.hero>*{position:relative}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.07)}
+.hero::before{width:220px;height:220px;right:-80px;top:-90px}.hero::after{width:170px;height:170px;right:-60px;top:150px}
+.loc{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.16);border-radius:16px;padding:6px 12px;font-size:13px;font-weight:600;min-width:0}.loc svg{width:16px;height:16px;flex:none}
+.big span{font-size:20px;font-weight:600;letter-spacing:0;margin-left:6px;opacity:.9}
+.hdv{height:1px;background:rgba(255,255,255,.25);margin:16px 0 0}
+.yb{background:rgba(40,10,120,.35)}
+.avs{display:flex}.avs .av{border:2.5px solid #fff;margin-left:-10px;width:36px;height:36px}.avs .av:first-child{margin-left:0}
+.sec{display:flex;justify-content:space-between;align-items:center;margin:22px 18px 4px}
+.stl{margin:8px 14px 0 20px;padding-left:14px;border-left:3px solid var(--lav)}
+.sc{display:block;width:100%;text-align:left;border:1.5px solid var(--ln);background:var(--cd);border-radius:20px;padding:16px;margin-bottom:12px}
+.sc b{display:block;font-size:16px;margin-top:10px}.sc small{display:block;margin-top:2px}
+.stg{display:inline-flex;align-items:center;gap:5px;border-radius:8px;padding:4px 9px;font-size:13px;font-weight:700}.stg svg{width:14px;height:14px}
+.sa{font-size:14px;font-weight:700;color:var(--sub)}
+.sc.dn .stg{background:var(--gnl);color:var(--gn)}
+.sc.cur{border-color:var(--p);box-shadow:0 6px 18px -10px rgba(122,77,255,.6)}.sc.cur .stg{background:var(--lav);color:var(--pd)}.sc.cur .sa{color:var(--pd)}
+.sc.fu{background:var(--bg)}.sc.fu .stg{background:var(--ln);color:var(--sub)}.sc.fu b{color:var(--sub)}
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--p);outline-offset:2px}
 </style></head>
 <body><div id="app"><div id="scr"></div><nav id="nv"></nav><div id="sh"></div><div id="tt"></div></div>
@@ -119,7 +136,7 @@ const S={pg:'onb',sub:'list',type:'매매',int:1,base:Date.UTC(2026,10,28),sh:nu
 banks:[5000,4000,3000],
 docs:[['신분증',1],['인감증명서',0],['등기부등본',1],['계약서 사본',1],['대출 서류',0],['이사업체 계약서',0]],
 pp:[{id:'me',n:'유영',rel:'나',c:0},{id:'p2',n:'민수',rel:'배우자',c:1}],
-plan:{c2:{bank:'국민은행',amt:'5,000만원'},bal:{bank:'신한은행 · 카카오뱅크',amt:'7,000만원 + 대출'}},
+plan:{c1:{bank:'국민은행',amt:'5,000만원'},c2:{bank:'국민은행',amt:'1억 5,000만원'},bal:{bank:'신한은행 · 카카오뱅크',amt:'7,000만원 + 대출'}},
 ev:[
 {id:'reg',n:'등기부등본 확인',o:-80,w:'me',st:1,i:'doc',t:'buy'},
 {id:'ct',n:'계약서 작성',o:-77,w:'all',st:1,i:'doc'},
@@ -186,19 +203,25 @@ P.onb=()=>`<div class="hd"><div><div class="logo">${LOGO}24dday</div><h1 style="
 <label>인테리어를 하나요?</label><div class="row">${[1,0].map(t=>`<button class="b2 ${S.int===t?'on':''}" data-a="int" data-v="${t}">${t?'해요':'안 해요'}</button>`).join('')}</div></div>
 <div class="c"><button class="btn" style="margin:0" data-a="start">시작하기</button><p class="sb" style="margin:10px 0 0">오늘 날짜는 시연용으로 2026년 11월 5일에 맞춰져 있어요.</p></div>`;
 
-P.home=()=>{const L=vis(),n=L.filter(done).length,pct=Math.round(n/L.length*100),cs=curStg(),T=L.filter(e=>e.st===cs.k),td=T.filter(done).length,M=L.filter(e=>e.main),d=dday();
+P.home=()=>{const L=vis(),n=L.filter(done).length,pct=Math.round(n/L.length*100),cs=curStg(),T=L.filter(e=>e.st===cs.k),td=T.filter(done).length,d=dday();
 return`<div class="top"><div class="logo">${LOGO}24dday</div><div class="row" style="gap:8px">
 <button class="inv" data-a="inv" aria-label="일정 함께 관리할 사람 초대하기"><span class="ip">${ic('uplus',2)}</span><span>공유 <b>${S.pp.length}</b>명 참여중</span></button>
 <button class="bell ${S.bell?'':'off'}" data-a="bell" aria-pressed="${!S.bell}" aria-label="${S.bell?'알림 끄기':'알림 켜기'}">${ic('bell',2)}${S.bell?'':`<span class="x">${ic('x',3.5)}</span>`}</button></div></div>
-<div class="hero"><div class="htop"><div><div class="hs">잔금까지</div><div class="big">${d>0?'D-'+d:d===0?'D-day':'D+'+(-d)}</div><div class="hs">${md(S.base)} 잔금일<br>잠실동 → 정자동</div></div>
+<div class="hero"><div class="htop"><span class="loc">${ic('pin',2)}잠실동 → 정자동</span>
 <div class="seg" role="group" aria-label="거래 유형">${['매매','전세','월세'].map(t=>`<button class="${S.type===t?'on':''}" data-a="type" data-v="${t}">${t}</button>`).join('')}</div></div>
-<div class="pc"><span>전체 진행률 · ${n}/${L.length} 완료</span><b>${pct}%</b></div><div class="yb"><i style="width:${pct}%"></i></div>
+<div class="hs" style="margin-top:16px">잔금까지 · ${md(S.base)} 잔금일</div><div class="big">${d>0?'D-'+d:d===0?'D-day':'D+'+(-d)}<span>${d>0?'일 남음':''}</span></div>
+<div class="hdv"></div>
+<div class="pc"><span>공동 체크리스트 진행률</span><b>${pct}%</b></div><div class="yb"><i style="width:${pct}%"></i></div>
+<div class="row sp" style="margin-top:10px"><span class="hs">지금까지 <b>${n}개</b> 완료 · 전체 ${L.length}개</span><span class="avs">${S.pp.map(p=>bd(p.id)).join('')}</span></div>
 ${metro()}
 <div class="hed"><div class="lg2"><span><i style="background:#3DDC97"></i>완료</span><span><i style="background:#FFD43B"></i>지금</span><span><i style="background:rgba(255,255,255,.45)"></i>예정</span></div><button data-a="go" data-p="tl" data-s="list">날짜 편집 ›</button></div></div>
 <div class="c"><div class="shd"><div class="sh2"><span class="ti sm yl">${BOLT}</span>해야 할 일</div><span class="ch">${cs.n} · ${td}/${T.length}</span></div>
 ${T.map(e=>`<div class="li">${cb(e)}<div><div class="${done(e)?'dnx':''}">${e.n}</div><small>${md(dt(e))} · ${done(e)?'<span class="gtx">완료</span>':dl(e)}</small></div>${bd(e.w)}</div>`).join('')}</div>
-<div class="c"><div class="shd"><div class="sh2"><span class="ti sm t1">${ic('tl')}</span>단계별 주요일정</div><a data-a="go" data-p="tl" data-s="list">자세히 보기 ›</a></div>
-${M.map(e=>`<div class="li">${et(e)}<div><div>${e.n}</div><small><span class="c${e.st}">${STG[e.st-1].n}</span> · ${done(e)?'<span class="gtx">완료</span>':dl(e)}</small></div><small class="${done(e)?'':'c'+e.st}" style="font-weight:600">${md(dt(e))}</small></div>`).join('')}</div>`};
+<div class="sec"><div class="sh2"><span class="ti sm t1">${ic('tl')}</span>단계별 주요일정</div><a data-a="go" data-p="tl" data-s="list">자세히 보기 ›</a></div>
+<div class="stl">${STG.map(g=>{const G=L.filter(e=>e.st===g.k),m=E(g.m),dn=G.every(done),cur=g===cs,K=G.filter(e=>!e.big),p=S.plan[g.m];
+const tag=dn?`${ic('check',2.6)}${g.k}단계: ${g.n.replace(' 단계','')} 완료`:cur?`${g.k}단계: ${g.n} (현재)`:`${g.k}단계: ${g.n} (${dl(m)})`;
+return`<button class="sc ${dn?'dn':cur?'cur':'fu'}" data-a="go" data-p="tl" data-s="list"><div class="row sp"><span class="stg">${tag}</span><span class="sa">${p?esc(p.amt):md(dt(m))}</span></div>
+<b>${K.slice(0,3).map(e=>e.n.replace(/ (송금|받기|비교|확인|알아보기)$/,'')).join(' · ')||g.n}${K.length>3?` 외 ${K.length-3}개`:''}</b><small>${md(dt(G[0]))} ~ ${md(dt(G[G.length-1]))} · 할 일 ${G.filter(done).length}/${G.length}</small></button>`}).join('')}</div>`};
 
 P.tl=()=>{const s=S.sub,L=vis(),cs=curStg();
 const hd=`<div class="hd"><h2>일정</h2></div><div class="pill">${[['list','전체'],['rec','추천'],['doc','서류']].map(x=>`<button class="${s===x[0]?'on':''}" data-a="sub" data-v="${x[0]}">${x[1]}</button>`).join('')}</div>`;
@@ -265,7 +288,7 @@ else if(a==='bell'){S.bell^=1;toast(S.bell?'알림을 켰어요':'알림을 껐�
 else if(a==='inv')S.sh={t:'inv'};
 else if(a==='share'){const data={title:'24dday 이사 일정',text:'우리 이사 일정을 24dday에서 같이 관리해요',url:LINK};
  if(navigator.share){navigator.share(data).catch(()=>{});return}S.sh=null;toast('메시지 앱으로 초대 링크를 보내요 (시연)')}
-else if(a==='copy'){try{navigator.clipboard.writeText(LINK)}catch(_){}S.sh=null;toast('초대 링크를 복사했어요')}
+else if(a==='copy'){try{navigator.clipboard.writeText(LINK).catch(()=>{})}catch(_){}S.sh=null;toast('초대 링크를 복사했어요')}
 else if(a==='chk'){const e=E(d.id);e.dn=!done(e);if(e.dn)toast(e.n+' 완료')}
 else if(a==='edit')S.sh={t:'ev',id:d.id};
 else if(a==='save'){const e=E(d.id),n=Date.parse($('#ed').value);if(n&&n!==dt(e))e.f=n;e.w=$('#ew').value;e.dn=$('#edn').checked;S.sh=null;toast('저장했어요')}
