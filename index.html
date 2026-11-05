@@ -174,13 +174,26 @@ button.nli{width:100%;border:0;border-bottom:1px solid var(--ln);background:none
 .nli.un b{color:var(--ink)}.nli:not(.un){opacity:.6}.nli:not(.un) .nic{background:var(--gy);color:var(--sub)}
 .ndot{position:absolute;right:2px;bottom:16px;width:8px;height:8px;border-radius:50%;background:var(--co)}
 .land{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;width:100%;min-height:100%;border:0;padding:40px 28px;text-align:center;color:#fff;background:linear-gradient(160deg,#8B5CFF,#5B33E0 70%,#4320C4)}
-.land .lg svg{width:84px;height:84px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.25))}.land .lg rect{fill:#fff}.land .lg path[stroke="#fff"]{stroke:#6B3FF0}.land .lg path[fill="#fff"]{fill:#6B3FF0}
+.land .lg svg{width:84px;height:84px;display:block}.land .lg rect{fill:#fff}.land .lg path[stroke="#fff"]{stroke:#6B3FF0}.land .lg path[fill="#fff"]{fill:#6B3FF0}
 .ln{font-size:40px;font-weight:800;letter-spacing:-1px;margin-top:6px}.lt{margin:0;font-size:20px;font-weight:600;line-height:1.45;opacity:.95}
 .lf{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:10px;width:100%;max-width:320px}
 .lf li{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.14);border-radius:16px;padding:13px 14px;text-align:left;font-size:15px}.lf svg{width:22px;height:22px;flex:none}
 .tap{margin-top:34px;font-size:14px;opacity:.85;animation:tp 1.8s ease-in-out infinite}@keyframes tp{50%{opacity:.4}}
 @media(prefers-reduced-motion:reduce){.tap{animation:none}}
 #scr:has(.land){padding-bottom:0}
+.lgw{position:relative;width:120px;height:120px;display:grid;place-items:center}
+.lgw .lg{position:relative;z-index:1;animation:fl 3s ease-in-out infinite}
+.rp{position:absolute;inset:18px;border-radius:30px;border:2px solid rgba(255,255,255,.55);animation:rp 2.6s ease-out infinite}.rp.r2{animation-delay:1.3s}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(-3deg)}}
+@keyframes rp{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.9);opacity:0}}
+.land .lg path[stroke="#FFD43B"]{stroke-dasharray:20;stroke-dashoffset:20;animation:ck .7s .4s ease-out forwards}
+@keyframes ck{to{stroke-dashoffset:0}}
+.land.in{justify-content:flex-start;align-items:flex-start;text-align:left;padding:44px 24px 32px}
+.lgb{border:0;background:#fff;border-radius:16px;padding:0;width:52px;height:52px;display:grid;place-items:center}.lgb svg{width:52px;height:52px}.lgb rect{fill:#fff}.lgb path[stroke="#fff"]{stroke:#6B3FF0}.lgb path[fill="#fff"]{fill:#6B3FF0}
+.land.in .lf{max-width:none;margin-top:28px;gap:12px}.land.in .lf li{padding:18px 16px;font-size:15px}.lf b{display:block;font-size:17px}
+.btn.wt{background:#fff;color:var(--pd);margin-top:auto}
+.lgk{border:0;background:none;padding:0;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.lgw .lg,.rp{animation:none}.land .lg path[stroke="#FFD43B"]{animation:none;stroke-dashoffset:0}}
 .dk{background:linear-gradient(140deg,#8B5CFF,#5B33E0);color:#fff;border-radius:20px;padding:20px}
 .dk small{color:rgba(255,255,255,.75)}.dk .v{color:#fff}
 .addb{width:36px;height:36px;border-radius:50%;border:0;background:var(--p);color:#fff;display:grid;place-items:center;padding:0;flex:none}.addb svg{width:20px;height:20px}
@@ -302,12 +315,16 @@ function banner(n){if(!n)return;const x=$('#bn');x.innerHTML=`<span class="nic">
 function warn(){const c=E('cl'),m=E('mv');return dt(c)>=dt(m)?'<div class="wr">입주청소 날짜가 이사일과 겹쳐요. 청소는 이사 전날까지 잡아주세요.</div>':''}
 
 const P={};
-P.land=()=>`<button class="land" data-a="go" data-p="auth" aria-label="눌러서 시작하기">
-<div class="lg">${LOGO}</div><div class="ln">24dday</div><p class="lt">처음 하는 이사도<br>순서대로, 함께</p>
-<ul class="lf"><li>${ic('tl',2)}<span>잔금일만 넣으면 할 일 순서를 자동으로 짜요</span></li><li>${ic('uplus',2)}<span>같이 사는 사람과 일정을 나눠 맡아요</span></li><li>${ic('svc',2)}<span>이사·청소·법무사 견적을 한 번에 봐요</span></li></ul>
+P.land=()=>`<button class="land" data-a="go" data-p="intro" aria-label="눌러서 시작하기">
+<div class="lgw"><i class="rp"></i><i class="rp r2"></i><div class="lg">${LOGO}</div></div><div class="ln">24dday</div><p class="lt">처음 하는 이사도 순서대로, 함께</p>
 <span class="tap">화면을 눌러 시작하기</span></button>`;
 
-P.auth=()=>{const m=S.am||'login';return`<div class="hd"><div><div class="logo">${LOGO}24dday</div><h1 style="margin-top:20px">${m==='login'?'다시 오셨네요!':'처음 오셨군요!'}</h1><p class="sb" style="margin:6px 0 0">${m==='login'?'로그인하고 준비하던 이사를 이어서 해요.':'가입하고 새 이사를 등록해요.'}</p></div></div>
+P.intro=()=>`<div class="land in"><button class="lgb" data-a="go" data-p="land" aria-label="앞 화면으로">${LOGO}</button>
+<h1 style="margin:18px 0 0;color:#fff">24dday로<br>이렇게 준비해요</h1>
+<ul class="lf"><li>${ic('tl',2)}<span><b>잔금일만 넣으면</b>할 일 순서를 자동으로 짜요</span></li><li>${ic('uplus',2)}<span><b>같이 사는 사람과</b>일정을 나눠 맡아요</span></li><li>${ic('svc',2)}<span><b>이사·청소·법무사</b>견적을 한 번에 봐요</span></li></ul>
+<button class="btn wt" data-a="go" data-p="auth">시작하기</button></div>`;
+
+P.auth=()=>{const m=S.am||'login';return`<div class="hd"><div><button class="logo lgk" data-a="go" data-p="intro" aria-label="앞 화면으로">${LOGO}24dday</button><h1 style="margin-top:20px">${m==='login'?'다시 오셨네요!':'처음 오셨군요!'}</h1><p class="sb" style="margin:6px 0 0">${m==='login'?'로그인하고 준비하던 이사를 이어서 해요.':'가입하고 새 이사를 등록해요.'}</p></div></div>
 <div class="seg2" style="margin-top:4px">${[['login','로그인'],['join','회원가입']].map(x=>`<button class="${m===x[0]?'sel':''}" data-a="am" data-v="${x[0]}">${x[1]}</button>`).join('')}</div>
 <div class="c" style="border-top:0;padding-top:0">${m==='join'?'<label>이름</label><input id="jn" placeholder="예: 유영" value="유영">':''}
 <label>이메일</label><input id="ae" type="email" inputmode="email" placeholder="you@example.com" value="${m==='login'?'yuyoung@example.com':''}">
@@ -316,7 +333,7 @@ P.auth=()=>{const m=S.am||'login';return`<div class="hd"><div><div class="logo">
 ${m==='login'?'<p class="sb" style="text-align:center;margin-top:14px">비밀번호를 잊으셨나요?</p>':''}
 <p class="sb" style="margin-top:20px">시연용 화면이에요. 아무 값이나 넣어도 넘어가요.</p></div>`};
 
-P.onb=()=>`<div class="hd"><div><div class="logo">${LOGO}24dday</div><h1 style="margin-top:20px">어떤 이사를<br>준비하세요?</h1><p class="sb" style="margin:6px 0 0">두 가지만 알려주시면 할 일 순서를 짜 드려요.</p></div></div><div class="c" style="border-top:0"><label style="margin:0">거래 유형</label><div class="seg2" style="margin:10px 0 0">${['매매','전세','월세'].map(t=>`<button class="${S.type===t?'sel':''}" data-a="type" data-v="${t}">${t}</button>`).join('')}</div>
+P.onb=()=>`<div class="hd"><div><button class="logo lgk" data-a="go" data-p="auth" aria-label="앞 화면으로">${LOGO}24dday</button><h1 style="margin-top:20px">어떤 이사를<br>준비하세요?</h1><p class="sb" style="margin:6px 0 0">두 가지만 알려주시면 할 일 순서를 짜 드려요.</p></div></div><div class="c" style="border-top:0"><label style="margin:0">거래 유형</label><div class="seg2" style="margin:10px 0 0">${['매매','전세','월세'].map(t=>`<button class="${S.type===t?'sel':''}" data-a="type" data-v="${t}">${t}</button>`).join('')}</div>
 <label>잔금일</label><input type="date" id="ob" value="${iso(S.base)}"><small style="display:block;margin-top:6px">이사 들어가는 날이 아니라, 돈을 다 치르는 날이에요.</small>
 <button class="btn" style="margin-top:28px" data-a="start">시작하기</button><p class="sb" style="margin:10px 0 0">오늘 날짜는 시연용으로 2026년 11월 5일에 맞춰져 있어요.</p></div>`;
 
@@ -394,7 +411,7 @@ if(x.t==='call')b=`<h2>${x.v}에 전화할까요?</h2><p class="sb">실제 앱�
 if(x.t==='reg')b=`<h2>업체 등록 문의</h2><p class="sb">${SV[S.svc].n} 업체 정보를 남겨주시면 담당자가 연락드려요.</p><label>업체명</label><input id="rn"><label>연락처</label><input id="rp" type="tel" inputmode="tel"><label>활동 지역</label><input id="ra" placeholder="예: 서울 송파구, 성남 분당구"><button class="btn" data-a="regs">문의 보내기</button>`;
 h.innerHTML='<div role="dialog" aria-modal="true"><button class="shx" data-a="close" aria-label="닫기">'+ic('x',2.4)+'</button>'+b+'</div>';h.style.display='flex'}
 
-function render(){const o=['land','auth','onb'].includes(S.pg);$('#scr').innerHTML=P[S.pg]();
+function render(){const o=['land','intro','auth','onb'].includes(S.pg);$('#scr').innerHTML=P[S.pg]();
 const T=[['home','홈'],['tl','일정'],['fund','자금'],['svc','서비스'],['my','마이']],cur={q:'svc'}[S.pg]||S.pg;
 $('#nv').style.display=o?'none':'flex';$('#nv').innerHTML=T.map(t=>`<button class="${cur===t[0]?'on':''}" data-a="go" data-p="${t[0]}">${ic(t[0])}${t[1]}</button>`).join('');
 if(S.pg==='svc')est();sheet()}
