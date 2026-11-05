@@ -296,8 +296,8 @@ return`<div class="hd"><h2>마이페이지</h2></div>
 <div class="c row" style="border-top:0;padding-top:4px">${av('me',1)}<div style="flex:1"><b style="font-size:20px">${esc(me.n)} (나)</b><br><small>담당 ${mine.length}개 · 완료 ${md2}개</small></div><button class="bo" data-a="pe" data-id="me">수정</button></div>
 <div class="c"><div class="shd"><div class="sh2">이사 정보</div><button class="bo" data-a="addr">수정</button></div>
 <div class="kv"><span>지금 사는 집</span><b>${esc(S.addr.from)}</b></div><div class="kv"><span>이사 갈 집</span><b>${esc(S.addr.to)}</b></div><div class="kv"><span>거래 유형</span><b>${S.type}</b></div><div class="kv"><span>잔금일</span><b>${md(S.base)}</b></div></div>
-<div class="c"><div class="shd"><div class="sh2">공유자 관리 <small style="font-weight:500">${O.length}명</small></div><button class="addb" data-a="pe" data-id="" aria-label="공유자 추가">${ic('plus',2.4)}</button></div>
-${O.length?O.map(p=>{const a=L.filter(e=>e.w===p.id);return`<div class="li">${av(p.id)}<div><div class="nm">${esc(p.n)} <small>${esc(p.rel||'')}</small></div><small>담당 ${a.length}개 · 완료 ${a.filter(done).length}개</small></div><button class="bo" data-a="pe" data-id="${p.id}">수정</button><button class="bo dl" data-a="pdel" data-id="${p.id}">삭제</button></div>`}).join(''):'<p class="sb">아직 함께하는 사람이 없어요.</p>'}
+<div class="c"><div class="shd"><div class="sh2">공유자 관리</div><small>${O.length}명</small></div>
+${O.length?O.map(p=>{const a=L.filter(e=>e.w===p.id);return`<div class="li">${av(p.id)}<div><div class="nm">${esc(p.n)} <small>${esc(p.rel||'')}</small></div><small>담당 ${a.length}개 · 완료 ${a.filter(done).length}개</small></div><button class="bo" data-a="pe" data-id="${p.id}">수정</button></div>`}).join(''):'<p class="sb">아직 함께하는 사람이 없어요.</p>'}
 <button class="btn" data-a="pe" data-id="">+ 공유자 추가</button></div>
 <div class="c"><div class="sh2">업무 분배</div>${[...S.pp.map(p=>p.id),'all'].map(w=>{const a=L.filter(e=>e.w===w),d=a.filter(done).length;return`<div style="margin-top:16px"><div class="row sp"><span class="row" style="gap:8px">${bd(w)}<span style="font-weight:600">${w==='all'?'함께':esc(who(w).n)}</span></span><small>${d} / ${a.length} 완료</small></div><div class="bar" style="margin-top:8px"><i style="width:${a.length?d/a.length*100:0}%;background:var(--p)"></i></div></div>`}).join('')}</div>
 <div class="c"><div class="shd"><div class="sh2">알림 설정</div><button class="tg ${S.bell?'on':''}" data-a="bell" role="switch" aria-checked="${!!S.bell}" aria-label="알림 전체"><i></i></button></div>
@@ -307,18 +307,19 @@ ${[['due','할 일 날짜 하루 전','D-1에 미리 알려드려요'],['mate','
 function sheet(){const x=S.sh,h=$('#sh');if(!x){h.style.display='none';return}
 let b='';
 if(x.t==='ev'){const e=E(x.id);b=`<h2>${e.n}</h2><label>날짜</label><input type="date" id="ed" value="${iso(dt(e))}"><label>담당자</label><select id="ew">${wopt(e.w)}</select>
-<label><input type="checkbox" id="edn" style="width:auto;margin:0 8px 0 0" ${done(e)?'checked':''}>완료했어요</label><button class="btn" data-a="save" data-id="${e.id}">저장하기</button>${e.f?`<button class="btn lv" data-a="unfix" data-id="${e.id}">자동 날짜로 되돌리기</button>`:''}`}
+<label><input type="checkbox" id="edn" style="width:auto;margin:0 8px 0 0" ${done(e)?'checked':''}>완료했어요</label><button class="btn" data-a="save" data-id="${e.id}">저장하기</button>${e.f?`<button class="btn lv" data-a="unfix" data-id="${e.id}">자동 날짜로 되돌리기</button>`:''}${STG.some(g=>g.m===e.id)?'<p class="sb" style="text-align:center;margin-top:14px">단계의 기준이 되는 일정이라 삭제할 수 없어요.</p>':`<button class="btn gh" style="color:var(--co)" data-a="edel" data-id="${e.id}">삭제하기</button>`}`}
+if(x.t==='edel'){const e=E(x.id);b=`<h2>‘${esc(e.n)}’을(를) 삭제할까요?</h2><p class="sb">삭제한 할 일은 되돌릴 수 없어요.</p><button class="btn rd" data-a="edx" data-id="${e.id}">삭제하기</button><button class="btn gy" data-a="edit" data-id="${e.id}">취소</button>`}
 if(x.t==='pl'){const e=E(x.id),p=S.plan[x.id];b=`<h2>${e.mn} 계획 수정</h2><label>날짜</label><input type="date" id="pd" value="${iso(dt(e))}"><label>출금 은행</label><input id="pbk" value="${esc(p.bank)}"><label>금액</label><input id="pam" value="${esc(p.amt)}"><label>담당자</label><select id="pw">${wopt(e.w)}</select><button class="btn" data-a="psave" data-id="${x.id}">저장하기</button>`}
 if(x.t==='pe'){const p=S.pp.find(q=>q.id===x.id),nw=!p,me=x.id==='me';b=`<h2>${nw?'공유자 추가':me?'내 프로필 수정':'공유자 프로필 수정'}</h2><label>이름</label><input id="pn" value="${p?esc(p.n):''}" placeholder="예: 민희">${me?'':`<label>관계</label><input id="pr" value="${p?esc(p.rel||''):''}" placeholder="배우자, 가족, 친구 등">`}
-<button class="btn" data-a="psv">${nw?'추가하고 초대 링크 보내기':'저장하기'}</button>`}
-if(x.t==='pdel'){const p=S.pp.find(q=>q.id===x.id);b=`<h2>${esc(p.n)}님을 삭제할까요?</h2><p class="sb">일정을 더 이상 함께 볼 수 없어요. ${esc(p.n)}님이 맡은 일은 ${esc(S.pp[0].n)}(나)에게 넘어가요.</p><button class="btn rd" data-a="pdx" data-id="${p.id}">삭제하기</button>`}
+<button class="btn" data-a="psv">${nw?'추가하고 초대 링크 보내기':'저장하기'}</button>${!nw&&!me?`<button class="btn gh" style="color:var(--co)" data-a="pdel" data-id="${p.id}">공유자 삭제하기</button>`:''}`}
+if(x.t==='pdel'){const p=S.pp.find(q=>q.id===x.id);b=`<h2>${esc(p.n)}님을 삭제할까요?</h2><p class="sb">일정을 더 이상 함께 볼 수 없어요. ${esc(p.n)}님이 맡은 일은 ${esc(S.pp[0].n)}(나)에게 넘어가요.</p><button class="btn rd" data-a="pdx" data-id="${p.id}">삭제하기</button><button class="btn gy" data-a="pe" data-id="${p.id}">취소</button>`}
 if(x.t==='addr')b=`<h2>이사 정보 수정</h2><p class="sb">잔금일을 바꾸면 직접 정하지 않은 일정이 같이 움직여요.</p><label>지금 사는 집</label><input id="af" value="${esc(S.addr.from)}"><label>이사 갈 집</label><input id="at" value="${esc(S.addr.to)}"><label>잔금일</label><input type="date" id="abs" value="${iso(S.base)}"><label>거래 유형</label><select id="aty">${['매매','전세','월세'].map(t=>`<option ${S.type===t?'selected':''}>${t}</option>`).join('')}</select><button class="btn" data-a="asave">저장하기</button>`;
 if(x.t==='add')b=`<h2>할 일 추가</h2><label>할 일</label><input id="nn" placeholder="예: 에어컨 이전 설치 예약"><label>단계</label><select id="ns">${STG.map(g=>`<option value="${g.k}" ${g===curStg()?'selected':''}>${g.n}</option>`).join('')}</select><label>날짜</label><input type="date" id="nd" value="${iso(TODAY+7*DAY)}"><label>담당자</label><select id="nw">${wopt('me')}</select><button class="btn" data-a="addsv">추가하기</button>`;
 if(x.t==='inv')b=`<h2>일정 함께 관리하기</h2><p class="sb">초대 링크를 받은 사람은 같은 일정을 보고, 할 일을 나눠 맡을 수 있어요. 지금 ${S.pp.length}명이 참여 중이에요.</p><button class="btn" data-a="copy">초대 링크 복사</button><button class="btn lv" data-a="go" data-p="my">공유자 관리로 가기</button>`;
 if(x.t==='msg'){const v=SV[S.svc];b=`<h2>${x.v}에 상담 신청</h2><label>문의 내용</label><textarea id="mt">안녕하세요. ${v.n} 견적을 문의드려요. 희망 날짜는 ${S.q.dt.slice(5).replace('-','/')}이고, ${v.f.map(f=>f[1].replace(/ \(.*\)/,'')+' '+(Array.isArray(S.q[f[0]])?S.q[f[0]].join('·'):S.q[f[0]])).join(', ')}이에요.</textarea><button class="btn" data-a="send">상담 신청 보내기</button><button class="btn lv" data-a="dial">전화로 문의하기</button>`}
 if(x.t==='call')b=`<h2>${x.v}에 전화할까요?</h2><p class="sb">실제 앱에서는 전화 앱으로 바로 연결돼요.</p><button class="btn" data-a="dial">전화 걸기</button>`;
 if(x.t==='reg')b=`<h2>업체 등록 문의</h2><p class="sb">${SV[S.svc].n} 업체 정보를 남겨주시면 담당자가 연락드려요.</p><label>업체명</label><input id="rn"><label>연락처</label><input id="rp" type="tel" inputmode="tel"><label>활동 지역</label><input id="ra" placeholder="예: 서울 송파구, 성남 분당구"><button class="btn" data-a="regs">문의 보내기</button>`;
-h.innerHTML='<div role="dialog" aria-modal="true">'+b+'<button class="btn gh" data-a="close">닫기</button></div>';h.style.display='flex'}
+h.innerHTML='<div role="dialog" aria-modal="true">'+b+(['edel','pdel'].includes(x.t)?'':'<button class="btn gh" data-a="close">닫기</button>')+'</div>';h.style.display='flex'}
 
 function render(){const o=S.pg==='onb';$('#scr').innerHTML=P[S.pg]();
 const T=[['home','홈'],['tl','일정'],['fund','자금'],['svc','서비스'],['my','마이']],cur={q:'svc'}[S.pg]||S.pg;
@@ -347,6 +348,8 @@ else if(a==='copy'){try{navigator.clipboard.writeText(LINK).catch(()=>{})}catch(
 else if(a==='chk'){const e=E(d.id);e.dn=!done(e);if(e.dn)toast(e.n+' 완료')}
 else if(a==='edit')S.sh={t:'ev',id:d.id};
 else if(a==='save'){const e=E(d.id),n=Date.parse($('#ed').value);if(n&&n!==dt(e))e.f=n;e.w=$('#ew').value;e.dn=$('#edn').checked;S.sh=null;toast('저장했어요')}
+else if(a==='edel')S.sh={t:'edel',id:d.id};
+else if(a==='edx'){const e=E(d.id);S.ev=S.ev.filter(x=>x.id!==d.id);S.sh=null;toast(e.n+' 삭제했어요')}
 else if(a==='unfix'){delete E(d.id).f;S.sh=null;toast('자동 날짜로 되돌렸어요')}
 else if(a==='pedit')S.sh={t:'pl',id:d.id};
 else if(a==='psave'){const e=E(d.id),n=Date.parse($('#pd').value);if(n&&n!==dt(e))e.f=n;S.plan[d.id]={bank:$('#pbk').value,amt:$('#pam').value};e.w=$('#pw').value;S.sh=null;toast('입출금 계획을 저장했어요')}
