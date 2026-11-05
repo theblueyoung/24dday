@@ -152,7 +152,7 @@ nav button svg{width:24px;height:24px}nav button.on{background:none!important;co
 .seg2 button.sel{background:#fff;color:var(--pd);box-shadow:0 2px 8px rgba(0,0,0,.08)}
 .cnt{font-size:15px;font-weight:800}.cnt.dn{color:var(--dnf)}.cnt.cur{color:var(--p)}.cnt.fu{color:var(--mute)}
 .li{padding:12px 0}.li .nm{font-size:15px}.li small{font-size:12.5px}
-.cb{width:20px;height:20px;border-radius:5px;align-self:flex-start;margin-top:0}
+.cb{width:20px;height:20px;border-radius:5px;align-self:flex-start;margin-top:2px}
 .li .nm{line-height:20px}.li .nm+small{display:block;margin-top:3px;line-height:1.3}.cb svg{width:12px;height:12px}
 .sh2{font-size:19px}
 .tg{width:50px;height:30px;border-radius:15px;border:0;background:#D1D6DB;position:relative;padding:0;flex:none}.tg i{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}.tg.on{background:var(--p)!important}.tg.on i{left:23px}
@@ -257,8 +257,7 @@ P.home=()=>{const L=vis(),n=L.filter(done).length,pct=Math.round(n/L.length*100)
 return`<div class="top"><div class="logo">${LOGO}24dday</div><div class="row" style="gap:8px">
 <button class="inv" data-a="inv" aria-label="일정 함께 관리할 사람 초대하기"><span class="ip">${ic('uplus',2)}</span><span>공유 <b>${S.pp.length}</b>명 참여중</span></button>
 <button class="bell ${S.bell?'':'off'}" data-a="bell" aria-pressed="${!S.bell}" aria-label="${S.bell?'알림 끄기':'알림 켜기'}">${S.bell?ic('bell',2):BELLOFF}</button></div></div>
-<div class="hero"><div class="htop"><button class="loc" data-a="addr" aria-label="이사 주소 수정">${ic('pin',2)}${esc(shortA(S.addr.from))} → ${esc(shortA(S.addr.to))}</button><button class="hbt" data-a="addr">수정</button></div>
-<div class="hs" style="margin-top:18px">${md(S.base)} 잔금일</div><div class="big">${d>0?'D-'+d:d===0?'D-day':'D+'+(-d)}<span>${d>0?'일 남음':''}</span></div>
+<div class="hero"><div class="htop"><div class="hs">${md(S.base)} 잔금일</div><button class="hbt" data-a="addr">수정</button></div><div class="big" style="margin-top:0">${d>0?'D-'+d:d===0?'D-day':'D+'+(-d)}<span>${d>0?'일 남음':''}</span></div>
 <div class="hdv"></div>
 <div class="pc"><span>진행률</span><b>${pct}%</b></div><div class="yb"><i style="width:${pct}%"></i></div>
 ${metro()}</div>
