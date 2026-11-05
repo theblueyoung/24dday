@@ -246,6 +246,9 @@ ev:[
 {id:'pay',n:'월세 자동이체 설정',o:16,w:'p2',st:4,i:'bank',t:'wol'},
 {id:'gm',n:'관리사무소 신고·공과금 명의 변경',o:16,w:'p2',st:4,i:'home',t:'buy'},
 {id:'ad',n:'주소 변경 (은행·카드)',o:20,w:'p2',st:4,i:'pin'}]};
+const CL=o=>JSON.parse(JSON.stringify(o)),DEMO=CL(S);
+function resetTo(fresh,name){const k=CL(DEMO);for(const x in S)delete S[x];Object.assign(S,k);
+if(fresh){S.fresh=1;S.pp=[{id:'me',n:name||'나',rel:'나',c:0}];S.ev.forEach(e=>{e.dn=false;e.w='me'});S.banks=[0,0,0];for(const id in S.plan)S.plan[id]={bank:'은행 미입력',amt:''};S.addr={from:'입력 전',to:'입력 전'};S.docs.forEach(d=>d[1]=0)}}
 const INS=[['도배',2,3.5,'p'],['장판·마루',3,7,'p'],['욕실',400,800,'f'],['주방',400,900,'f'],['샷시(창호)',25,40,'p'],['조명·전기',1.5,3,'p'],['중문·현관',150,300,'f'],['붙박이장',200,500,'f'],['발코니 확장',300,700,'f'],['전체 리모델링',150,300,'p']];
 const SV={
 lw:{sn:'법무사',col:'#7A4DFF',ib:'#F1ECFF',n:'법무사',e:'bal',v:'법무사 사무소',i:'doc',ts:1,f:[['pr','매매가(억원)','n',7]],c:v=>v.pr<6?[40,60]:v.pr<9?[50,80]:[60,100]},
@@ -306,11 +309,11 @@ const nx=L.find(e=>!done(e)&&dt(e)>=TODAY);
 if(S.nt.due&&nx)R.push({k:'due',ic:'tl',t:'할 일 날짜가 다가와요',b:`${dl(nx)} · '${nx.n}' 날이에요`,tm:'방금'});
 const md_=mate&&L.filter(e=>e.w===mate.id&&done(e)).pop();
 if(S.nt.mate&&md_)R.push({k:'mate',ic:'check',t:`${mate.n}님이 할 일을 끝냈어요`,b:`'${md_.n}' 완료`,tm:'1시간 전'});
-if(S.nt.svc)R.push({k:'svc',ic:'svc',t:'상담 답변이 왔어요',b:'늘봄익스프레스 이사: 12/12 포장이사 가능해요. 견적서를 보내드렸어요.',tm:'어제'});
+if(S.nt.svc&&(!S.fresh||S.asked))R.push({k:'svc',ic:'svc',t:'상담 답변이 왔어요',b:'늘봄익스프레스 이사: 12/12 포장이사 가능해요. 견적서를 보내드렸어요.',tm:'어제'});
 const done1=SG().filter(g=>stS(g)==='dn').pop();
 if(S.nt.stg&&done1)R.push({k:'stg',ic:'key',t:`${done1.n}를 모두 마쳤어요`,b:`이제 ${curStg().n}예요. 지금 챙길 일을 확인해 보세요.`,tm:'2일 전'});
 return R}
-const PAST=()=>[...(S.nt.svc?[{ic:'svc',t:'상담 답변이 왔어요',b:'한결 법무사사무소: 등기 비용 견적을 보내드렸어요.',tm:'11/1'}]:[]),{ic:'uplus',t:'민희님이 일정 공유에 참여했어요',b:'이제 할 일을 나눠 맡을 수 있어요.',tm:'10/30'}];
+const PAST=()=>S.fresh?[]:[...(S.nt.svc?[{ic:'svc',t:'상담 답변이 왔어요',b:'한결 법무사사무소: 등기 비용 견적을 보내드렸어요.',tm:'11/1'}]:[]),{ic:'uplus',t:'민희님이 일정 공유에 참여했어요',b:'이제 할 일을 나눠 맡을 수 있어요.',tm:'10/30'}];
 function banner(n){if(!n)return;const x=$('#bn');x.innerHTML=`<span class="nic">${ic(n.ic,2)}</span><div><b>${esc(n.t)}</b><small>${esc(n.b)}</small></div><em>지금</em>`;x.classList.add('show');clearTimeout(banner.h);banner.h=setTimeout(()=>x.classList.remove('show'),3800)}
 function warn(){const c=E('cl'),m=E('mv');return dt(c)>=dt(m)?'<div class="wr">입주청소 날짜가 이사일과 겹쳐요. 청소는 이사 전날까지 잡아주세요.</div>':''}
 
@@ -356,7 +359,7 @@ P.tl=()=>{const L=vis();
 return`<div class="hd"><div><h2>일정</h2><p class="sb" style="margin:6px 0 0">단계별 체크리스트로 할 일을 하나씩 챙겨요</p></div><button class="addb" data-a="add" aria-label="할 일 추가">${ic('plus',2.4)}</button></div>`+warn()+
 SG().map(g=>{const T=L.filter(e=>sof(e)===g.k),d=T.filter(done).length,st=stS(g);
 return`<div class="c g-${st}"><div class="sgh">${stTag(g,st)}<span style="flex:1"></span><span class="cnt ${st}">${d}/${T.length}</span></div>
-${T.map(e=>`<div class="li">${cb(e)}<div><div class="nm ${done(e)?'dnx':''}">${esc(e.n)}</div><small>${md(dt(e))}${e.f?' · 직접 정함':''} · ${done(e)?'완료':dl(e)}</small></div>${bd(e.w)}<button class="bo" data-a="edit" data-id="${e.id}">수정</button></div>`).join('')}</div>`}).join('')+
+${T.map(e=>`<div class="li">${cb(e)}<div><div class="nm ${done(e)?'dnx':''}">${esc(e.n)}</div><small>${md(dt(e))}${e.f&&!e.auto?' · 직접 정함':''} · ${done(e)?'완료':dl(e)}</small></div>${bd(e.w)}<button class="bo" data-a="edit" data-id="${e.id}">수정</button></div>`).join('')}</div>`}).join('')+
 `<div class="c"><button class="btn" style="margin:0" data-a="add">+ 할 일 추가</button></div>`};
 
 P.fund=()=>{const need=15000,tot=S.banks.reduce((a,b)=>a+b,0),gap=Math.max(need-tot,0),nm=['국민은행','신한은행','카카오뱅크'],cl=['#B9A2FF','#8B5CFF','#FFD43B'];
@@ -364,7 +367,7 @@ return`<div class="hd"><div><h2>자금</h2><p class="sb" style="margin:6px 0 0">
 <div class="bar" style="margin:14px 0 8px;height:10px;background:rgba(255,255,255,.18)">${S.banks.map((b,i)=>`<i style="width:${Math.min(b/need*100,100)}%;background:${cl[i]}"></i>`).join('')}</div>
 <div class="row sp"><small>준비 ${mny(tot)}</small><small style="font-weight:700;color:${gap?'#FF9AA2':'#7BE3B8'}">${gap?'부족 '+mny(gap):'충분해요'}</small></div></div></div>
 <div class="c"><div class="shd"><div class="sh2">은행별 보유액 <small style="font-weight:500">(만원)</small></div><button class="pb" data-a="recalc">다시 계산</button></div>${nm.map((n,i)=>`<label>${n}</label><input type="number" inputmode="numeric" data-b="${i}" value="${S.banks[i]}">`).join('')}<p class="sb" style="margin:14px 0 0">금액을 고친 뒤 다시 계산을 눌러 주세요. 계좌 자동 연결은 다음 버전에서 만나요.</p></div>
-<div class="c"><div class="sh2" style="margin-bottom:4px">입출금 계획</div>${Object.keys(S.plan).filter(id=>ok(E(id))).map(id=>{const e=E(id),p=S.plan[id];return`<div class="li"><div><small style="font-weight:700;color:var(--pd)">${md(dt(e))}</small><div class="nm">${e.mn} · ${esc(p.bank)}</div><small>${esc(p.amt)}</small></div>${bd(e.w)}<button class="bo" data-a="pedit" data-id="${id}">수정</button></div>`}).join('')}</div>`};
+<div class="c"><div class="sh2" style="margin-bottom:4px">입출금 계획</div>${Object.keys(S.plan).filter(id=>ok(E(id))).map(id=>{const e=E(id),p=S.plan[id];return`<div class="li"><div><small style="font-weight:700;color:var(--pd)">${md(dt(e))}</small><div class="nm">${e.mn} · ${esc(p.bank)}</div><small>${esc(p.amt)||'금액을 입력해 주세요'}</small></div>${bd(e.w)}<button class="bo" data-a="pedit" data-id="${id}">수정</button></div>`}).join('')}</div>`};
 
 P.svc=()=>{const v=SV[S.svc];
 return`<div class="hd"><div><h2>서비스</h2><p class="sb" style="margin:6px 0 0">조건을 고르고 다시 계산을 누르면 예상 견적이 나와요</p></div></div>
@@ -423,12 +426,12 @@ function act(a,d){
 if(a==='go'){S.pg=d.p;if(d.p==='svc'&&!S.svc)openSvc('lw');if(d.s)S.sub=d.s;S.sh=null;$('#scr').scrollTop=0}
 else if(a==='sub')S.sub=d.v;
 else if(a==='am')S.am=d.v;
-else if(a==='login'){S.pg='home';$('#scr').scrollTop=0;applyType();setTimeout(()=>banner(notes().find(n=>!S.rd[n.k])),700)}
-else if(a==='join'){const n=$('#jn').value.trim();if(n)S.pp[0].n=n;S.pg='onb'}
+else if(a==='login'){resetTo(0);S.pg='home';$('#scr').scrollTop=0;applyType();setTimeout(()=>banner(notes().find(n=>!S.rd[n.k])),700)}
+else if(a==='join'){const n=$('#jn').value.trim();resetTo(1,n);S.pg='onb'}
 else if(a==='logout'){S.pg='land';S.am='login'}
 else if(a==='type')S.type=d.v;
 else if(a==='int')S.int=+d.v;
-else if(a==='start'){applyType();S.base=Date.parse($('#ob').value)||S.base;if(!S.int){const m={cl:0,mv:1,mi:2,fx:2,pho:1,hug:3,pay:3,gm:3,dis:-3,ad:7};for(const k in m)E(k).o=m[k]}applyType();S.pg='home';setTimeout(()=>banner(notes().find(n=>!S.rd[n.k])),700)}
+else if(a==='start'){applyType();S.base=Date.parse($('#ob').value)||S.base;if(!S.int){const m={cl:0,mv:1,mi:2,fx:2,pho:1,hug:3,pay:3,gm:3,dis:-3,ad:7};for(const k in m)E(k).o=m[k]}if(S.fresh)S.ev.forEach(e=>{delete e.f;delete e.auto;if(dt(e)<TODAY){e.f=TODAY;e.auto=1}});applyType();S.pg='home';setTimeout(()=>banner(notes().find(n=>!S.rd[n.k])),700)}
 else if(a==='addr'){S.pg='my';S.sh={t:'addr'}}
 else if(a==='add')S.sh={t:'add'};
 else if(a==='addsv'){const n=$('#nn').value.trim();if(!n)return toast('할 일을 적어 주세요');const f=Date.parse($('#nd').value)||TODAY;S.ev.push({id:'u'+Date.now(),n,o:Math.round((f-S.base)/DAY),f,w:$('#nw').value,st:+$('#ns').value,i:'doc'});S.sh=null;toast('할 일을 추가했어요')}
@@ -445,7 +448,7 @@ else if(a==='share'){const data={title:'24dday 이사 일정',text:'우리 이�
 else if(a==='copy'){try{navigator.clipboard.writeText(LINK).catch(()=>{})}catch(_){}S.sh=null;toast('초대 링크를 복사했어요')}
 else if(a==='chk'){const e=E(d.id),g0=curStg();e.dn=!done(e);if(e.dn){const g1=curStg();if(g1!==g0&&S.bell&&S.nt.stg)setTimeout(()=>banner({ic:'key',t:`${g0.n}를 모두 마쳤어요`,b:`이제 ${g1.n}예요. 다음 할 일이 열렸어요.`}),50);else toast(e.n+' 완료')}}
 else if(a==='edit')S.sh={t:'ev',id:d.id};
-else if(a==='save'){const e=E(d.id),n=Date.parse($('#ed').value);if(n&&n!==dt(e))e.f=n;e.w=$('#ew').value;e.dn=$('#edn').checked;S.sh=null;toast('저장했어요')}
+else if(a==='save'){const e=E(d.id),n=Date.parse($('#ed').value);if(n&&n!==dt(e)){e.f=n;delete e.auto}e.w=$('#ew').value;e.dn=$('#edn').checked;S.sh=null;toast('저장했어요')}
 else if(a==='edel')S.sh={t:'edel',id:d.id};
 else if(a==='edx'){const e=E(d.id);S.ev=S.ev.filter(x=>x.id!==d.id);S.sh=null;toast(e.n+' 삭제했어요')}
 else if(a==='unfix'){delete E(d.id).f;S.sh=null;toast('자동 날짜로 되돌렸어요')}
@@ -467,7 +470,7 @@ else if(a==='msg')S.sh={t:'msg',v:d.v};
 else if(a==='call')S.sh={t:'call',v:d.v};
 else if(a==='reg')S.sh={t:'reg'};
 else if(a==='regs'){S.sh=null;toast('업체 등록 문의를 보냈어요. 곧 연락드릴게요')}
-else if(a==='send'){S.sh=null;toast('문의를 보냈어요. 답변은 알림으로 알려드려요')}
+else if(a==='send'){S.asked=1;S.sh=null;toast('문의를 보냈어요. 답변은 알림으로 알려드려요')}
 else if(a==='dial'){S.sh=null;toast('전화 앱으로 연결돼요 (시연)')}
 else if(a==='close')S.sh=null;
 render()}
