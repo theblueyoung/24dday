@@ -319,7 +319,7 @@ function warn(){const c=E('cl'),m=E('mv');return dt(c)>=dt(m)?'<div class="wr">�
 
 const P={};
 P.land=()=>`<button class="land" data-a="go" data-p="intro" aria-label="눌러서 시작하기">
-<div class="lgw"><i class="rp"></i><i class="rp r2"></i><div class="lg">${LOGO}</div></div><div class="ln">24dday</div><p class="lt">처음 하는 이사도 순서대로, 함께</p>
+<div class="lgw"><i class="rp"></i><i class="rp r2"></i><div class="lg">${LOGO}</div></div><div class="ln">24dday</div><p class="lt">이사할 때 할 일과 일정을<br>순서대로 챙겨주는 이사 도우미</p>
 </button>`;
 
 P.intro=()=>`<div class="land in"><button class="lgb" data-a="go" data-p="land" aria-label="앞 화면으로">${LOGO}</button>
@@ -390,7 +390,7 @@ ${O.length?O.map(p=>{const a=L.filter(e=>e.w===p.id);return`<div class="li">${av
 <div class="c"><div class="sh2">업무 분배</div>${[...S.pp.map(p=>p.id),'all'].map(w=>{const a=L.filter(e=>e.w===w),d=a.filter(done).length;return`<div style="margin-top:16px"><div class="row sp"><span class="row" style="gap:8px">${bd(w)}<span style="font-weight:600">${w==='all'?'함께':esc(who(w).n)}</span></span><small>${d} / ${a.length} 완료</small></div><div class="bar" style="margin-top:8px"><i style="width:${a.length?d/a.length*100:0}%;background:var(--p)"></i></div></div>`}).join('')}</div>
 <div class="c" id="ntc"><div class="sh2" style="margin-bottom:14px">알림 설정</div><div class="nbig ${S.bell?'yes':''}"><div><b>알림 받기</b><small>${S.bell?'켜져 있어요. 받고 싶은 알림을 골라 주세요.':'꺼져 있어요. 알림을 하나도 받지 않아요.'}</small></div><button class="tg big ${S.bell?'on':''}" data-a="bell" role="switch" aria-checked="${!!S.bell}" aria-label="알림 받기"><i></i></button></div>
 ${[['due','할 일 날짜 하루 전','D-1에 미리 알려드려요'],['mate','공유자가 할 일을 끝냈을 때','함께하는 사람이 체크하면 알려드려요'],['svc','업체 상담 답변','상담 신청에 답이 오면 알려드려요'],['stg','다음 단계로 넘어갈 때','한 단계를 모두 마치면 알려드려요']].map(n=>`<div class="li${S.bell?'':' off'}"><button class="cb ${S.nt[n[0]]&&S.bell?'on':''}" data-a="nt" data-k="${n[0]}" aria-pressed="${!!S.nt[n[0]]}" aria-label="${n[1]}" ${S.bell?'':'disabled'}>${ic('check',3)}</button><div><div class="nm">${n[1]}</div><small>${n[2]}</small></div></div>`).join('')}</div>
-<div style="padding:8px 20px 0;text-align:center"><button class="btn gh" data-a="logout">로그아웃</button></div>`};
+<div style="padding:8px 20px 0;display:flex;flex-direction:column;align-items:center;gap:2px"><button class="btn gh" style="color:var(--co);margin-top:8px" data-a="lgq">로그아웃</button><button class="lk" style="color:var(--sub);font-weight:500;font-size:13px;text-decoration:underline" data-a="wdq">회원 탈퇴</button></div>`};
 
 function sheet(){const x=S.sh,h=$('#sh');if(!x){h.style.display='none';return}
 let b='';
@@ -409,6 +409,8 @@ b=`<h2>알림</h2>${!S.bell?'<p class="sb">알림이 꺼져 있어요. 마이페
 `<div class="nh"><b>새 알림 ${U.length}</b>${U.length?'<button class="lk" data-a="nall">모두 읽음</button>':''}</div>${U.length?U.map(n=>row(n,1)).join(''):'<p class="sb" style="padding:8px 0 4px">새 알림이 없어요.</p>'}
 <div class="nh" style="margin-top:18px"><b>읽은 알림</b></div>${R.map(n=>row(n,0)).join('')}
 <p class="sb" style="font-size:12.5px;margin-top:12px">읽은 알림은 14일이 지나면 자동으로 지워져요.</p><button class="btn" data-a="gont">알림 설정</button>`}`}
+if(x.t==='lgq')b=`<h2>로그아웃할까요?</h2><p class="sb">다시 로그인하면 준비하던 이사를 그대로 이어서 할 수 있어요.</p><button class="btn rd" data-a="logout">로그아웃</button><button class="btn gy" data-a="close">취소</button>`;
+if(x.t==='wdq')b=`<h2>정말 탈퇴할까요?</h2><p class="sb">탈퇴하면 이사 일정, 체크리스트, 공유자 정보가 모두 지워지고 되돌릴 수 없어요. 함께하던 사람들도 이 일정을 더 볼 수 없어요.</p><button class="btn rd" data-a="wdx">탈퇴하기</button><button class="btn gy" data-a="close">취소</button>`;
 if(x.t==='inv')b=`<h2>일정 함께 관리하기</h2><p class="sb">초대 링크를 받은 사람은 같은 일정을 보고, 할 일을 나눠 맡을 수 있어요. 지금 ${S.pp.length}명이 참여 중이에요.</p><button class="btn" data-a="copy">초대 링크 복사</button><button class="btn lv" data-a="go" data-p="my">공유자 관리로 가기</button>`;
 if(x.t==='msg'){const v=SV[S.svc];b=`<h2>${x.v}에 상담 신청</h2><label>문의 내용</label><textarea id="mt">안녕하세요. ${v.n} 견적을 문의드려요. 희망 날짜는 ${S.q.dt.slice(5).replace('-','/')}이고, ${v.f.map(f=>f[1].replace(/ \(.*\)/,'')+' '+(Array.isArray(S.q[f[0]])?S.q[f[0]].join('·'):S.q[f[0]])).join(', ')}이에요.</textarea><button class="btn" data-a="send">상담 신청 보내기</button><button class="btn lv" data-a="dial">전화로 문의하기</button>`}
 if(x.t==='call')b=`<h2>${x.v}에 전화할까요?</h2><p class="sb">실제 앱에서는 전화 앱으로 바로 연결돼요.</p><button class="btn" data-a="dial">전화 걸기</button>`;
@@ -430,7 +432,10 @@ else if(a==='am')S.am=d.v;
 else if(a==='paid')S.paid=+d.v;
 else if(a==='login'){resetTo(0);S.pg='home';$('#scr').scrollTop=0;applyType();setTimeout(()=>banner(notes().find(n=>!S.rd[n.k])),700)}
 else if(a==='join'){const n=$('#jn').value.trim();resetTo(1,n);S.pg='onb'}
-else if(a==='logout'){S.pg='land';S.am='login'}
+else if(a==='lgq')S.sh={t:'lgq'};
+else if(a==='wdq')S.sh={t:'wdq'};
+else if(a==='logout'){S.sh=null;S.pg='land';S.am='login'}
+else if(a==='wdx'){resetTo(1);S.pg='land';S.am='join';setTimeout(()=>toast('탈퇴했어요. 그동안 이용해 주셔서 고마워요'),50)}
 else if(a==='type')S.type=d.v;
 else if(a==='int')S.int=+d.v;
 else if(a==='start'){applyType();S.base=Date.parse($('#ob').value)||S.base;if(!S.int){const m={cl:0,mv:1,mi:2,fx:2,pho:1,hug:3,pay:3,gm:3,dis:-3,ad:7};for(const k in m)E(k).o=m[k]}if(S.fresh)S.ev.forEach(e=>{delete e.f;delete e.auto;if(S.paid&&e.st===1){e.dn=true;return}if(dt(e)<TODAY){e.f=TODAY;e.auto=1}});applyType();S.pg='home';setTimeout(()=>banner(notes().find(n=>!S.rd[n.k])),700)}
