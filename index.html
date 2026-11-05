@@ -153,6 +153,8 @@ nav button svg{width:24px;height:24px}nav button.on{background:none!important;co
 .li{padding:12px 0}.li .nm{font-size:15px}.li small{font-size:12.5px}
 .cb{width:20px;height:20px;border-radius:5px}.cb svg{width:12px;height:12px}
 .sh2{font-size:19px}
+.tg{width:50px;height:30px;border-radius:15px;border:0;background:#D1D6DB;position:relative;padding:0;flex:none}.tg i{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}.tg.on{background:var(--p)!important}.tg.on i{left:23px}
+.li.off{opacity:.45}
 .dk{background:linear-gradient(140deg,#8B5CFF,#5B33E0);color:#fff;border-radius:20px;padding:20px}
 .dk small{color:rgba(255,255,255,.75)}.dk .v{color:#fff}
 .addb{width:36px;height:36px;border-radius:50%;border:0;background:var(--p);color:#fff;display:grid;place-items:center;padding:0;flex:none}.addb svg{width:20px;height:20px}
@@ -163,7 +165,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 const TODAY=Date.UTC(2026,10,5),DAY=864e5,$=s=>document.querySelector(s);
 const PC=['#7A4DFF','#FF8A4C','#3B82F6','#E64980','#F59F00','#15AABF'];
 const STG=[{k:1,n:'계약금 단계',m:'c1'},{k:2,n:'중도금 단계',m:'c2'},{k:3,n:'잔금 단계',m:'bal'},{k:4,n:'이사 단계',m:'mi'}];
-const S={pg:'onb',sub:'list',type:'매매',int:1,base:Date.UTC(2026,10,28),sh:null,svc:null,q:{},bell:1,addr:{from:'서울 송파구 잠실동',to:'성남 분당구 정자동'},
+const S={pg:'onb',sub:'list',type:'매매',int:1,base:Date.UTC(2026,10,28),sh:null,svc:null,q:{},bell:1,nt:{due:1,mate:1,svc:1,stg:0},addr:{from:'서울 송파구 잠실동',to:'성남 분당구 정자동'},
 banks:[5000,4000,3000],
 docs:[['신분증',1],['인감증명서',0],['등기부등본',1],['계약서 사본',1],['대출 서류',0],['이사업체 계약서',0]],
 pp:[{id:'me',n:'유영',rel:'나',c:0},{id:'p2',n:'민희',rel:'배우자',c:1}],
@@ -261,7 +263,7 @@ ${metro()}</div>
 ${T.map(e=>`<div class="li">${cb(e)}<div><div class="nm ${done(e)?'dnx':''}">${e.n}</div><small>${md(dt(e))} · ${done(e)?'완료':dl(e)}</small></div>${bd(e.w)}</div>`).join('')}</div>
 <div class="c"><div class="shd" style="margin-bottom:14px"><div class="sh2"><span class="hic">${ic('tl',2)}</span>단계별 주요일정</div><a data-a="go" data-p="tl">자세히 보기 ›</a></div>
 <div class="stl">${STG.map(g=>{const G=L.filter(e=>e.st===g.k),m=E(g.m),st=stS(g),p=S.plan[g.m],K=G.filter(e=>!e.big),nm=g.n.replace(' 단계','');
-return`<button class="sc ${st}" data-a="go" data-p="tl"><div class="row sp">${stTag(g,st)}<span class="sa">${p?esc(p.amt):md(dt(m))}</span></div>
+return`<button class="sc ${st}" data-a="go" data-p="tl"><div class="row sp">${stTag(g,st)}<span class="sa">${p?esc(p.amt):''}</span></div>
 <b>${K.slice(0,3).map(e=>e.n.replace(/ (송금|받기|비교|확인|알아보기)$/,'')).join(' · ')}${K.length>3?` 외 ${K.length-3}개`:''}</b><small>${md(dt(G[0]))} ~ ${md(dt(G[G.length-1]))} · 할 일 ${G.filter(done).length}/${G.length}</small></button>`}).join('')}</div></div>`};
 
 P.tl=()=>{const L=vis();
@@ -295,7 +297,10 @@ return`<div class="hd"><h2>마이페이지</h2></div>
 <div class="c"><div class="shd"><div class="sh2">공유자 관리</div><small>${O.length}명</small></div>
 ${O.length?O.map(p=>{const a=L.filter(e=>e.w===p.id);return`<div class="li">${av(p.id)}<div><div class="nm">${esc(p.n)} <small>${esc(p.rel||'')}</small></div><small>담당 ${a.length}개 · 완료 ${a.filter(done).length}개</small></div><button class="bo" data-a="pe" data-id="${p.id}">수정</button><button class="bo dl" data-a="pdel" data-id="${p.id}">삭제</button></div>`}).join(''):'<p class="sb">아직 함께하는 사람이 없어요.</p>'}
 <button class="btn lv" data-a="pe" data-id="">+ 공유자 추가</button></div>
-<div class="c"><div class="sh2">업무 분배</div>${[...S.pp.map(p=>p.id),'all'].map(w=>{const a=L.filter(e=>e.w===w),d=a.filter(done).length;return`<div style="margin-top:16px"><div class="row sp"><span class="row" style="gap:8px">${bd(w)}<span style="font-weight:600">${w==='all'?'함께':esc(who(w).n)}</span></span><small>${d} / ${a.length} 완료</small></div><div class="bar" style="margin-top:8px"><i style="width:${a.length?d/a.length*100:0}%;background:var(--p)"></i></div></div>`}).join('')}</div>`};
+<div class="c"><div class="sh2">업무 분배</div>${[...S.pp.map(p=>p.id),'all'].map(w=>{const a=L.filter(e=>e.w===w),d=a.filter(done).length;return`<div style="margin-top:16px"><div class="row sp"><span class="row" style="gap:8px">${bd(w)}<span style="font-weight:600">${w==='all'?'함께':esc(who(w).n)}</span></span><small>${d} / ${a.length} 완료</small></div><div class="bar" style="margin-top:8px"><i style="width:${a.length?d/a.length*100:0}%;background:var(--p)"></i></div></div>`}).join('')}</div>
+<div class="c"><div class="shd"><div class="sh2">알림 설정</div><button class="tg ${S.bell?'on':''}" data-a="bell" role="switch" aria-checked="${!!S.bell}" aria-label="알림 전체"><i></i></button></div>
+<p class="sb" style="margin:0 0 4px">${S.bell?'받고 싶은 알림을 골라 주세요.':'알림이 꺼져 있어요. 오른쪽 스위치로 켤 수 있어요.'}</p>
+${[['due','할 일 날짜 하루 전','D-1에 미리 알려드려요'],['mate','공유자가 할 일을 끝냈을 때','함께하는 사람이 체크하면 알려드려요'],['svc','업체 상담 답변','상담 신청에 답이 오면 알려드려요'],['stg','다음 단계로 넘어갈 때','한 단계를 모두 마치면 알려드려요']].map(n=>`<div class="li${S.bell?'':' off'}"><button class="cb ${S.nt[n[0]]&&S.bell?'on':''}" data-a="nt" data-k="${n[0]}" aria-pressed="${!!S.nt[n[0]]}" aria-label="${n[1]}" ${S.bell?'':'disabled'}>${ic('check',3)}</button><div><div class="nm">${n[1]}</div><small>${n[2]}</small></div></div>`).join('')}</div>`};
 
 function sheet(){const x=S.sh,h=$('#sh');if(!x){h.style.display='none';return}
 let b='';
@@ -307,7 +312,7 @@ if(x.t==='pe'){const p=S.pp.find(q=>q.id===x.id),nw=!p,me=x.id==='me';b=`<h2>${n
 if(x.t==='pdel'){const p=S.pp.find(q=>q.id===x.id);b=`<h2>${esc(p.n)}님을 삭제할까요?</h2><p class="sb">일정을 더 이상 함께 볼 수 없어요. ${esc(p.n)}님이 맡은 일은 ${esc(S.pp[0].n)}(나)에게 넘어가요.</p><button class="btn rd" data-a="pdx" data-id="${p.id}">삭제하기</button>`}
 if(x.t==='addr')b=`<h2>이사 정보 수정</h2><p class="sb">잔금일을 바꾸면 직접 정하지 않은 일정이 같이 움직여요.</p><label>지금 사는 집</label><input id="af" value="${esc(S.addr.from)}"><label>이사 갈 집</label><input id="at" value="${esc(S.addr.to)}"><label>잔금일</label><input type="date" id="abs" value="${iso(S.base)}"><label>거래 유형</label><select id="aty">${['매매','전세','월세'].map(t=>`<option ${S.type===t?'selected':''}>${t}</option>`).join('')}</select><button class="btn" data-a="asave">저장하기</button>`;
 if(x.t==='add')b=`<h2>할 일 추가</h2><label>할 일</label><input id="nn" placeholder="예: 에어컨 이전 설치 예약"><label>단계</label><select id="ns">${STG.map(g=>`<option value="${g.k}" ${g===curStg()?'selected':''}>${g.n}</option>`).join('')}</select><label>날짜</label><input type="date" id="nd" value="${iso(TODAY+7*DAY)}"><label>담당자</label><select id="nw">${wopt('me')}</select><button class="btn" data-a="addsv">추가하기</button>`;
-if(x.t==='inv')b=`<h2>일정 함께 관리하기</h2><p class="sb">초대 링크를 받은 사람은 같은 일정을 보고, 할 일을 나눠 맡을 수 있어요. 지금 ${S.pp.length}명이 참여 중이에요.</p><button class="btn" data-a="share">메시지로 초대 링크 보내기</button><button class="btn lv" data-a="copy">링크 복사</button><button class="btn lv" data-a="go" data-p="my">공유자 관리로 가기</button>`;
+if(x.t==='inv')b=`<h2>일정 함께 관리하기</h2><p class="sb">초대 링크를 받은 사람은 같은 일정을 보고, 할 일을 나눠 맡을 수 있어요. 지금 ${S.pp.length}명이 참여 중이에요.</p><button class="btn" data-a="copy">초대 링크 복사</button><button class="btn lv" data-a="go" data-p="my">공유자 관리로 가기</button>`;
 if(x.t==='msg'){const v=SV[S.svc];b=`<h2>${x.v}에 상담 신청</h2><label>문의 내용</label><textarea id="mt">안녕하세요. ${v.n} 견적을 문의드려요. 희망 날짜는 ${S.q.dt.slice(5).replace('-','/')}이고, ${v.f.map(f=>f[1].replace(/ \(.*\)/,'')+' '+(Array.isArray(S.q[f[0]])?S.q[f[0]].join('·'):S.q[f[0]])).join(', ')}이에요.</textarea><button class="btn" data-a="send">상담 신청 보내기</button><button class="btn lv" data-a="dial">전화로 문의하기</button>`}
 if(x.t==='call')b=`<h2>${x.v}에 전화할까요?</h2><p class="sb">실제 앱에서는 전화 앱으로 바로 연결돼요.</p><button class="btn" data-a="dial">전화 걸기</button>`;
 if(x.t==='reg')b=`<h2>업체 등록 문의</h2><p class="sb">${SV[S.svc].n} 업체 정보를 남겨주시면 담당자가 연락드려요.</p><label>업체명</label><input id="rn"><label>연락처</label><input id="rp" type="tel" inputmode="tel"><label>활동 지역</label><input id="ra" placeholder="예: 서울 송파구, 성남 분당구"><button class="btn" data-a="regs">문의 보내기</button>`;
@@ -331,6 +336,7 @@ else if(a==='addr'){S.pg='my';S.sh={t:'addr'}}
 else if(a==='add')S.sh={t:'add'};
 else if(a==='addsv'){const n=$('#nn').value.trim();if(!n)return toast('할 일을 적어 주세요');const f=Date.parse($('#nd').value)||TODAY;S.ev.push({id:'u'+Date.now(),n,o:Math.round((f-S.base)/DAY),f,w:$('#nw').value,st:+$('#ns').value,i:'doc'});S.sh=null;toast('할 일을 추가했어요')}
 else if(a==='asave'){const nb=Date.parse($('#abs').value);if(nb)S.base=nb;S.addr={from:$('#af').value.trim()||S.addr.from,to:$('#at').value.trim()||S.addr.to};S.type=$('#aty').value;S.sh=null;toast('이사 정보를 저장했어요')}
+else if(a==='nt'){S.nt[d.k]^=1}
 else if(a==='bell'){S.bell^=1;toast(S.bell?'알림을 켰어요':'알림을 껐어요')}
 else if(a==='inv')S.sh={t:'inv'};
 else if(a==='share'){const data={title:'24dday 이사 일정',text:'우리 이사 일정을 24dday에서 같이 관리해요',url:LINK};
