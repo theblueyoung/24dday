@@ -157,12 +157,21 @@ nav button svg{width:24px;height:24px}nav button.on{background:none!important;co
 .sh2{font-size:19px}
 .tg{width:50px;height:30px;border-radius:15px;border:0;background:#D1D6DB;position:relative;padding:0;flex:none}.tg i{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}.tg.on{background:var(--p)!important}.tg.on i{left:23px}
 .li.off{opacity:.45}
+.bell .nd{position:absolute;top:2px;right:2px;min-width:17px;height:17px;border-radius:9px;background:var(--co);color:#fff;font-size:11px;font-weight:800;display:grid;place-items:center;padding:0 4px;border:2px solid #fff}
+#bn{position:absolute;left:12px;right:12px;top:10px;z-index:8;display:flex;align-items:center;gap:12px;text-align:left;background:rgba(255,255,255,.97);border:1px solid var(--ln);border-radius:20px;padding:13px 14px;box-shadow:0 14px 34px -12px rgba(30,20,70,.35);transform:translateY(-140%);transition:transform .35s cubic-bezier(.2,.9,.3,1.2)}
+#bn.show{transform:none}#bn>div{flex:1;min-width:0}#bn b{display:block;font-size:15px}#bn small{display:block;font-size:13px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#bn em{font-style:normal;font-size:12px;color:var(--sub);align-self:flex-start}
+.nic{width:38px;height:38px;border-radius:12px;background:var(--lav);color:var(--p);display:grid;place-items:center;flex:none}.nic svg{width:20px;height:20px}
+.nli{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--ln)}.nli>div{flex:1;min-width:0}.nli b{display:block;font-size:15px}.nli small{display:block;font-size:13px;color:var(--ink2);margin-top:2px}.nli em{font-style:normal;font-size:12px;color:var(--sub);white-space:nowrap}
+.nbig{display:flex;align-items:center;gap:12px;background:var(--gy);border-radius:18px;padding:16px;margin-bottom:8px}.nbig>div{flex:1}.nbig b{font-size:17px;display:block}.nbig small{display:block;font-size:13px;margin-top:2px}
+.nbig.yes{background:var(--lav)}
+.tg.big{width:62px;height:36px;border-radius:18px}.tg.big i{width:30px;height:30px}.tg.big.on i{left:29px}
+@media(prefers-reduced-motion:reduce){#bn{transition:none}}
 .dk{background:linear-gradient(140deg,#8B5CFF,#5B33E0);color:#fff;border-radius:20px;padding:20px}
 .dk small{color:rgba(255,255,255,.75)}.dk .v{color:#fff}
 .addb{width:36px;height:36px;border-radius:50%;border:0;background:var(--p);color:#fff;display:grid;place-items:center;padding:0;flex:none}.addb svg{width:20px;height:20px}
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--p);outline-offset:2px}
 </style></head>
-<body><div id="app"><div id="scr"></div><nav id="nv"></nav><div id="sh"></div><div id="tt"></div></div>
+<body><div id="app"><div id="scr"></div><nav id="nv"></nav><div id="sh"></div><button id="bn" data-a="ntl" aria-live="polite"></button><div id="tt"></div></div>
 <script>
 const TODAY=Date.UTC(2026,10,5),DAY=864e5,$=s=>document.querySelector(s);
 const PC=['#7A4DFF','#FF8A4C','#3B82F6','#E64980','#F59F00','#15AABF'];
@@ -173,27 +182,41 @@ docs:[['신분증',1],['인감증명서',0],['등기부등본',1],['계약서 �
 pp:[{id:'me',n:'유영',rel:'나',c:0},{id:'p2',n:'민희',rel:'배우자',c:1}],
 plan:{c1:{bank:'국민은행',amt:'5,000만원'},c2:{bank:'국민은행',amt:'1억 5,000만원'},bal:{bank:'신한은행 · 카카오뱅크',amt:'7,000만원 + 대출'}},
 ev:[
-{id:'reg',n:'등기부등본 확인',o:-80,w:'me',st:1,i:'doc',t:'buy'},
-{id:'ct',n:'계약서 작성',o:-77,w:'all',st:1,i:'doc'},
-{id:'c1',n:'계약금 송금',mn:'계약금',o:-77,w:'all',st:1,i:'coin',big:1,main:1},
-{id:'lq',n:'대출 한도 알아보기',o:-70,w:'p2',st:1,i:'bank'},
+{id:'reg',n:'등기부등본·건축물대장 확인',o:-80,w:'me',st:1,i:'doc',r:'소유자, 근저당·압류가 있는지 봐요'},
+{id:'prc',n:'시세 대비 보증금 확인',o:-80,w:'p2',st:1,i:'coin',t:'jeon',r:'보증금이 매매 시세에 너무 가까우면 위험해요'},
+{id:'wpr',n:'주변 월세 시세 비교',o:-80,w:'p2',st:1,i:'coin',t:'wol'},
+{id:'ttx',n:'집주인 세금 체납 확인',o:-79,w:'me',st:1,i:'doc',t:'rent',r:'집주인 동의를 받아 국세·지방세 납부 내역을 봐요'},
+{id:'hq',n:'전세보증보험 가입 가능 조회',o:-79,w:'me',st:1,i:'scale',t:'jeon',r:'위반건축물 등은 가입이 거절될 수 있어요'},
+{id:'ct',n:'계약서 작성 (특약 넣기)',o:-77,w:'all',st:1,i:'doc',r:'잔금 전 추가 대출 금지, 보증보험 거절 시 계약 무효 같은 특약을 넣어요'},
+{id:'c1',n:'계약금 송금',nr:'계약금 송금 (집주인 명의 계좌)',mn:'계약금',o:-77,w:'all',st:1,i:'coin',big:1,main:1},
+{id:'lq',n:'대출 한도 알아보기',o:-70,w:'p2',st:1,i:'bank',t:'buy'},
+{id:'jl',n:'전세자금대출 알아보기',o:-70,w:'p2',st:1,i:'bank',t:'jeon'},
+{id:'rpt',n:'주택 임대차 신고 (계약 후 30일 안)',o:-60,w:'me',st:1,i:'doc',t:'rent',r:'신고하면 확정일자가 같이 부여돼요'},
 {id:'mq',n:'이삿짐센터 견적 비교',o:-23,w:'me',st:2,i:'truck',s:'mv',r:'2~3곳을 비교하면 가격 차이가 꽤 나요'},
 {id:'in',n:'인테리어 견적 받기',o:-21,w:'all',st:2,i:'brush',t:'int',s:'in',main:1,r:'중도금 시점에 견적을 받아두면 공사 일정이 여유로워요'},
-{id:'ln',n:'대출 상담 받기',o:-21,w:'p2',st:2,i:'bank',r:'은행은 잔금 한 달 전부터 상담해주는 곳이 많아요'},
-{id:'c2',n:'중도금 송금',mn:'중도금',o:-20,w:'p2',st:2,i:'coin',big:1},
+{id:'ln',n:'주택담보대출 상담',o:-21,w:'p2',st:2,i:'bank',t:'buy',r:'은행은 잔금 한 달 전부터 상담해주는 곳이 많아요'},
+{id:'rg1',n:'중도금 전 등기부 다시 확인',o:-20,w:'me',st:2,i:'doc',t:'buy'},
+{id:'c2',n:'중도금 송금',mn:'중도금',o:-20,w:'p2',st:2,i:'coin',big:1,t:'buy'},
 {id:'lw',n:'법무사 견적 비교',o:-14,w:'me',st:3,i:'scale',t:'buy',s:'lw',main:1,r:'잔금 4주 전부터 2~3곳을 비교해요'},
 {id:'mr',n:'이삿짐 예약',o:-11,w:'all',st:3,i:'truck',s:'mv',main:1,r:'이사 25일 전쯤 업체를 확정해요'},
 {id:'doc',n:'서류·자금 준비',o:-7,w:'me',st:3,i:'doc',main:1},
 {id:'ib',n:'인테리어 시공',o:-5,w:'me',st:3,i:'brush',t:'int',main:1},
-{id:'lx',n:'대출 실행 확인',o:-1,w:'p2',st:3,i:'bank'},
-{id:'bal',n:'잔금 송금',mn:'잔금',o:0,w:'all',st:3,i:'key',big:1,main:1},
-{id:'rg2',n:'소유권 이전 등기',o:0,w:'me',st:3,i:'scale',t:'buy'},
+{id:'mgr',n:'관리비 포함 항목 확인',o:-3,w:'p2',st:3,i:'doc',t:'wol',r:'수도·인터넷·주차가 포함인지 계약서에 적어 둬요'},
+{id:'lx',n:'대출 실행 확인',nr:'전세자금대출 실행 확인',o:-1,w:'p2',st:3,i:'bank',t:'nowol'},
+{id:'rg0',n:'잔금 당일 등기부 다시 확인',o:0,w:'me',st:3,i:'doc',r:'잔금 보내기 직전에 새 권리가 생겼는지 봐요'},
+{id:'bal',n:'잔금 송금',nr:'잔금(보증금) 송금',mn:'잔금',o:0,w:'all',st:3,i:'key',big:1,main:1},
+{id:'rg2',n:'소유권 이전 등기',o:0,w:'me',st:3,i:'scale',t:'buy',r:'잔금 당일 법무사가 신청하는 경우가 많아요'},
+{id:'acq',n:'취득세 신고·납부',o:0,w:'me',st:3,i:'coin',t:'buy',r:'잔금일부터 60일 안에 내야 해요'},
 {id:'fee',n:'관리비·공과금 정산',o:0,w:'p2',st:3,i:'coin'},
 {id:'dis',n:'폐가전 정리',o:3,w:'p2',st:4,i:'trash',s:'ds',main:1,r:'큰 가전과 가구는 수거 예약이 필요해요'},
 {id:'cl',n:'입주청소',o:12,w:'me',st:4,i:'spark',s:'cl',main:1,r:'공사가 끝난 뒤, 이사 하루나 이틀 전에 해요'},
 {id:'mv',n:'이사일',mn:'이사',o:14,w:'all',st:4,i:'truck',big:1,main:1},
-{id:'mi',n:'전입신고',o:15,w:'all',st:4,i:'pin',big:1,main:1},
-{id:'fx',n:'확정일자 받기',o:15,w:'me',st:4,i:'doc',t:'rent'},
+{id:'pho',n:'집 상태 사진 남기기',o:14,w:'me',st:4,i:'spark',t:'rent',r:'나갈 때 원상복구 다툼을 줄여줘요'},
+{id:'mi',n:'전입신고',mn:'전입신고',o:15,w:'all',st:4,i:'pin',big:1,main:1},
+{id:'fx',n:'확정일자 확인',o:15,w:'me',st:4,i:'doc',t:'rent',r:'임대차 신고를 했다면 이미 받았는지 확인만 해요'},
+{id:'hug',n:'전세보증보험 가입',o:16,w:'me',st:4,i:'scale',t:'jeon'},
+{id:'pay',n:'월세 자동이체 설정',o:16,w:'p2',st:4,i:'bank',t:'wol'},
+{id:'gm',n:'관리사무소 신고·공과금 명의 변경',o:16,w:'p2',st:4,i:'home',t:'buy'},
 {id:'ad',n:'주소 변경 (은행·카드)',o:20,w:'p2',st:4,i:'pin'}]};
 const INS=[['도배',2,3.5,'p'],['장판·마루',3,7,'p'],['욕실',400,800,'f'],['주방',400,900,'f'],['샷시(창호)',25,40,'p'],['조명·전기',1.5,3,'p'],['중문·현관',150,300,'f'],['붙박이장',200,500,'f'],['발코니 확장',300,700,'f'],['전체 리모델링',150,300,'p']];
 const SV={
@@ -213,12 +236,17 @@ const SO=['lw','mv','cl','in','ds'];
 const iso=t=>new Date(t).toISOString().slice(0,10),md=t=>{const d=new Date(t);return(d.getUTCMonth()+1)+'/'+d.getUTCDate()};
 const dt=e=>e.f??S.base+e.o*DAY,E=id=>S.ev.find(e=>e.id===id);
 const done=e=>e.dn!==undefined?e.dn:dt(e)<TODAY;
-const ok=e=>!(e.t==='int'&&!S.int)&&!(e.t==='buy'&&S.type!=='매매')&&!(e.t==='rent'&&S.type==='매매');
+const RT=()=>S.type!=='매매';
+const ok=e=>{const t=e.t,y=S.type;return !t||(t==='int'?S.int:t==='buy'?y==='매매':t==='rent'?y!=='매매':t==='jeon'?y==='전세':t==='wol'?y==='월세':t==='nowol'?y!=='월세':1)};
+const sof=e=>RT()&&e.st===2?3:e.st;
+const SG=()=>RT()?STG.filter(g=>g.k!==2):STG;
+const sno=g=>SG().indexOf(g)+1;
+function applyType(){S.ev.forEach(e=>{if(e.nb===undefined)e.nb=e.n;e.n=RT()&&e.nr?e.nr:e.nb})}
 const vis=()=>S.ev.filter(ok).sort((a,b)=>dt(a)-dt(b));
 const mny=n=>n>=1e4?(n/1e4).toFixed(1).replace('.0','')+'억원':Math.round(n).toLocaleString('ko-KR')+'만원';
 const dl=e=>{const d=Math.round((dt(e)-TODAY)/DAY);return d>0?'D-'+d:d===0?'D-day':'D+'+(-d)};
 const dday=()=>Math.round((S.base-TODAY)/DAY);
-const curStg=()=>STG.find(g=>vis().some(e=>e.st===g.k&&!done(e)))||STG[3];
+const curStg=()=>SG().find(g=>vis().some(e=>sof(e)===g.k&&!done(e)))||SG().at(-1);
 function toast(t){const x=$('#tt');x.textContent=t;x.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(()=>x.style.display='none',2200)}
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
@@ -239,12 +267,22 @@ const short=n=>n.length>2?n.slice(1,2):n.slice(0,1);
 const av=(w,lg)=>{const p=who(w);return`<span class="av${lg?' lg':''}" style="background:${p.col};color:${p.fg}" title="${esc(p.n)}">${esc(short(p.n))}</span>`};
 const bd=(w,lg)=>w==='all'?`<span class="avs sm" title="함께">${S.pp.map(p=>av(p.id)).join('')}</span>`:av(w,lg);
 const wopt=s=>[...S.pp.map(p=>[p.id,p.n+(p.id==='me'?' (나)':'')]),['all','함께 (모두)']].map(o=>`<option value="${o[0]}" ${s===o[0]?'selected':''}>${esc(o[1])}</option>`).join('');
-const stS=g=>{const G=vis().filter(e=>e.st===g.k);return G.every(done)?'dn':g===curStg()?'cur':'fu'};
-const stTag=(g,st)=>{const G=vis().filter(e=>e.st===g.k),nm=g.n.replace(' 단계','');return`<span class="stg ${st}">${st==='dn'?`${ic('check',2.6)}${g.k}단계: ${nm} 완료`:st==='cur'?`${g.k}단계: ${g.n} (현재)`:`${g.k}단계: ${g.n} (${dl(G[0])})`}</span>`};
+const stS=g=>{const G=vis().filter(e=>sof(e)===g.k);return G.every(done)?'dn':g===curStg()?'cur':'fu'};
+const stTag=(g,st)=>{const G=vis().filter(e=>sof(e)===g.k),n=sno(g),nm=g.n.replace(' 단계','');return`<span class="stg ${st}">${st==='dn'?`${ic('check',2.6)}${n}단계: ${nm} 완료`:st==='cur'?`${n}단계: ${g.n} (현재)`:`${n}단계: ${g.n} (${dl(G[0])})`}</span>`};
 const stI=(g,st)=>st==='dn'?ic('check',3):g.k;
 const shortA=a=>a.split(' ').pop();
 function metro(){const cs=curStg();
-return'<div class="metro">'+STG.map(g=>{const st=stS(g);return`<div class="st ${st}"><i></i><b>${g.n.replace(' 단계','')}</b><span>${md(dt(E(g.m)))}</span></div>`}).join('')+'</div>'}
+return'<div class="metro">'+SG().map(g=>{const st=stS(g);return`<div class="st ${st}"><i></i><b>${g.n.replace(' 단계','')}</b><span>${md(dt(E(g.m)))}</span></div>`}).join('')+'</div>'}
+function notes(){if(!S.bell)return[];const L=vis(),R=[],mate=S.pp[1];
+const nx=L.find(e=>!done(e)&&dt(e)>=TODAY);
+if(S.nt.due&&nx)R.push({k:'due',ic:'tl',t:'할 일 날짜가 다가와요',b:`${dl(nx)} · '${nx.n}' 날이에요`,tm:'방금'});
+const md_=mate&&L.filter(e=>e.w===mate.id&&done(e)).pop();
+if(S.nt.mate&&md_)R.push({k:'mate',ic:'check',t:`${mate.n}님이 할 일을 끝냈어요`,b:`'${md_.n}' 완료`,tm:'1시간 전'});
+if(S.nt.svc)R.push({k:'svc',ic:'svc',t:'상담 답변이 왔어요',b:'늘봄익스프레스 이사: 12/12 포장이사 가능해요. 견적서를 보내드렸어요.',tm:'어제'});
+const done1=SG().filter(g=>stS(g)==='dn').pop();
+if(S.nt.stg&&done1)R.push({k:'stg',ic:'key',t:`${done1.n}를 모두 마쳤어요`,b:`이제 ${curStg().n}예요. 지금 챙길 일을 확인해 보세요.`,tm:'2일 전'});
+return R}
+function banner(n){if(!n)return;const x=$('#bn');x.innerHTML=`<span class="nic">${ic(n.ic,2)}</span><div><b>${esc(n.t)}</b><small>${esc(n.b)}</small></div><em>지금</em>`;x.classList.add('show');clearTimeout(banner.h);banner.h=setTimeout(()=>x.classList.remove('show'),3800)}
 function warn(){const c=E('cl'),m=E('mv');return dt(c)>=dt(m)?'<div class="wr">입주청소 날짜가 이사일과 겹쳐요. 청소는 이사 전날까지 잡아주세요.</div>':''}
 
 const P={};
@@ -253,10 +291,10 @@ P.onb=()=>`<div class="hd"><div><div class="logo">${LOGO}24dday</div><h1 style="
 <label>인테리어를 하나요?</label><div class="row" style="margin-top:10px">${[1,0].map(t=>`<button class="b2 ${S.int===t?'on':''}" data-a="int" data-v="${t}">${t?'해요':'안 해요'}</button>`).join('')}</div>
 <button class="btn" style="margin-top:28px" data-a="start">시작하기</button><p class="sb" style="margin:10px 0 0">오늘 날짜는 시연용으로 2026년 11월 5일에 맞춰져 있어요.</p></div>`;
 
-P.home=()=>{const L=vis(),n=L.filter(done).length,pct=Math.round(n/L.length*100),cs=curStg(),T=L.filter(e=>e.st===cs.k),td=T.filter(done).length,d=dday();
+P.home=()=>{const L=vis(),n=L.filter(done).length,pct=Math.round(n/L.length*100),cs=curStg(),T=L.filter(e=>sof(e)===cs.k),td=T.filter(done).length,d=dday();
 return`<div class="top"><div class="logo">${LOGO}24dday</div><div class="row" style="gap:8px">
 <button class="inv" data-a="inv" aria-label="일정 함께 관리할 사람 초대하기"><span class="ip">${ic('uplus',2)}</span><span>공유 <b>${S.pp.length}</b>명 참여중</span></button>
-<button class="bell ${S.bell?'':'off'}" data-a="bell" aria-pressed="${!S.bell}" aria-label="${S.bell?'알림 끄기':'알림 켜기'}">${S.bell?ic('bell',2):BELLOFF}</button></div></div>
+<button class="bell ${S.bell?'':'off'}" data-a="ntl" aria-label="알림 목록${S.bell?'':' (알림 꺼짐)'}">${S.bell&&notes().length?`<span class="nd">${notes().length}</span>`:''}${S.bell?ic('bell',2):BELLOFF}</button></div></div>
 <div class="hero"><div class="htop"><div class="hs">${md(S.base)} 잔금일</div><button class="hbt" data-a="addr">수정</button></div><div class="big" style="margin-top:0">${d>0?'D-'+d:d===0?'D-day':'D+'+(-d)}<span>${d>0?'일 남음':''}</span></div>
 <div class="hdv"></div>
 <div class="pc"><span>진행률</span><b>${pct}%</b></div><div class="yb"><i style="width:${pct}%"></i></div>
@@ -264,13 +302,13 @@ ${metro()}</div>
 <div class="c"><div class="shd"><div class="sh2"><span class="ti sm yl">${BOLT}</span>지금 챙길 일</div><span class="cnt cur">${td}/${T.length}</span></div>
 ${T.map(e=>`<div class="li">${cb(e)}<div><div class="nm ${done(e)?'dnx':''}">${e.n}</div><small>${md(dt(e))} · ${done(e)?'완료':dl(e)}</small></div>${bd(e.w)}</div>`).join('')}</div>
 <div class="c"><div class="shd" style="margin-bottom:14px"><div class="sh2"><span class="hic">${ic('tl',2)}</span>단계별 주요일정</div><a data-a="go" data-p="tl">자세히 보기 ›</a></div>
-<div class="stl">${STG.map(g=>{const G=L.filter(e=>e.st===g.k),m=E(g.m),st=stS(g),p=S.plan[g.m],K=G.filter(e=>!e.big),nm=g.n.replace(' 단계','');
+<div class="stl">${SG().map(g=>{const G=L.filter(e=>sof(e)===g.k),m=E(g.m),st=stS(g),p=S.plan[g.m],K=G.filter(e=>!e.big),nm=g.n.replace(' 단계','');
 return`<button class="sc ${st}" data-a="go" data-p="tl"><div class="row sp">${stTag(g,st)}<span class="sa">${p?esc(p.amt):''}</span></div>
 <b>${K.slice(0,3).map(e=>e.n.replace(/ (송금|받기|비교|확인|알아보기)$/,'')).join(' · ')}${K.length>3?` 외 ${K.length-3}개`:''}</b><small>${md(dt(G[0]))} ~ ${md(dt(G[G.length-1]))} · 할 일 ${G.filter(done).length}/${G.length}</small></button>`}).join('')}</div></div>`};
 
 P.tl=()=>{const L=vis();
 return`<div class="hd"><div><h2>일정</h2><p class="sb" style="margin:6px 0 0">단계별 체크리스트로 할 일을 하나씩 챙겨요</p></div><button class="addb" data-a="add" aria-label="할 일 추가">${ic('plus',2.4)}</button></div>`+warn()+
-STG.map(g=>{const T=L.filter(e=>e.st===g.k),d=T.filter(done).length,st=stS(g);
+SG().map(g=>{const T=L.filter(e=>sof(e)===g.k),d=T.filter(done).length,st=stS(g);
 return`<div class="c g-${st}"><div class="sgh">${stTag(g,st)}<span style="flex:1"></span><span class="cnt ${st}">${d}/${T.length}</span></div>
 ${T.map(e=>`<div class="li">${cb(e)}<div><div class="nm ${done(e)?'dnx':''}">${esc(e.n)}</div><small>${md(dt(e))}${e.f?' · 직접 정함':''} · ${done(e)?'완료':dl(e)}</small></div>${bd(e.w)}<button class="bo" data-a="edit" data-id="${e.id}">수정</button></div>`).join('')}</div>`}).join('')+
 `<div class="c"><button class="btn" style="margin:0" data-a="add">+ 할 일 추가</button></div>`};
@@ -280,7 +318,7 @@ return`<div class="hd"><div><h2>자금</h2><p class="sb" style="margin:6px 0 0">
 <div class="bar" style="margin:14px 0 8px;height:10px;background:rgba(255,255,255,.18)">${S.banks.map((b,i)=>`<i style="width:${Math.min(b/need*100,100)}%;background:${cl[i]}"></i>`).join('')}</div>
 <div class="row sp"><small>준비 ${mny(tot)}</small><small style="font-weight:700;color:${gap?'#FF9AA2':'#7BE3B8'}">${gap?'부족 '+mny(gap):'충분해요'}</small></div></div></div>
 <div class="c"><div class="shd"><div class="sh2">은행별 보유액 <small style="font-weight:500">(만원)</small></div><button class="pb" data-a="recalc">다시 계산</button></div>${nm.map((n,i)=>`<label>${n}</label><input type="number" inputmode="numeric" data-b="${i}" value="${S.banks[i]}">`).join('')}<p class="sb" style="margin:14px 0 0">금액을 고친 뒤 다시 계산을 눌러 주세요. 계좌 자동 연결은 다음 버전에서 만나요.</p></div>
-<div class="c"><div class="sh2" style="margin-bottom:4px">입출금 계획</div>${Object.keys(S.plan).map(id=>{const e=E(id),p=S.plan[id];return`<div class="li"><div><small style="font-weight:700;color:var(--pd)">${md(dt(e))}</small><div class="nm">${e.mn} · ${esc(p.bank)}</div><small>${esc(p.amt)}</small></div>${bd(e.w)}<button class="bo" data-a="pedit" data-id="${id}">수정</button></div>`}).join('')}</div>`};
+<div class="c"><div class="sh2" style="margin-bottom:4px">입출금 계획</div>${Object.keys(S.plan).filter(id=>ok(E(id))).map(id=>{const e=E(id),p=S.plan[id];return`<div class="li"><div><small style="font-weight:700;color:var(--pd)">${md(dt(e))}</small><div class="nm">${e.mn} · ${esc(p.bank)}</div><small>${esc(p.amt)}</small></div>${bd(e.w)}<button class="bo" data-a="pedit" data-id="${id}">수정</button></div>`}).join('')}</div>`};
 
 P.svc=()=>{const v=SV[S.svc];
 return`<div class="hd"><div><h2>서비스</h2><p class="sb" style="margin:6px 0 0">조건을 고르고 다시 계산을 누르면 예상 견적이 나와요</p></div></div>
@@ -300,8 +338,7 @@ return`<div class="hd"><h2>마이페이지</h2></div>
 ${O.length?O.map(p=>{const a=L.filter(e=>e.w===p.id);return`<div class="li">${av(p.id)}<div><div class="nm">${esc(p.n)} <small>${esc(p.rel||'')}</small></div><small>담당 ${a.length}개 · 완료 ${a.filter(done).length}개</small></div><button class="bo" data-a="pe" data-id="${p.id}">수정</button></div>`}).join(''):'<p class="sb">아직 함께하는 사람이 없어요.</p>'}
 <button class="btn" data-a="pe" data-id="">+ 공유자 추가</button></div>
 <div class="c"><div class="sh2">업무 분배</div>${[...S.pp.map(p=>p.id),'all'].map(w=>{const a=L.filter(e=>e.w===w),d=a.filter(done).length;return`<div style="margin-top:16px"><div class="row sp"><span class="row" style="gap:8px">${bd(w)}<span style="font-weight:600">${w==='all'?'함께':esc(who(w).n)}</span></span><small>${d} / ${a.length} 완료</small></div><div class="bar" style="margin-top:8px"><i style="width:${a.length?d/a.length*100:0}%;background:var(--p)"></i></div></div>`}).join('')}</div>
-<div class="c"><div class="shd"><div class="sh2">알림 설정</div><button class="tg ${S.bell?'on':''}" data-a="bell" role="switch" aria-checked="${!!S.bell}" aria-label="알림 전체"><i></i></button></div>
-<p class="sb" style="margin:0 0 4px">${S.bell?'받고 싶은 알림을 골라 주세요.':'알림이 꺼져 있어요. 오른쪽 스위치로 켤 수 있어요.'}</p>
+<div class="c" id="ntc"><div class="sh2" style="margin-bottom:14px">알림 설정</div><div class="nbig ${S.bell?'yes':''}"><div><b>알림 받기</b><small>${S.bell?'켜져 있어요. 받고 싶은 알림을 골라 주세요.':'꺼져 있어요. 알림을 하나도 받지 않아요.'}</small></div><button class="tg big ${S.bell?'on':''}" data-a="bell" role="switch" aria-checked="${!!S.bell}" aria-label="알림 받기"><i></i></button></div>
 ${[['due','할 일 날짜 하루 전','D-1에 미리 알려드려요'],['mate','공유자가 할 일을 끝냈을 때','함께하는 사람이 체크하면 알려드려요'],['svc','업체 상담 답변','상담 신청에 답이 오면 알려드려요'],['stg','다음 단계로 넘어갈 때','한 단계를 모두 마치면 알려드려요']].map(n=>`<div class="li${S.bell?'':' off'}"><button class="cb ${S.nt[n[0]]&&S.bell?'on':''}" data-a="nt" data-k="${n[0]}" aria-pressed="${!!S.nt[n[0]]}" aria-label="${n[1]}" ${S.bell?'':'disabled'}>${ic('check',3)}</button><div><div class="nm">${n[1]}</div><small>${n[2]}</small></div></div>`).join('')}</div>`};
 
 function sheet(){const x=S.sh,h=$('#sh');if(!x){h.style.display='none';return}
@@ -314,7 +351,8 @@ if(x.t==='pe'){const p=S.pp.find(q=>q.id===x.id),nw=!p,me=x.id==='me';b=`<h2>${n
 <button class="btn" data-a="psv">${nw?'추가하고 초대 링크 보내기':'저장하기'}</button>${!nw&&!me?`<button class="btn gh" style="color:var(--co)" data-a="pdel" data-id="${p.id}">공유자 삭제하기</button>`:''}`}
 if(x.t==='pdel'){const p=S.pp.find(q=>q.id===x.id);b=`<h2>${esc(p.n)}님을 삭제할까요?</h2><p class="sb">일정을 더 이상 함께 볼 수 없어요. ${esc(p.n)}님이 맡은 일은 ${esc(S.pp[0].n)}(나)에게 넘어가요.</p><button class="btn rd" data-a="pdx" data-id="${p.id}">삭제하기</button><button class="btn gy" data-a="pe" data-id="${p.id}">취소</button>`}
 if(x.t==='addr')b=`<h2>이사 정보 수정</h2><p class="sb">잔금일을 바꾸면 직접 정하지 않은 일정이 같이 움직여요.</p><label>지금 사는 집</label><input id="af" value="${esc(S.addr.from)}"><label>이사 갈 집</label><input id="at" value="${esc(S.addr.to)}"><label>잔금일</label><input type="date" id="abs" value="${iso(S.base)}"><label>거래 유형</label><select id="aty">${['매매','전세','월세'].map(t=>`<option ${S.type===t?'selected':''}>${t}</option>`).join('')}</select><button class="btn" data-a="asave">저장하기</button>`;
-if(x.t==='add')b=`<h2>할 일 추가</h2><label>할 일</label><input id="nn" placeholder="예: 에어컨 이전 설치 예약"><label>단계</label><select id="ns">${STG.map(g=>`<option value="${g.k}" ${g===curStg()?'selected':''}>${g.n}</option>`).join('')}</select><label>날짜</label><input type="date" id="nd" value="${iso(TODAY+7*DAY)}"><label>담당자</label><select id="nw">${wopt('me')}</select><button class="btn" data-a="addsv">추가하기</button>`;
+if(x.t==='add')b=`<h2>할 일 추가</h2><label>할 일</label><input id="nn" placeholder="예: 에어컨 이전 설치 예약"><label>단계</label><select id="ns">${SG().map(g=>`<option value="${g.k}" ${g===curStg()?'selected':''}>${g.n}</option>`).join('')}</select><label>날짜</label><input type="date" id="nd" value="${iso(TODAY+7*DAY)}"><label>담당자</label><select id="nw">${wopt('me')}</select><button class="btn" data-a="addsv">추가하기</button>`;
+if(x.t==='ntl'){const N=notes();b=`<h2>알림</h2>${!S.bell?'<p class="sb">알림이 꺼져 있어요. 마이페이지에서 켤 수 있어요.</p><button class="btn" data-a="gont">알림 설정으로 가기</button>':N.length?N.map(n=>`<div class="nli"><span class="nic">${ic(n.ic,2)}</span><div><b>${esc(n.t)}</b><small>${esc(n.b)}</small></div><em>${n.tm}</em></div>`).join('')+'<button class="btn gy" data-a="gont">알림 설정</button>':'<p class="sb">새 알림이 없어요.</p>'}`}
 if(x.t==='inv')b=`<h2>일정 함께 관리하기</h2><p class="sb">초대 링크를 받은 사람은 같은 일정을 보고, 할 일을 나눠 맡을 수 있어요. 지금 ${S.pp.length}명이 참여 중이에요.</p><button class="btn" data-a="copy">초대 링크 복사</button><button class="btn lv" data-a="go" data-p="my">공유자 관리로 가기</button>`;
 if(x.t==='msg'){const v=SV[S.svc];b=`<h2>${x.v}에 상담 신청</h2><label>문의 내용</label><textarea id="mt">안녕하세요. ${v.n} 견적을 문의드려요. 희망 날짜는 ${S.q.dt.slice(5).replace('-','/')}이고, ${v.f.map(f=>f[1].replace(/ \(.*\)/,'')+' '+(Array.isArray(S.q[f[0]])?S.q[f[0]].join('·'):S.q[f[0]])).join(', ')}이에요.</textarea><button class="btn" data-a="send">상담 신청 보내기</button><button class="btn lv" data-a="dial">전화로 문의하기</button>`}
 if(x.t==='call')b=`<h2>${x.v}에 전화할까요?</h2><p class="sb">실제 앱에서는 전화 앱으로 바로 연결돼요.</p><button class="btn" data-a="dial">전화 걸기</button>`;
@@ -334,18 +372,20 @@ if(a==='go'){S.pg=d.p;if(d.p==='svc'&&!S.svc)openSvc('lw');if(d.s)S.sub=d.s;S.sh
 else if(a==='sub')S.sub=d.v;
 else if(a==='type')S.type=d.v;
 else if(a==='int')S.int=+d.v;
-else if(a==='start'){S.base=Date.parse($('#ob').value)||S.base;if(!S.int){const m={cl:0,mv:1,mi:2,fx:2,dis:-3,ad:7};for(const k in m)E(k).o=m[k]}S.pg='home'}
+else if(a==='start'){applyType();S.base=Date.parse($('#ob').value)||S.base;if(!S.int){const m={cl:0,mv:1,mi:2,fx:2,pho:1,hug:3,pay:3,gm:3,dis:-3,ad:7};for(const k in m)E(k).o=m[k]}applyType();S.pg='home';setTimeout(()=>banner(notes()[0]),700)}
 else if(a==='addr'){S.pg='my';S.sh={t:'addr'}}
 else if(a==='add')S.sh={t:'add'};
 else if(a==='addsv'){const n=$('#nn').value.trim();if(!n)return toast('할 일을 적어 주세요');const f=Date.parse($('#nd').value)||TODAY;S.ev.push({id:'u'+Date.now(),n,o:Math.round((f-S.base)/DAY),f,w:$('#nw').value,st:+$('#ns').value,i:'doc'});S.sh=null;toast('할 일을 추가했어요')}
-else if(a==='asave'){const nb=Date.parse($('#abs').value);if(nb)S.base=nb;S.addr={from:$('#af').value.trim()||S.addr.from,to:$('#at').value.trim()||S.addr.to};S.type=$('#aty').value;S.sh=null;toast('이사 정보를 저장했어요')}
+else if(a==='asave'){const nb=Date.parse($('#abs').value);if(nb)S.base=nb;S.addr={from:$('#af').value.trim()||S.addr.from,to:$('#at').value.trim()||S.addr.to};S.type=$('#aty').value;applyType();S.sh=null;toast('이사 정보를 저장했어요')}
 else if(a==='nt'){S.nt[d.k]^=1}
+else if(a==='ntl'){$('#bn').classList.remove('show');S.sh={t:'ntl'}}
+else if(a==='gont'){S.pg='my';S.sh=null;setTimeout(()=>{const t=$('#ntc');t&&t.scrollIntoView({block:'start'})},0)}
 else if(a==='bell'){S.bell^=1;toast(S.bell?'알림을 켰어요':'알림을 껐어요')}
 else if(a==='inv')S.sh={t:'inv'};
 else if(a==='share'){const data={title:'24dday 이사 일정',text:'우리 이사 일정을 24dday에서 같이 관리해요',url:LINK};
  if(navigator.share){navigator.share(data).catch(()=>{});return}S.sh=null;toast('메시지 앱으로 초대 링크를 보내요 (시연)')}
 else if(a==='copy'){try{navigator.clipboard.writeText(LINK).catch(()=>{})}catch(_){}S.sh=null;toast('초대 링크를 복사했어요')}
-else if(a==='chk'){const e=E(d.id);e.dn=!done(e);if(e.dn)toast(e.n+' 완료')}
+else if(a==='chk'){const e=E(d.id),g0=curStg();e.dn=!done(e);if(e.dn){const g1=curStg();if(g1!==g0&&S.bell&&S.nt.stg)setTimeout(()=>banner({ic:'key',t:`${g0.n}를 모두 마쳤어요`,b:`이제 ${g1.n}예요. 다음 할 일이 열렸어요.`}),50);else toast(e.n+' 완료')}}
 else if(a==='edit')S.sh={t:'ev',id:d.id};
 else if(a==='save'){const e=E(d.id),n=Date.parse($('#ed').value);if(n&&n!==dt(e))e.f=n;e.w=$('#ew').value;e.dn=$('#edn').checked;S.sh=null;toast('저장했어요')}
 else if(a==='edel')S.sh={t:'edel',id:d.id};
