@@ -24,7 +24,7 @@ button,select,input,textarea{font:inherit;color:inherit;letter-spacing:inherit}
 .bo.dl{color:var(--co)}
 .pb{border:0;border-radius:10px;background:var(--p);color:#fff;font-size:14px;font-weight:700;padding:8px 13px}
 .ch{display:inline-block;background:var(--lav);color:var(--pd);border-radius:8px;padding:3px 9px;font-size:13px;font-weight:700}
-:root{--ob:#FFEBD6;--of:#E0701A;--dnb:#12B886;--dnf:#12B886;--dni:#fff;--dnl:#E6F8F1;--hdn:#3DDC97;--hdnt:#B6F5D8}
+:root{--ob:#F1ECFF;--of:#5B33E0;--dnb:#12B886;--dnf:#12B886;--dni:#fff;--dnl:#E6F8F1;--hdn:#3DDC97;--hdnt:#B6F5D8}
 #app.calm{--dnb:#E4DAFF;--dnf:#7A5CE0;--dni:#6B45E8;--dnl:#F1ECFF;--hdn:#D9CCFF;--hdnt:#EDE6FF}
 .ch.g{background:var(--dnl);color:var(--dnf)}.ch.n{background:var(--gy);color:var(--sub)}
 .co{color:var(--co)}.gtx{color:var(--dnf)}.on{background:var(--p)!important;color:#fff!important}
@@ -131,14 +131,14 @@ nav button svg{width:24px;height:24px}nav button.on{background:none!important;co
 .sc b{display:block;font-size:16px;margin-top:10px}.sc small{display:block;margin-top:2px}
 .stg{display:inline-flex;align-items:center;gap:5px;border-radius:8px;padding:4px 9px;font-size:13px;font-weight:700}.stg svg{width:14px;height:14px}
 .sa{font-size:14px;font-weight:700;color:var(--sub);white-space:nowrap}
-.sc.dn .stg{background:var(--dnl);color:var(--dnf)}
-.sc.cur{border-color:var(--p)}.sc.cur .stg{background:var(--lav);color:var(--pd)}.sc.cur .sa{color:var(--pd)}
-.sc.fu{background:#F7F8FA}.sc.fu .stg{background:var(--ln);color:var(--ink2)}.sc.fu .sa{color:var(--ink2)}.sc.fu small{color:var(--mute)}
+.stg.dn{background:var(--dnl);color:var(--dnf)}
+.sc.cur{border-color:var(--p)}.stg.cur{background:var(--lav);color:var(--pd)}.sc.cur .sa{color:var(--pd)}
+.sc.fu{background:#F7F8FA}.stg.fu{background:var(--ln);color:var(--ink2)}.sc.fu .sa{color:var(--ink2)}.sc.fu small{color:var(--mute)}
 .cats{display:flex;gap:10px;overflow-x:auto;padding:0 20px 18px;scrollbar-width:none}.cats::-webkit-scrollbar{display:none}
 .cat{flex:none;width:96px;display:flex;flex-direction:column;align-items:center;gap:8px;border:1.5px solid var(--ln);background:#fff;border-radius:20px;padding:14px 6px;font-size:13px;font-weight:700;color:var(--ink)}
 .cat.sel{border-color:var(--p);color:var(--pd);box-shadow:0 6px 14px -10px rgba(122,77,255,.7)}
 .ci{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;flex:none}.ci svg{width:22px;height:22px}
-.eb{margin:0 20px 8px;border-radius:24px;padding:20px;color:#fff;background:linear-gradient(140deg,#4E1C8C,#35247F)}
+.eb{margin:0 20px 8px;border-radius:24px;padding:20px;color:#fff;background:linear-gradient(140deg,#8B5CFF,#5B33E0)}
 .eb b{font-size:17px}.eb>.row svg{width:24px;height:24px}.eb small{display:block;color:rgba(255,255,255,.8);font-size:13px;margin-top:14px}
 .ef{margin-top:8px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);border-radius:14px;padding:13px 16px;font-size:17px}
 .el{height:1px;background:rgba(255,255,255,.25);margin:16px 0 2px}
@@ -146,7 +146,14 @@ nav button svg{width:24px;height:24px}nav button.on{background:none!important;co
 .hic{color:var(--p);display:flex}.hic svg{width:24px;height:24px}
 .vc{display:flex;align-items:center;gap:12px;border:1.5px solid var(--ln);border-radius:20px;padding:14px;margin-bottom:10px}
 .vc>div{flex:1;min-width:0}.vc b{font-size:16px}.vc small{display:block;font-size:13px;margin-top:2px}.vt{color:var(--pd);font-size:13px;margin-top:2px}
-.dk{background:linear-gradient(140deg,#3F1FB0,#25106E);color:#fff;border-radius:20px;padding:20px}
+.seg2{display:flex;gap:4px;background:#EEF0F4;border-radius:16px;padding:4px;margin:0 20px 18px}
+.seg2 button{flex:1;min-width:0;border:0;background:none;border-radius:12px;padding:10px 2px;font-size:13.5px;font-weight:700;color:var(--ink2);white-space:nowrap}
+.seg2 button.sel{background:#fff;color:var(--pd);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.cnt{font-size:15px;font-weight:800}.cnt.dn{color:var(--dnf)}.cnt.cur{color:var(--p)}.cnt.fu{color:var(--mute)}
+.li{padding:12px 0}.li .nm{font-size:15px}.li small{font-size:12.5px}
+.cb{width:20px;height:20px;border-radius:5px}.cb svg{width:12px;height:12px}
+.sh2{font-size:19px}
+.dk{background:linear-gradient(140deg,#8B5CFF,#5B33E0);color:#fff;border-radius:20px;padding:20px}
 .dk small{color:rgba(255,255,255,.75)}.dk .v{color:#fff}
 .addb{width:36px;height:36px;border-radius:50%;border:0;background:var(--p);color:#fff;display:grid;place-items:center;padding:0;flex:none}.addb svg{width:20px;height:20px}
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--p);outline-offset:2px}
@@ -186,12 +193,12 @@ ev:[
 {id:'ad',n:'주소 변경 (은행·카드)',o:20,w:'p2',st:4,i:'pin'}]};
 const INS=[['도배',2,3.5,'p'],['장판·마루',3,7,'p'],['욕실',400,800,'f'],['주방',400,900,'f'],['샷시(창호)',25,40,'p'],['조명·전기',1.5,3,'p'],['중문·현관',150,300,'f'],['붙박이장',200,500,'f'],['발코니 확장',300,700,'f'],['전체 리모델링',150,300,'p']];
 const SV={
-lw:{col:'#7A4DFF',ib:'#F1ECFF',n:'법무사',e:'bal',v:'법무사 사무소',i:'doc',ts:1,f:[['pr','매매가(억원)','n',7]],c:v=>v.pr<6?[40,60]:v.pr<9?[50,80]:[60,100]},
-mv:{col:'#E0902E',ib:'#FFF4E5',n:'이삿짐센터',e:'mv',v:'이삿짐 업체',i:'truck',ts:2,f:[['py','평수','n',32],['el','엘리베이터','s',['있음','없음']],['ty','이사 방식','s',['포장이사','반포장이사','일반이사']]],c:v=>{const m=(v.el==='없음'?1.15:1)*({'포장이사':1,'반포장이사':.8,'일반이사':.6}[v.ty]);return[v.py*5*m,v.py*8*m]}},
-cl:{col:'#3B82F6',ib:'#EAF3FF',n:'입주청소',e:'cl',v:'청소 업체',i:'spark',ts:4,f:[['py','평수','n',32]],c:v=>[v.py*1.1,v.py*1.4]},
-in:{col:'#D6457A',ib:'#FDEEF4',n:'인테리어',e:'ib',v:'인테리어 업체',i:'brush',ts:3,f:[['py','평수','n',32],['sc','공사 범위 (여러 개 고를 수 있어요)','m',INS.map(x=>x[0]),['도배','장판·마루']]],
+lw:{sn:'법무사',col:'#7A4DFF',ib:'#F1ECFF',n:'법무사',e:'bal',v:'법무사 사무소',i:'doc',ts:1,f:[['pr','매매가(억원)','n',7]],c:v=>v.pr<6?[40,60]:v.pr<9?[50,80]:[60,100]},
+mv:{sn:'이삿짐',col:'#E0902E',ib:'#FFF4E5',n:'이삿짐센터',e:'mv',v:'이삿짐 업체',i:'truck',ts:2,f:[['py','평수','n',32],['el','엘리베이터','s',['있음','없음']],['ty','이사 방식','s',['포장이사','반포장이사','일반이사']]],c:v=>{const m=(v.el==='없음'?1.15:1)*({'포장이사':1,'반포장이사':.8,'일반이사':.6}[v.ty]);return[v.py*5*m,v.py*8*m]}},
+cl:{sn:'입주청소',col:'#3B82F6',ib:'#EAF3FF',n:'입주청소',e:'cl',v:'청소 업체',i:'spark',ts:4,f:[['py','평수','n',32]],c:v=>[v.py*1.1,v.py*1.4]},
+in:{sn:'인테리어',col:'#D6457A',ib:'#FDEEF4',n:'인테리어',e:'ib',v:'인테리어 업체',i:'brush',ts:3,f:[['py','평수','n',32],['sc','공사 범위 (여러 개 고를 수 있어요)','m',INS.map(x=>x[0]),['도배','장판·마루']]],
  c:v=>{const L=INS.filter(x=>v.sc.includes(x[0]));if(!L.length)return[0,0];const all=L.find(x=>x[0]==='전체 리모델링');const U=all?[all]:L;return U.reduce((a,x)=>{const k=x[3]==='p'?v.py:1;return[a[0]+x[1]*k,a[1]+x[2]*k]},[0,0])}},
-ds:{col:'#3A9B6A',ib:'#E9F7EF',n:'폐가전·폐가구',e:'dis',v:'수거 업체',i:'trash',ts:3,f:[['it','품목 수','n',5],['el','엘리베이터','s',['있음','없음']]],c:v=>{const m=v.el==='없음'?1.3:1;return[v.it*m,v.it*3*m]}}};
+ds:{sn:'폐가전',col:'#3A9B6A',ib:'#E9F7EF',n:'폐가전·폐가구',e:'dis',v:'수거 업체',i:'trash',ts:3,f:[['it','품목 수','n',5],['el','엘리베이터','s',['있음','없음']]],c:v=>{const m=v.el==='없음'?1.3:1;return[v.it*m,v.it*3*m]}}};
 const VN={lw:[['한결 법무사사무소','분당구 · 등기 경력 15년','소유권 이전 등기 · 취득세 신고 대행'],['정자 등기법무센터','정자동 · 주말 상담 가능','잔금일 동행 서비스'],['바른길 법무사','성남 전역 · 비용 미리 안내','전세 확정일자·권리 확인']],
 mv:[['늘봄익스프레스 이사','송파·분당 · 포장이사 전문','파손 보험 가입 · 당일 정리'],['든든포장이사 분당점','분당구 · 주말 예약 가능','에어컨 이전 설치 같이'],['온새미 이삿짐센터','서울 전역 · 소형 이사','반포장 · 일반이사 할인']],
 cl:[['반짝하루 입주청소','분당구 · 친환경 약품 사용','입주청소 및 줄눈 시공'],['새집클린 케어','성남·용인 · 예약 가능','시공 전후 사진 제공'],['말끔홈 클리닝','서울 동남권 · 당일 견적','새집증후군 케어 함께']],
@@ -228,6 +235,7 @@ const av=(w,lg)=>{const p=who(w);return`<span class="av${lg?' lg':''}" style="ba
 const bd=(w,lg)=>w==='all'?`<span class="avs sm" title="함께">${S.pp.map(p=>av(p.id)).join('')}</span>`:av(w,lg);
 const wopt=s=>[...S.pp.map(p=>[p.id,p.n+(p.id==='me'?' (나)':'')]),['all','함께 (모두)']].map(o=>`<option value="${o[0]}" ${s===o[0]?'selected':''}>${esc(o[1])}</option>`).join('');
 const stS=g=>{const G=vis().filter(e=>e.st===g.k);return G.every(done)?'dn':g===curStg()?'cur':'fu'};
+const stTag=(g,st)=>{const G=vis().filter(e=>e.st===g.k),nm=g.n.replace(' 단계','');return`<span class="stg ${st}">${st==='dn'?`${ic('check',2.6)}${g.k}단계: ${nm} 완료`:st==='cur'?`${g.k}단계: ${g.n} (현재)`:`${g.k}단계: ${g.n} (${dl(G[0])})`}</span>`};
 const stI=(g,st)=>st==='dn'?ic('check',3):g.k;
 const shortA=a=>a.split(' ').pop();
 function metro(){const cs=curStg();
@@ -249,18 +257,17 @@ return`<div class="top"><div class="logo">${LOGO}24dday</div><div class="row" st
 <div class="hdv"></div>
 <div class="pc"><span>진행률</span><b>${pct}%</b></div><div class="yb"><i style="width:${pct}%"></i></div>
 ${metro()}</div>
-<div class="c"><div class="shd"><div class="sh2"><span class="ti sm yl">${BOLT}</span>지금 챙길 일</div><span class="ch">${cs.n} ${td}/${T.length}</span></div>
+<div class="c"><div class="shd"><div class="sh2"><span class="ti sm yl">${BOLT}</span>지금 챙길 일</div><span class="cnt cur">${td}/${T.length}</span></div>
 ${T.map(e=>`<div class="li">${cb(e)}<div><div class="nm ${done(e)?'dnx':''}">${e.n}</div><small>${md(dt(e))} · ${done(e)?'완료':dl(e)}</small></div>${bd(e.w)}</div>`).join('')}</div>
 <div class="c"><div class="shd" style="margin-bottom:14px"><div class="sh2"><span class="hic">${ic('tl',2)}</span>단계별 주요일정</div><a data-a="go" data-p="tl">자세히 보기 ›</a></div>
 <div class="stl">${STG.map(g=>{const G=L.filter(e=>e.st===g.k),m=E(g.m),st=stS(g),p=S.plan[g.m],K=G.filter(e=>!e.big),nm=g.n.replace(' 단계','');
-const tag=st==='dn'?`${ic('check',2.6)}${g.k}단계: ${nm} 완료`:st==='cur'?`${g.k}단계: ${g.n} (현재)`:`${g.k}단계: ${g.n} (${dl(G[0])})`;
-return`<button class="sc ${st}" data-a="go" data-p="tl"><div class="row sp"><span class="stg">${tag}</span><span class="sa">${p?esc(p.amt):md(dt(m))}</span></div>
+return`<button class="sc ${st}" data-a="go" data-p="tl"><div class="row sp">${stTag(g,st)}<span class="sa">${p?esc(p.amt):md(dt(m))}</span></div>
 <b>${K.slice(0,3).map(e=>e.n.replace(/ (송금|받기|비교|확인|알아보기)$/,'')).join(' · ')}${K.length>3?` 외 ${K.length-3}개`:''}</b><small>${md(dt(G[0]))} ~ ${md(dt(G[G.length-1]))} · 할 일 ${G.filter(done).length}/${G.length}</small></button>`}).join('')}</div></div>`};
 
 P.tl=()=>{const L=vis();
 return`<div class="hd"><div><h2>일정</h2><p class="sb" style="margin:6px 0 0">단계별 체크리스트로 할 일을 하나씩 챙겨요</p></div><button class="addb" data-a="add" aria-label="할 일 추가">${ic('plus',2.4)}</button></div>`+warn()+
 STG.map(g=>{const T=L.filter(e=>e.st===g.k),d=T.filter(done).length,st=stS(g);
-return`<div class="c g-${st}"><div class="sgh"><i>${stI(g,st)}</i><b>${g.n}</b>${st==='dn'?'<span class="ch g">완료</span>':st==='cur'?'<span class="ch">진행 중</span>':'<span class="ch n">예정</span>'}<small>${d}/${T.length}</small></div>
+return`<div class="c g-${st}"><div class="sgh">${stTag(g,st)}<span style="flex:1"></span><span class="cnt ${st}">${d}/${T.length}</span></div>
 ${T.map(e=>`<div class="li">${cb(e)}<div><div class="nm ${done(e)?'dnx':''}">${esc(e.n)}</div><small>${md(dt(e))}${e.f?' · 직접 정함':''} · ${done(e)?'완료':dl(e)}</small></div>${bd(e.w)}<button class="bo" data-a="edit" data-id="${e.id}">수정</button></div>`).join('')}</div>`}).join('')+
 `<div class="c"><button class="btn" style="margin:0" data-a="add">+ 할 일 추가</button></div>`};
 
@@ -272,10 +279,10 @@ return`<div class="hd"><div><h2>자금</h2><p class="sb" style="margin:6px 0 0">
 <div class="c"><div class="sh2" style="margin-bottom:4px">입출금 계획</div>${Object.keys(S.plan).map(id=>{const e=E(id),p=S.plan[id];return`<div class="li"><div><small style="font-weight:700;color:var(--pd)">${md(dt(e))}</small><div class="nm">${e.mn} · ${esc(p.bank)}</div><small>${esc(p.amt)}</small></div>${bd(e.w)}<button class="bo" data-a="pedit" data-id="${id}">수정</button></div>`}).join('')}</div>`};
 
 P.svc=()=>{const v=SV[S.svc];
-return`<div class="hd"><div><h2>서비스</h2><p class="sb" style="margin:6px 0 0">조건을 고르면 예상 견적을 바로 보여드려요</p></div></div>
-<div class="cats">${SO.map(k=>{const c=SV[k];return`<button class="cat ${k===S.svc?'sel':''}" data-a="svc" data-k="${k}" aria-pressed="${k===S.svc}"><span class="ci" style="background:${c.ib};color:${c.col}">${ic(c.i,2.1)}</span>${c.n}</button>`}).join('')}</div>
-<div class="eb"><div class="row sp"><b>${v.n} 예상 견적</b><span style="display:flex">${ic(v.i,2)}</span></div>
-<small>조건</small><div class="ef" id="ess"></div><div class="el"></div><small style="margin-top:12px">예상 비용 · 실제 금액은 상담으로 확인해요</small><div class="ep" id="est"></div></div>
+return`<div class="hd"><div><h2>서비스</h2><p class="sb" style="margin:6px 0 0">조건을 고르고 다시 계산을 누르면 예상 견적이 나와요</p></div></div>
+<div class="seg2" role="tablist">${SO.map(k=>`<button class="${k===S.svc?'sel':''}" role="tab" aria-selected="${k===S.svc}" data-a="svc" data-k="${k}">${SV[k].sn}</button>`).join('')}</div>
+<div class="eb"><div class="row sp"><b>${v.n} 예상 견적</b><button class="hbt" data-a="qcalc">다시 계산</button></div>
+<div class="ep" id="est" style="margin-top:14px"></div><div class="el"></div><small style="margin-top:10px">조건을 바꾼 뒤 다시 계산을 눌러 주세요. 실제 금액은 상담으로 확인해요.</small></div>
 <div class="c" style="border-top:0;padding-top:4px">${v.f.map(f=>f[2]==='n'?`<label>${f[1]}</label><input type="number" inputmode="numeric" data-q="${f[0]}" value="${S.q[f[0]]}">`:f[2]==='m'?`<label>${f[1]}</label><div class="chips">${f[3].map(o=>`<button class="${S.q[f[0]].includes(o)?'on':''}" data-a="qm" data-k="${f[0]}" data-v="${o}" aria-pressed="${S.q[f[0]].includes(o)}">${o}</button>`).join('')}</div>`:`<label>${f[1]}</label><select data-q="${f[0]}">${f[3].map(o=>`<option ${S.q[f[0]]===o?'selected':''}>${o}</option>`).join('')}</select>`).join('')}<label>희망 날짜</label><input type="date" data-q="dt" value="${S.q.dt}"></div>
 <div class="c"><div class="sh2" style="margin-bottom:12px">추천 업체</div>${VN[S.svc].map((x,i)=>`<div class="vc"><span class="ci" style="background:${v.ib};color:${v.col}">${ic(v.i,2)}</span><div><div class="row" style="gap:8px;flex-wrap:wrap"><b>${x[0]}</b><span class="ch">평점 ${['4.9','4.8','4.6'][i]}</span></div><small>${x[1]}</small><div class="vt">${x[2]}</div></div><button class="bo" style="background:var(--lav);color:var(--pd)" data-a="msg" data-v="${x[0]}">상담 신청</button></div>`).join('')}</div>
 <div class="c"><b style="font-size:17px">${v.n} 업체이신가요?</b><p class="sb" style="margin:6px 0 0">24dday에 업체를 등록하면 이사 준비 중인 고객에게 견적을 보낼 수 있어요.</p><button class="btn gy" data-a="reg">업체 등록 문의하기</button></div>`};
@@ -310,9 +317,9 @@ function render(){const o=S.pg==='onb';$('#scr').innerHTML=P[S.pg]();
 const T=[['home','홈'],['tl','일정'],['fund','자금'],['svc','서비스'],['my','마이']],cur={q:'svc'}[S.pg]||S.pg;
 $('#nv').style.display=o?'none':'flex';$('#nv').innerHTML=T.map(t=>`<button class="${cur===t[0]?'on':''}" data-a="go" data-p="${t[0]}">${ic(t[0])}${t[1]}</button>`).join('');
 if(S.pg==='svc')est();sheet()}
-function est(){const v=SV[S.svc],[a,b]=v.c(S.q);$('#est').textContent=a?mny(a).replace('원','')+'~'+mny(b):'범위를 골라 주세요';
-const U={py:'평',pr:'억',it:'개 품목'};$('#ess').textContent=v.f.map(f=>{const x=S.q[f[0]];return Array.isArray(x)?(x.join('·')||'공사 범위 미선택'):f[2]==='n'?x+U[f[0]]:(f[0]==='el'?'엘리베이터 '+x:x)}).join(' · ')}
-function openSvc(k){const v=SV[k];S.svc=k;S.q={dt:iso(dt(E(v.e)))};v.f.forEach(f=>S.q[f[0]]=f[2]==='n'?f[3]:f[2]==='m'?[...f[4]]:f[3][0]);S.pg='svc'}
+function est(){const v=SV[S.svc];if(!S.qp||!S.qe)S.qe=v.c(S.q);const[a,b]=S.qe;$('#est').textContent=a?mny(a).replace('원','')+'~'+mny(b):'범위를 골라 주세요';
+}
+function openSvc(k){S.qe=null;S.qp=0;const v=SV[k];S.svc=k;S.q={dt:iso(dt(E(v.e)))};v.f.forEach(f=>S.q[f[0]]=f[2]==='n'?f[3]:f[2]==='m'?[...f[4]]:f[3][0]);S.pg='svc'}
 const LINK='https://24dday.app/invite/jamsil-jeongja';
 function act(a,d){
 if(a==='go'){S.pg=d.p;if(d.p==='svc'&&!S.svc)openSvc('lw');if(d.s)S.sub=d.s;S.sh=null;$('#scr').scrollTop=0}
@@ -345,7 +352,8 @@ else if(a==='pdel')S.sh={t:'pdel',id:d.id};
 else if(a==='pdx'){const p=S.pp.find(q=>q.id===d.id);S.ev.forEach(e=>{if(e.w===d.id)e.w='me'});S.pp=S.pp.filter(q=>q.id!==d.id);S.sh=null;toast(p.n+'님을 삭제했어요')}
 else if(a==='doc')S.docs[+d.i][1]^=1;
 else if(a==='svc')openSvc(d.k);
-else if(a==='qm'){const L=S.q[d.k],i=L.indexOf(d.v);i<0?L.push(d.v):L.splice(i,1)}
+else if(a==='qm'){const L=S.q[d.k],i=L.indexOf(d.v);i<0?L.push(d.v):L.splice(i,1);S.qp=1}
+else if(a==='qcalc'){S.qp=0;toast('예상 견적을 다시 계산했어요')}
 else if(a==='msg')S.sh={t:'msg',v:d.v};
 else if(a==='call')S.sh={t:'call',v:d.v};
 else if(a==='reg')S.sh={t:'reg'};
@@ -356,6 +364,6 @@ else if(a==='close')S.sh=null;
 render()}
 document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(t)act(t.dataset.a,t.dataset)});
 document.addEventListener('change',e=>{if(e.target.id==='bs'){const n=Date.parse(e.target.value);if(n){S.base=n;render();toast('직접 정하지 않은 일정이 같이 움직였어요')}}});
-document.addEventListener('input',e=>{const t=e.target;if(t.dataset.q){S.q[t.dataset.q]=t.type==='number'?+t.value:t.value;est()}});
+document.addEventListener('input',e=>{const t=e.target;if(t.dataset.q){S.q[t.dataset.q]=t.type==='number'?+t.value:t.value}});
 render();
 </script></body></html>
