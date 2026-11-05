@@ -114,6 +114,9 @@
   // 이메일 로그인 화면: 아래쪽 '로그인' 버튼 → 예시 데이터 홈(알림 배너가 뜬 07)
   { const b = allB(S['04-2']).filter(eq('로그인')); await go(b[b.length - 1], '07'); }
   // 랜딩: 화면을 누르면 01-2로 스마트 애니메이트(집이 굴러가고 체크리스트), 0.9초 뒤 앱 소개(02)
+  { const btn = S['01-2'].children[0] && S['01-2'].children[0].children[0];
+    const svg = btn && btn.children.find(c => c.type === 'FRAME' && c.name === 'SVG');
+    if (svg) { svg.rotation = -175; svg.opacity = 0.25; svg.x = 360; svg.y = 70; } }  // 집이 오른쪽 위로 반 바퀴 굴러가며 사라지게
   { const b = allB(S['01'])[0]; await go(b, '01-2', { transition: { type: 'SMART_ANIMATE', easing: { type: 'EASE_IN_AND_OUT' }, duration: 0.8 } });
     await go(S['01-2'], '02', { trigger: { type: 'AFTER_TIMEOUT', timeout: 0.9 } }); }
   // 마이페이지 수정 버튼 3개: 프로필, 이사 정보, 공유자
