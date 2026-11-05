@@ -18,7 +18,7 @@
   5. 아이콘이 바뀌었으면 피그마의 "24dday 아이콘" 판도 `figma/icons/` 기준으로 다시 만든다
   6. 프로토타입 미리보기에서 몇 군데 눌러 보고 결과를 알려 준다
 - 화면이나 버튼이 추가·변경되면 `figma/prototype.js`의 연결 규칙(R)도 같이 고친다.
-- 미리보기 주소(창 크기에 맞춤): https://www.figma.com/proto/3lkHayGMZZdkF8h4UITjxU/Untitled?node-id=3-3723&starting-point-node-id=3-3723&scaling=scale-down
+- 미리보기 주소(창 크기에 맞춤): https://www.figma.com/proto/3lkHayGMZZdkF8h4UITjxU/24dday?node-id=22-7&starting-point-node-id=22-7&scaling=scale-down
   (다시 만들면 01 랜딩의 node-id가 바뀌므로, 새 id로 이 주소를 고쳐 둔다)
 
 ## 프로젝트
