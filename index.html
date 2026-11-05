@@ -320,24 +320,25 @@ function warn(){const c=E('cl'),m=E('mv');return dt(c)>=dt(m)?'<div class="wr">�
 const P={};
 P.land=()=>`<button class="land" data-a="go" data-p="intro" aria-label="눌러서 시작하기">
 <div class="lgw"><i class="rp"></i><i class="rp r2"></i><div class="lg">${LOGO}</div></div><div class="ln">24dday</div><p class="lt">처음 하는 이사도 순서대로, 함께</p>
-<span class="tap">화면을 눌러 시작하기</span></button>`;
+</button>`;
 
 P.intro=()=>`<div class="land in"><button class="lgb" data-a="go" data-p="land" aria-label="앞 화면으로">${LOGO}</button>
 <h1 style="margin:18px 0 0;color:#fff">24dday로<br>이렇게 준비해요</h1>
 <ul class="lf"><li>${ic('tl',2)}<span><b>잔금일만 넣으면</b>할 일 순서를 자동으로 짜요</span></li><li>${ic('uplus',2)}<span><b>같이 사는 사람과</b>일정을 나눠 맡아요</span></li><li>${ic('svc',2)}<span><b>이사·청소·법무사</b>견적을 한 번에 봐요</span></li></ul>
 <button class="btn wt" data-a="go" data-p="auth">시작하기</button></div>`;
 
-P.auth=()=>{const m=S.am||'login';return`<div class="hd"><div><button class="logo lgk" data-a="go" data-p="intro" aria-label="앞 화면으로">${LOGO}24dday</button><h1 style="margin-top:20px">${m==='login'?'다시 오셨네요!':'처음 오셨군요!'}</h1><p class="sb" style="margin:6px 0 0">${m==='login'?'로그인하고 준비하던 이사를 이어서 해요.':'가입하고 새 이사를 등록해요.'}</p></div></div>
+P.auth=()=>{const m=S.am||'join';return`<div class="hd"><div><button class="logo lgk" data-a="go" data-p="intro" aria-label="앞 화면으로">${LOGO}24dday</button><h1 style="margin-top:20px">${m==='login'?'다시 오셨네요!':'처음 오셨군요!'}</h1><p class="sb" style="margin:6px 0 0">${m==='login'?'로그인하고 준비하던 이사를 이어서 해요.':'가입하고 새 이사를 등록해요.'}</p></div></div>
 <div class="seg2" style="margin-top:4px">${[['login','로그인'],['join','회원가입']].map(x=>`<button class="${m===x[0]?'sel':''}" data-a="am" data-v="${x[0]}">${x[1]}</button>`).join('')}</div>
-<div class="c" style="border-top:0;padding-top:0">${m==='join'?'<label>이름</label><input id="jn" placeholder="예: 유영" value="유영">':''}
-<label>이메일</label><input id="ae" type="email" inputmode="email" placeholder="you@example.com" value="${m==='login'?'yuyoung@example.com':''}">
-<label>비밀번호</label><input id="ap" type="password" placeholder="8자 이상" value="${m==='login'?'password':''}">
+<div class="c" style="border-top:0;padding-top:0">${m==='join'?'<label>이름</label><input id="jn" placeholder="예: 유영">':''}
+<label>이메일</label><input id="ae" type="email" inputmode="email" placeholder="you@example.com" value="">
+<label>비밀번호</label><input id="ap" type="password" placeholder="8자 이상" value="">
 <button class="btn" style="margin-top:24px" data-a="${m==='login'?'login':'join'}">${m==='login'?'로그인':'가입하고 이사 등록하기'}</button>
 ${m==='login'?'<p class="sb" style="text-align:center;margin-top:14px">비밀번호를 잊으셨나요?</p>':''}
-<p class="sb" style="margin-top:20px">시연용 화면이에요. 아무 값이나 넣어도 넘어가요.</p></div>`};
+<p class="sb" style="margin-top:20px">${m==='login'?'시연용이에요. 로그인하면 이미 준비 중인 예시 사용자(유영)의 화면이 나와요.':'시연용이에요. 아무 값이나 넣어도 넘어가요.'}</p></div>`};
 
-P.onb=()=>`<div class="hd"><div><button class="logo lgk" data-a="go" data-p="auth" aria-label="앞 화면으로">${LOGO}24dday</button><h1 style="margin-top:20px">어떤 이사를<br>준비하세요?</h1><p class="sb" style="margin:6px 0 0">두 가지만 알려주시면 할 일 순서를 짜 드려요.</p></div></div><div class="c" style="border-top:0"><label style="margin:0">거래 유형</label><div class="seg2" style="margin:10px 0 0">${['매매','전세','월세'].map(t=>`<button class="${S.type===t?'sel':''}" data-a="type" data-v="${t}">${t}</button>`).join('')}</div>
+P.onb=()=>`<div class="hd"><div><button class="logo lgk" data-a="go" data-p="auth" aria-label="앞 화면으로">${LOGO}24dday</button><span class="ch" style="margin-top:20px">처음 설정</span><h1 style="margin-top:8px">어떤 이사를<br>준비하세요?</h1><p class="sb" style="margin:6px 0 0">세 가지만 알려주시면 할 일 순서를 짜 드려요. 처음 한 번만 물어봐요.</p></div></div><div class="c" style="border-top:0"><label style="margin:0">거래 유형</label><div class="seg2" style="margin:10px 0 0">${['매매','전세','월세'].map(t=>`<button class="${S.type===t?'sel':''}" data-a="type" data-v="${t}">${t}</button>`).join('')}</div>
 <label>잔금일</label><input type="date" id="ob" value="${iso(S.base)}"><small style="display:block;margin-top:6px">이사 들어가는 날이 아니라, 돈을 다 치르는 날이에요.</small>
+<label>계약금은 이미 냈나요?</label><div class="seg2" style="margin:10px 0 0">${[[0,'아직이요'],[1,'냈어요']].map(x=>`<button class="${(S.paid||0)===x[0]?'sel':''}" data-a="paid" data-v="${x[0]}">${x[1]}</button>`).join('')}</div><small style="display:block;margin-top:6px">냈다면 계약 단계 할 일을 완료로 표시해 드려요.</small>
 <button class="btn" style="margin-top:28px" data-a="start">시작하기</button><p class="sb" style="margin:10px 0 0">오늘 날짜는 시연용으로 2026년 11월 5일에 맞춰져 있어요.</p></div>`;
 
 P.home=()=>{const L=vis(),n=L.filter(done).length,pct=Math.round(n/L.length*100),cs=curStg(),T=L.filter(e=>sof(e)===cs.k),td=T.filter(done).length,d=dday();
@@ -414,7 +415,7 @@ if(x.t==='call')b=`<h2>${x.v}에 전화할까요?</h2><p class="sb">실제 앱�
 if(x.t==='reg')b=`<h2>업체 등록 문의</h2><p class="sb">${SV[S.svc].n} 업체 정보를 남겨주시면 담당자가 연락드려요.</p><label>업체명</label><input id="rn"><label>연락처</label><input id="rp" type="tel" inputmode="tel"><label>활동 지역</label><input id="ra" placeholder="예: 서울 송파구, 성남 분당구"><button class="btn" data-a="regs">문의 보내기</button>`;
 h.innerHTML='<div role="dialog" aria-modal="true"><button class="shx" data-a="close" aria-label="닫기">'+ic('x',2.4)+'</button>'+b+'</div>';h.style.display='flex'}
 
-function render(){const o=['land','intro','auth','onb'].includes(S.pg);$('#scr').innerHTML=P[S.pg]();
+function render(){clearTimeout(render.lt);if(S.pg==='land')render.lt=setTimeout(()=>{if(S.pg==='land'){S.pg='intro';render()}},2800);const o=['land','intro','auth','onb'].includes(S.pg);$('#scr').innerHTML=P[S.pg]();
 const T=[['home','홈'],['tl','일정'],['fund','자금'],['svc','서비스'],['my','마이']],cur={q:'svc'}[S.pg]||S.pg;
 $('#nv').style.display=o?'none':'flex';$('#nv').innerHTML=T.map(t=>`<button class="${cur===t[0]?'on':''}" data-a="go" data-p="${t[0]}">${ic(t[0])}${t[1]}</button>`).join('');
 if(S.pg==='svc')est();sheet()}
@@ -426,12 +427,13 @@ function act(a,d){
 if(a==='go'){S.pg=d.p;if(d.p==='svc'&&!S.svc)openSvc('lw');if(d.s)S.sub=d.s;S.sh=null;$('#scr').scrollTop=0}
 else if(a==='sub')S.sub=d.v;
 else if(a==='am')S.am=d.v;
+else if(a==='paid')S.paid=+d.v;
 else if(a==='login'){resetTo(0);S.pg='home';$('#scr').scrollTop=0;applyType();setTimeout(()=>banner(notes().find(n=>!S.rd[n.k])),700)}
 else if(a==='join'){const n=$('#jn').value.trim();resetTo(1,n);S.pg='onb'}
 else if(a==='logout'){S.pg='land';S.am='login'}
 else if(a==='type')S.type=d.v;
 else if(a==='int')S.int=+d.v;
-else if(a==='start'){applyType();S.base=Date.parse($('#ob').value)||S.base;if(!S.int){const m={cl:0,mv:1,mi:2,fx:2,pho:1,hug:3,pay:3,gm:3,dis:-3,ad:7};for(const k in m)E(k).o=m[k]}if(S.fresh)S.ev.forEach(e=>{delete e.f;delete e.auto;if(dt(e)<TODAY){e.f=TODAY;e.auto=1}});applyType();S.pg='home';setTimeout(()=>banner(notes().find(n=>!S.rd[n.k])),700)}
+else if(a==='start'){applyType();S.base=Date.parse($('#ob').value)||S.base;if(!S.int){const m={cl:0,mv:1,mi:2,fx:2,pho:1,hug:3,pay:3,gm:3,dis:-3,ad:7};for(const k in m)E(k).o=m[k]}if(S.fresh)S.ev.forEach(e=>{delete e.f;delete e.auto;if(S.paid&&e.st===1){e.dn=true;return}if(dt(e)<TODAY){e.f=TODAY;e.auto=1}});applyType();S.pg='home';setTimeout(()=>banner(notes().find(n=>!S.rd[n.k])),700)}
 else if(a==='addr'){S.pg='my';S.sh={t:'addr'}}
 else if(a==='add')S.sh={t:'add'};
 else if(a==='addsv'){const n=$('#nn').value.trim();if(!n)return toast('할 일을 적어 주세요');const f=Date.parse($('#nd').value)||TODAY;S.ev.push({id:'u'+Date.now(),n,o:Math.round((f-S.base)/DAY),f,w:$('#nw').value,st:+$('#ns').value,i:'doc'});S.sh=null;toast('할 일을 추가했어요')}
