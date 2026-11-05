@@ -6,4 +6,4 @@
 - `PLANNING.md` — 기획 노트
 
 ## 이미지 출처
-`img/` 폴더의 업체 사진은 [Unsplash](https://unsplash.com) 무료 사진이에요 (Unsplash License, 프로토타입 시연용).
+index.html 안에 넣어 둔 업체 사진은 [Unsplash](https://unsplash.com) 무료 사진이에요 (Unsplash License, 프로토타입 시연용).
