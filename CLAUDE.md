@@ -14,7 +14,7 @@
   1. 바뀐 내용이 깃허브 메인에 없으면 먼저 알려 주고, 사용자가 원하면 메인에 올린다 (GitHub Pages가 메인 기준이라서)
   2. Pages 새 빌드가 끝났는지 확인
   3. 피그마 파일(https://www.figma.com/design/3lkHayGMZZdkF8h4UITjxU) 열기 → html.to.design 플러그인 → `https://theblueyoung.github.io/24dday/figma/screens.html?v=날짜` Import
-  4. 브라우저 콘솔에서 `figma/prototype.js` 실행 → 화면 25개 정리 + 스크롤/하단 메뉴 고정 + 버튼 연결 (기존 "24dday 화면 · 프로토타입" 섹션은 새것으로 바뀜)
+  4. 브라우저 콘솔에서 `figma/prototype.js` 실행 → 화면 정리(지금 28개) + 스크롤/하단 메뉴 고정 + 버튼 연결 (기존 "24dday 화면 · 프로토타입" 섹션은 새것으로 바뀜)
   5. 아이콘이 바뀌었으면 피그마의 "24dday 아이콘" 판도 `figma/icons/` 기준으로 다시 만든다
   6. 프로토타입 미리보기에서 몇 군데 눌러 보고 결과를 알려 준다
 - 화면이나 버튼이 추가·변경되면 `figma/prototype.js`의 연결 규칙(R)도 같이 고친다.
