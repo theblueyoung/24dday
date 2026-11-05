@@ -124,6 +124,65 @@
     const n = S[k].findOne(x => x.type === 'TEXT' && x.characters === t && /^Tab/.test(x.parent.name));
     if (n) await go(n, d);
   }
+
+  // 4) 누르면 켜짐/꺼짐이 바뀌는 요소 (체크박스, 알림 스위치, 공사 범위 칩, 입력칸 선택 표시)
+  //    각 요소를 '켜짐/꺼짐' 두 상태가 있는 컴포넌트로 바꾸고, 누르면 다른 상태로 바뀌게(Change to) 연결
+  const oldKit = page.children.find(n => n.name === '24dday 컴포넌트');
+  if (oldKit) oldKit.remove();
+  const kit = figma.createSection(); kit.name = '24dday 컴포넌트';
+  kit.x = ns.x + ns.width + 300; kit.y = ns.y;
+  const C = h => ({ r: parseInt(h.slice(0, 2), 16) / 255, g: parseInt(h.slice(2, 4), 16) / 255, b: parseInt(h.slice(4, 6), 16) / 255 });
+  const solid = h => [{ type: 'SOLID', color: C(h) }];
+  const hexOf = n => { const f = n.fills && n.fills[0]; return f && f.type === 'SOLID' ? [f.color.r, f.color.g, f.color.b].map(v => Math.round(v * 255).toString(16).padStart(2, '0')).join('') : ''; };
+  let kx = 80, ky = 80, rowH = 0, made = 0, swapped = 0;
+  const place = n => { if (kx + n.width > 1600) { kx = 80; ky += rowH + 60; rowH = 0; } n.x = kx; n.y = ky; kx += n.width + 60; rowH = Math.max(rowH, n.height); };
+  async function makeSet(src, name, style) {
+    const on = src.clone(), off = src.clone();
+    kit.appendChild(on); kit.appendChild(off);
+    style(on, true); style(off, false);
+    const cOn = figma.createComponentFromNode(on), cOff = figma.createComponentFromNode(off);
+    cOn.name = '상태=켜짐'; cOff.name = '상태=꺼짐';
+    const set = figma.combineAsVariants([cOn, cOff], kit); set.name = name; set.layoutMode = 'HORIZONTAL'; set.itemSpacing = 16;
+    set.paddingLeft = set.paddingRight = set.paddingTop = set.paddingBottom = 16; set.primaryAxisSizingMode = 'AUTO'; set.counterAxisSizingMode = 'AUTO';
+    place(set);
+    const tr = { type: 'SMART_ANIMATE', easing: { type: 'EASE_OUT' }, duration: 0.15 };
+    await cOn.setReactionsAsync([{ trigger: { type: 'ON_CLICK' }, actions: [{ type: 'NODE', destinationId: cOff.id, navigation: 'CHANGE_TO', transition: tr }] }]);
+    await cOff.setReactionsAsync([{ trigger: { type: 'ON_CLICK' }, actions: [{ type: 'NODE', destinationId: cOn.id, navigation: 'CHANGE_TO', transition: tr }] }]);
+    made++;
+    return { on: cOn, off: cOff };
+  }
+  function swap(node, set, isOn) {
+    const inst = (isOn ? set.on : set.off).createInstance();
+    const parent = node.parent, i = parent.children.indexOf(node);
+    parent.insertChild(i, inst); inst.x = node.x; inst.y = node.y; inst.name = node.name;
+    node.remove(); swapped++;
+  }
+  const cbStyle = (n, on) => { n.fills = solid(on ? '7a4dff' : 'ffffff'); n.strokes = solid(on ? '7a4dff' : 'b0b8c1'); const v = n.findOne(x => x.type === 'VECTOR'); if (v) { v.strokes = on ? solid('ffffff') : []; v.strokeWeight = 1.5; } };
+  const swStyle = (n, on) => { n.fills = solid(on ? '7a4dff' : 'd1d6db'); const k = n.children[0]; if (k) k.x = on ? n.width - k.width - 3 : 3; };
+  const chipStyle = (n, on) => { n.fills = solid(on ? '7a4dff' : 'f2f4f6'); n.findAll(x => x.type === 'TEXT').forEach(x => x.fills = solid(on ? 'ffffff' : '4e5968')); };
+  const inStyle = (n, on) => { n.strokes = on ? solid('7a4dff') : []; n.strokeWeight = 2; n.strokeAlign = 'INSIDE'; };
+  // 체크박스(할 일 완료, 알림 종류) — 하나의 컴포넌트를 모든 화면에서 같이 씀
+  const allCb = ns.findAll(n => n.type === 'FRAME' && n.width < 30 && n.height < 30 && /^Button - /.test(n.name) && n.strokes && n.strokes.length && n.findOne(x => x.type === 'VECTOR'));
+  if (allCb.length) { const set = await makeSet(allCb[0], '체크박스', cbStyle); for (const n of allCb) swap(n, set, hexOf(n) === '7a4dff'); }
+  // 알림 받기 스위치
+  const allSw = ns.findAll(n => n.type === 'FRAME' && /^Switch - /.test(n.name));
+  if (allSw.length) { const set = await makeSet(allSw[0], '스위치', swStyle); for (const n of allSw) swap(n, set, hexOf(n) === '7a4dff'); }
+  // 인테리어 공사 범위 칩 — 글자마다 컴포넌트 하나
+  const chipSets = {};
+  for (const k of ['18', '19']) {
+    if (!S[k]) continue;
+    const chips = S[k].findAll(n => n.type === 'FRAME' && n.name === 'Button' && n.children.length === 1 && n.children[0].type === 'TEXT' && n.height < 45 && ['f2f4f6', '7a4dff'].includes(hexOf(n)));
+    for (const n of chips) { const label = n.children[0].characters; if (!chipSets[label]) chipSets[label] = await makeSet(n, '칩 · ' + label, chipStyle); swap(n, chipSets[label], hexOf(n) === '7a4dff'); }
+  }
+  // 입력칸: 누르면 보라 테두리로 선택된 것처럼 보이게 (피그마 미리보기에서는 글자 입력은 안 됨)
+  for (const k of ['14', '16', '17', '17-2', '18', '18-2']) {
+    if (!S[k]) continue;
+    const inputs = S[k].findAll(n => n.type === 'FRAME' && /^(Input|Select|Combobox|Date)/i.test(n.name));
+    for (const n of inputs) { const set = await makeSet(n, '입력칸 · ' + k + ' · ' + (n.findAll(x => x.type === 'TEXT').map(x => x.characters).join('').slice(0, 12) || n.name), inStyle); swap(n, set, false); }
+  }
+  kit.resizeWithoutConstraints(1700, ky + rowH + 120);
+  console.log('누르면 바뀌는 요소: 컴포넌트 ' + made + '개, 바꾼 요소 ' + swapped + '개');
+
   page.flowStartingPoints = [{ nodeId: S['01'].id, name: '24dday 앱' }];
   console.log('연결 ' + count + '개 완료');
 })();
