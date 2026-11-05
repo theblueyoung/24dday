@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>24dday</title>
+<style>
+:root{--bg:#F2F4F6;--cd:#fff;--ink:#191F28;--sub:#8B95A1;--ln:#E5E8EB;--p:#7A4DFF;--pd:#4B2BBF;--lav:#EEE9FF;--co:#FF5A5F;--mi:#12B886;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101216;--cd:#1C1F26;--ink:#F2F4F6;--sub:#9AA3AF;--ln:#2B303A;--lav:#2A2250;--pd:#C9B8FF;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#101216;--cd:#1C1F26;--ink:#F2F4F6;--sub:#9AA3AF;--ln:#2B303A;--lav:#2A2250;--pd:#C9B8FF;color-scheme:dark}
+*{box-sizing:border-box}html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:15px/1.5 Pretendard,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif}
+#app{position:relative;max-width:430px;height:100%;margin:0 auto;display:flex;flex-direction:column;background:var(--bg);overflow:hidden}
+#scr{flex:1;overflow-y:auto;padding-bottom:24px}
+h1{font-size:25px;line-height:1.35;margin:6px 0 0;font-weight:700}h1 em{font-style:normal;color:var(--p)}
+h2{font-size:22px;margin:0;font-weight:700}small,.sb{color:var(--sub);font-size:13px}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;padding:22px 20px 6px}
+.c{background:var(--cd);border-radius:16px;padding:16px;margin:10px 14px}
+.row{display:flex;align-items:center;gap:10px}.sp{justify-content:space-between}
+a,[data-a]{cursor:pointer}a{color:var(--pd);font-size:13px}
+button,select,input,textarea{font:inherit;color:inherit}
+.btn{display:block;width:100%;border:0;border-radius:12px;background:var(--p);color:#fff;font-weight:600;padding:13px;margin-top:12px}
+.b2{border:0;border-radius:10px;background:var(--lav);color:var(--pd);padding:8px 12px;font-size:13px;font-weight:600}
+.bo{border:1px solid var(--p);border-radius:8px;background:none;color:var(--pd);padding:7px 11px;font-size:13px}
+.ch{display:inline-block;background:var(--lav);color:var(--pd);border-radius:10px;padding:2px 9px;font-size:12px}
+.co{color:var(--co)}.on{background:var(--p);color:#fff}
+input,select,textarea{width:100%;background:var(--bg);border:0;border-radius:10px;padding:11px 12px;margin-top:6px}
+textarea{min-height:110px}label{display:block;font-size:13px;color:var(--sub);margin-top:12px}
+.pill{display:flex;gap:6px;padding:4px 14px 0}.pill button{border:0;border-radius:16px;padding:7px 14px;background:var(--cd);font-size:14px}.pill button.on{background:var(--p);color:#fff}
+.li{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--ln)}.li:first-child{border-top:0}.li>div{flex:1}
+.d{width:12px;height:12px;border-radius:50%;border:2px solid #B9AEE8;flex:none}.d.dn{background:var(--p);border-color:var(--p)}
+.metro{display:flex;margin:18px 0 6px}
+.st{flex:1;text-align:center;position:relative;font-size:11px}
+.st i{display:block;width:14px;height:14px;border-radius:50%;margin:2px auto 8px;background:var(--cd);border:2px solid #B9AEE8;position:relative;z-index:1}
+.st.dn i{background:var(--p);border-color:var(--p)}.st.cur i{width:20px;height:20px;margin:-1px auto 5px;border:5px solid var(--p)}
+.st::before{content:"";position:absolute;top:8px;left:-50%;width:100%;height:3px;background:var(--lav)}
+.st:first-child::before{display:none}.st.dn::before,.st.cur::before{background:var(--p)}
+.st b{display:block;font-size:12px;font-weight:600}.st span{color:var(--sub)}
+.bar{height:8px;border-radius:4px;background:var(--lav);overflow:hidden;display:flex}.bar i{display:block;height:100%}
+.gr{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{background:var(--bg);border-radius:14px;padding:16px 14px;font-weight:600;border:0;text-align:left}
+.tile small{display:block;font-weight:400}
+nav{display:flex;background:var(--cd);border-top:1px solid var(--ln);padding:6px 0}
+nav button{flex:1;border:0;background:none;padding:10px 0;font-size:12px;color:var(--sub)}nav button.on{background:none;color:var(--p);font-weight:700}
+#sh{position:absolute;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;z-index:5}
+#sh>div{width:100%;background:var(--cd);border-radius:20px 20px 0 0;padding:20px 18px 24px;max-height:90%;overflow:auto}
+#tt{position:absolute;left:50%;bottom:80px;transform:translateX(-50%);background:#191F28;color:#fff;border-radius:12px;padding:10px 16px;font-size:13px;display:none;z-index:9;max-width:90%;text-align:center}
+.wr{background:#FFECEC;color:#C0282D;border-radius:12px;padding:10px 14px;margin:10px 14px;font-size:13px}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--p);outline-offset:2px}
+:root{--t2:#FFEDE3;--f2:#D9531E;--t3:#FFF3D1;--f3:#A66A00;--t4:#DDF6EC;--f4:#0B8A63}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--t2:#3A2418;--f2:#FF9A6B;--t3:#38301A;--f3:#F2C14E;--t4:#13332A;--f4:#4FD1A5}}
+:root[data-theme="dark"]{--t2:#3A2418;--f2:#FF9A6B;--t3:#38301A;--f3:#F2C14E;--t4:#13332A;--f4:#4FD1A5}
+.c{border-radius:22px;padding:18px}.li{gap:14px}.btn{border-radius:16px;padding:15px;font-size:16px}
+.hero{margin:6px 14px 0;border-radius:26px;padding:22px;color:#fff;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(140deg,#8B5CFF,#5B33E0);box-shadow:0 14px 30px -12px rgba(91,51,224,.55)}
+.hero .hs{font-size:14px;opacity:.85}.hero .big{font-size:64px;font-weight:800;line-height:1.05;letter-spacing:-2px}.hero .big span{font-size:22px;font-weight:600;margin-left:3px;letter-spacing:0}
+.rg{position:relative;width:104px;height:104px;flex:none}.rg svg{width:100%;height:100%}.rg div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}.rg b{font-size:22px}.rg span{font-size:11px;opacity:.85}
+.ti{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;flex:none}.ti svg{width:21px;height:21px}.ti.dn{opacity:.45}
+.t1{background:var(--lav);color:var(--pd)}.t2{background:var(--t2);color:var(--f2)}.t3{background:var(--t3);color:var(--f3)}.t4{background:var(--t4);color:var(--f4)}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:12px;border-radius:18px;padding:16px}
+nav{padding:6px 6px 4px}nav button{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:500}nav button svg{width:24px;height:24px}nav button.on svg{fill:var(--lav)}
+.hd .b2{display:flex;align-items:center;gap:6px}.hd .b2 svg{width:16px;height:16px}
+.st.cur i{animation:pl 2.2s ease-out infinite}@keyframes pl{0%{box-shadow:0 0 0 0 rgba(122,77,255,.45)}100%{box-shadow:0 0 0 12px rgba(122,77,255,0)}}@media(prefers-reduced-motion:reduce){.st.cur i{animation:none}}
+</style></head>
+<body><div id="app"><div id="scr"></div><nav id="nv"></nav><div id="sh"></div><div id="tt"></div></div>
+<script>
+const TODAY=Date.UTC(2026,10,5),DAY=864e5,$=s=>document.querySelector(s);
+const S={pg:'onb',sub:'list',type:'매매',int:1,base:Date.UTC(2026,10,28),sh:null,svc:null,q:{},banks:[5000,4000,3000],docs:[['신분증',1],['인감증명서',0],['등기부등본',1],['계약서 사본',1],['대출 서류',0],['이사업체 계약서',0]],
+ev:[
+{id:'doc',n:'서류·자금 준비',o:-35,w:'지은'},
+{id:'c1',n:'계약금',o:-77,w:'함께',big:1},
+{id:'in',n:'인테리어 견적',o:-21,w:'함께',t:'int',s:'in',r:'중도금 시점에 견적을 받아두면 공사 일정이 여유로워요'},
+{id:'ln',n:'대출 상담',o:-21,w:'민수',r:'은행은 잔금 한 달 전부터 상담해주는 곳이 많아요'},
+{id:'c2',n:'중도금',o:-20,w:'민수',big:1},
+{id:'lw',n:'법무사 견적',o:-14,w:'지은',t:'buy',s:'lw',r:'잔금 4주 전부터 2~3곳을 비교해요'},
+{id:'mr',n:'이삿짐 예약',o:-11,w:'함께',s:'mv',r:'이사 25일 전쯤 업체를 확정해요'},
+{id:'ib',n:'인테리어 시공',o:-5,w:'지은',t:'int'},
+{id:'bal',n:'잔금',o:0,w:'함께',big:1},
+{id:'dis',n:'폐가전 정리',o:3,w:'민수',s:'ds',r:'큰 가전과 가구는 수거 예약이 필요해요'},
+{id:'cl',n:'입주청소',o:12,w:'지은',s:'cl',r:'공사가 끝난 뒤, 이사 하루나 이틀 전에 해요'},
+{id:'mv',n:'이사일',o:14,w:'함께',big:1},
+{id:'mi',n:'전입신고',o:15,w:'함께',big:1}]};
+const SV={
+cl:{n:'입주청소',e:'cl',v:'청소 업체',f:[['py','평수','n',32],['st','집 상태','s',['구축','공사 후']]],c:v=>{const m=v.st==='공사 후'?1.2:1;return[v.py*1.1*m,v.py*1.4*m]}},
+mv:{n:'이삿짐센터',e:'mv',v:'이삿짐 업체',f:[['py','평수','n',32],['el','엘리베이터','s',['있음','없음']]],c:v=>{const m=v.el==='없음'?1.15:1;return[v.py*5*m,v.py*8*m]}},
+in:{n:'인테리어',e:'ib',v:'인테리어 업체',f:[['py','평수','n',32],['sc','공사 범위','s',['부분(도배·장판)','전체']]],c:v=>v.sc==='전체'?[v.py*150,v.py*300]:[v.py*15,v.py*25]},
+lw:{n:'법무사',e:'bal',v:'법무사 사무소',f:[['pr','매매가(억원)','n',7]],c:v=>v.pr<6?[40,60]:v.pr<9?[50,80]:[60,100]},
+ds:{n:'폐가전·폐가구',e:'dis',v:'수거 업체',f:[['it','품목 수','n',5]],c:v=>[v.it,v.it*3]}};
+const iso=t=>new Date(t).toISOString().slice(0,10),md=t=>{const d=new Date(t);return(d.getUTCMonth()+1)+'/'+d.getUTCDate()};
+const dt=e=>e.f??S.base+e.o*DAY,E=id=>S.ev.find(e=>e.id===id);
+const done=e=>e.dn!==undefined?e.dn:dt(e)<TODAY;
+const vis=()=>S.ev.filter(e=>!(e.t==='int'&&!S.int)&&!(e.t==='buy'&&S.type!=='매매')).sort((a,b)=>dt(a)-dt(b));
+const mny=n=>n>=1e4?(n/1e4).toFixed(1).replace('.0','')+'억':Math.round(n).toLocaleString('ko-KR')+'만원';
+const dday=()=>Math.round((S.base-TODAY)/DAY);
+function toast(t){const x=$('#tt');x.textContent=t;x.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(()=>x.style.display='none',2200)}
+function metro(){const L=vis().filter(e=>e.big),k=L.findIndex(e=>!done(e));
+return'<div class="metro">'+L.map((e,i)=>`<div class="st ${done(e)?'dn':''} ${i===k?'cur':''}"><i></i><b>${e.n}</b><span>${md(dt(e))}</span></div>`).join('')+'</div>'}
+function warn(){const c=E('cl'),m=E('mv');return dt(c)>=dt(m)?'<div class="wr">입주청소 날짜가 이사일과 겹쳐요. 청소는 이사 전날까지 잡아주세요.</div>':''}
+const IC={home:'<path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/>',tl:'<rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/>',fund:'<path d="M4 8a3 3 0 0 1 3-3h11v4"/><rect x="4" y="8" width="16" height="12" rx="3"/><circle cx="16" cy="14" r="1.2"/>',svc:'<path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>',com:'<circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.6 5.5-4.6s4.9 1.6 5.5 4.6"/><circle cx="17" cy="9" r="2.4"/><path d="M16.5 14.6c2.3 0 3.6 1.3 4 3.4"/>',
+doc:'<path d="M7 3h7l4 4v13H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>',coin:'<circle cx="12" cy="12" r="8"/><path d="M8.5 10l1.5 5 2-4 2 4 1.5-5"/>',key:'<circle cx="8" cy="12" r="3.5"/><path d="M11.5 12H21M17 12v3M20 12v2.5"/>',brush:'<rect x="4" y="4" width="13" height="5" rx="1.5"/><path d="M17 6.5h2.5v5H11v3.5M9.5 15h3v6h-3z"/>',spark:'<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18 16l.8 2.2L21 19l-2.2.8L18 22l-.8-2.2L15 19l2.2-.8z"/>',truck:'<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/>',pin:'<path d="M12 21s6-5.5 6-11a6 6 0 0 0-12 0c0 5.5 6 11 6 11z"/><circle cx="12" cy="10" r="2.2"/>',trash:'<path d="M5 7h14M9 7V4h6v3M7 7l1 13h8l1-13"/>',scale:'<path d="M12 4v16M6 20h12M5 8h14M5 8l-2.5 6a3 3 0 0 0 5 0zM19 8l-2.5 6a3 3 0 0 0 5 0z"/>',bank:'<path d="M3 9l9-5 9 5M5 10v7M10 10v7M14 10v7M19 10v7M3 20h18"/>'};
+const ic=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k==='users'?'com':k]}</svg>`;
+const EI={doc:['doc',4],c1:['coin',1],c2:['coin',1],in:['brush',2],ln:['bank',1],lw:['scale',2],mr:['truck',2],ib:['brush',2],bal:['key',1],dis:['trash',3],cl:['spark',2],mv:['truck',2],mi:['pin',4]};
+const et=e=>`<span class="ti t${EI[e.id][1]}${done(e)?' dn':''}">${ic(EI[e.id][0])}</span>`;
+const TS={cl:4,mv:2,in:1,lw:3,ds:3},SI={cl:'spark',mv:'truck',in:'brush',lw:'scale',ds:'trash'};
+const ring=()=>{const L=vis(),n=L.filter(done).length,p=n/L.length,c=2*Math.PI*42;return`<div class="rg"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="9"/><circle cx="50" cy="50" r="42" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-dasharray="${c*p} ${c}" transform="rotate(-90 50 50)"/></svg><div><b>${Math.round(p*100)}%</b><span>${n}/${L.length} 완료</span></div></div>`};
+const P={};
+P.onb=()=>`<div class="hd"><div><div style="font-size:15px;font-weight:800;color:var(--p);letter-spacing:-.3px">24dday</div><h1>어떤 이사를<br>준비하세요?</h1></div></div><div class="c"><b>거래 유형</b><div class="row" style="margin-top:10px;flex-wrap:wrap">${['매매','전세','월세'].map(t=>`<button class="b2 ${S.type===t?'on':''}" data-a="type" data-v="${t}">${t}</button>`).join('')}</div>
+<label>잔금일 (이사 들어가는 날이 아니라 돈을 다 치르는 날)</label><input type="date" id="ob" value="${iso(S.base)}">
+<label>인테리어를 하나요?</label><div class="row">${[1,0].map(t=>`<button class="b2 ${S.int===t?'on':''}" data-a="int" data-v="${t}">${t?'해요':'안 해요'}</button>`).join('')}</div></div>
+<div class="c"><button class="btn" style="margin:0" data-a="start">시작하기</button><p class="sb" style="margin:10px 0 0">오늘 날짜는 시연용으로 2026년 11월 5일에 맞춰져 있어요.</p></div>`;
+P.home=()=>{const L=vis().filter(e=>!done(e));const t=L[0],nx=L.slice(1,3);
+return`<div class="hd"><div><small>잠실동 → 정자동</small><div style="font-size:18px;font-weight:700;margin-top:2px">지은 · 민수네 이사</div></div><button class="b2" data-a="go" data-p="fam" aria-label="가족 공유">${ic('users')}가족</button></div>
+<div class="hero"><div><div class="hs">잔금까지</div><div class="big">${dday()}<span>일</span></div><div class="hs">${md(S.base)} 잔금일</div></div>${ring()}</div>
+<div class="c"><div class="row sp"><b>큰 일정</b><a data-a="go" data-p="tl" data-s="list">자세히 보기 ›</a></div>${metro()}
+<div class="row" style="margin-top:12px"><button class="b2" data-a="go" data-p="tl" data-s="list">날짜 편집</button><button class="b2" data-a="go" data-p="tl" data-s="rec">추천 받기</button></div></div>
+${t?`<div class="c"><div class="row sp"><b>다음 할 일</b><span class="ch">${t.w}</span></div><div style="font-size:17px;margin-top:8px">${t.n}</div><small>${md(dt(t))}까지 · D-${Math.round((dt(t)-TODAY)/DAY)}</small><button class="btn" data-a="done" data-id="${t.id}">완료했어요</button></div>`:''}
+${nx.length?'<div class="c">'+nx.map(e=>`<div class="li">${et(e)}<div>${e.n}<br><small>D-${Math.round((dt(e)-TODAY)/DAY)}</small></div><small class="${e.s?'co':''}">${md(dt(e))}</small></div>`).join('')+'</div>':''}`};
+P.tl=()=>{const s=S.sub,L=vis();
+const hd=`<div class="hd"><h2>일정</h2></div><div class="pill">${[['list','전체'],['rec','추천'],['doc','서류']].map(x=>`<button class="${s===x[0]?'on':''}" data-a="sub" data-v="${x[0]}">${x[1]}</button>`).join('')}</div>`;
+if(s==='rec'){const R=L.filter(e=>e.s&&!done(e));return hd+`<div class="c" style="background:var(--lav)"><b style="color:var(--pd)">지금 하면 좋은 일</b><div class="sb">날짜가 가까운 순서예요</div></div>`+R.map(e=>`<div class="c"><div class="row sp"><span class="row">${et(e)}<b>${e.n}</b></span><span class="${dt(e)-TODAY<8*DAY?'co':'sb'}">D-${Math.round((dt(e)-TODAY)/DAY)}</span></div><p class="sb" style="margin:6px 0 0">${e.r}</p><button class="btn" data-a="svc" data-k="${e.s}">견적 보러 가기</button></div>`).join('')}
+if(s==='doc'){const n=S.docs.filter(d=>d[1]).length;return hd+`<div class="c"><div class="row sp"><b>서류 보관함</b><span class="sb">${n} / ${S.docs.length}</span></div>${S.docs.map((d,i)=>`<div class="li" data-a="doc" data-i="${i}"><span class="d ${d[1]?'dn':''}"></span><div>${d[0]}</div></div>`).join('')}</div>`}
+return hd+warn()+`<div class="c"><label style="margin:0">잔금일 (바꾸면 나머지 일정이 같이 움직여요)</label><input type="date" id="bs" value="${iso(S.base)}"></div><div class="c">${metro()}</div>
+<div class="c"><b>전체 일정</b><p class="sb" style="margin:2px 0 6px">누르면 날짜와 담당자를 바꿀 수 있어요</p>${L.map(e=>`<div class="li" data-a="edit" data-id="${e.id}">${et(e)}<div>${e.n}<br><small>${done(e)?'완료 · ':''}${md(dt(e))}${e.f?' · 직접 정함':''}</small></div><span class="ch">${e.w}</span></div>`).join('')}</div>`};
+P.fund=()=>{const need=15000,tot=S.banks.reduce((a,b)=>a+b,0),gap=Math.max(need-tot,0),nm=['국민은행','신한은행','카카오뱅크'],cl=['#7A4DFF','#B9A2FF','#12B886'];
+return`<div class="hd"><h2>자금</h2></div><div class="c"><small>필요 금액 (예시)</small><div style="font-size:24px;font-weight:700">${mny(need)}</div>
+<div class="bar" style="margin:12px 0 6px">${S.banks.map((b,i)=>`<i style="width:${b/need*100}%;background:${cl[i]}"></i>`).join('')}</div>
+<div class="row sp"><small>준비 ${mny(tot)}</small><small class="${gap?'co':''}">${gap?'부족 '+mny(gap):'충분해요'}</small></div></div>
+<div class="c"><b>은행별 보유액 (만원)</b>${nm.map((n,i)=>`<label>${n}</label><input type="number" data-b="${i}" value="${S.banks[i]}">`).join('')}<p class="sb" style="margin:12px 0 0">계좌 자동 연결은 다음 버전에서 만나요. 지금은 직접 입력해요.</p></div>
+<div class="c"><b>입출금 계획 (예시)</b>${[['c2','국민은행','5,000만원'],['bal','신한은행 · 카카오뱅크','7,000만원 + 대출']].map(r=>`<div class="li"><div>${E(r[0]).n} · ${r[1]}<br><small>${r[2]}</small></div><span class="ch">${md(dt(E(r[0])))}</span></div>`).join('')}</div>`};
+P.svc=()=>`<div class="hd"><div><h2>서비스</h2><p class="sb" style="margin:4px 0 0">견적을 보고 메시지나 전화로 바로 문의해요</p></div></div><div class="c gr">${Object.entries(SV).map(([k,v])=>`<button class="tile" data-a="svc" data-k="${k}"><span class="ti t${TS[k]}">${ic(SI[k])}</span>${v.n}<small>견적 확인</small></button>`).join('')}</div>`;
+P.q=()=>{const v=SV[S.svc],e=E(v.e);
+return`<div class="hd"><div><a data-a="go" data-p="svc">‹ 서비스</a><h2 style="margin-top:6px">${v.n}</h2></div></div><div class="c">${v.f.map(f=>f[2]==='n'?`<label>${f[1]}</label><input type="number" data-q="${f[0]}" value="${S.q[f[0]]}">`:`<label>${f[1]}</label><select data-q="${f[0]}">${f[3].map(o=>`<option ${S.q[f[0]]===o?'selected':''}>${o}</option>`).join('')}</select>`).join('')}<label>희망 날짜</label><input type="date" data-q="dt" value="${S.q.dt}"></div>
+<div class="c" style="background:var(--lav)"><small style="color:var(--pd)">예상 견적</small><div id="est" style="font-size:26px;font-weight:700;color:var(--pd)"></div><small>예시 계산이에요. 실제 견적은 업체마다 달라요.</small></div>
+<div class="c"><b>업체에 문의하기</b>${['A','B','C'].map(x=>`<div class="li"><div>${v.v} ${x}<br><small>예시 업체</small></div><button class="b2" data-a="msg" data-v="${v.v} ${x}">메시지</button><button class="bo" data-a="call" data-v="${v.v} ${x}">전화</button></div>`).join('')}</div>`};
+P.com=()=>`<div class="hd"><div><h2>중고거래</h2><p class="sb" style="margin:4px 0 0">이사 전에 안 쓰는 물건을 정리해요</p></div></div><div class="c">${[['건조기','12만원','정자동 · 4시간 전'],['4인 식탁','8만원','잠실동 · 어제'],['책장 세트','5만원','잠실동 · 2일 전']].map(r=>`<div class="li"><div>${r[0]}<br><small>${r[2]}</small></div><b>${r[1]}</b></div>`).join('')}<button class="btn" data-a="cm">내 물건 올리기</button></div>`;
+P.fam=()=>{const L=vis();return`<div class="hd"><div><a data-a="go" data-p="home">‹ 홈</a><h2 style="margin-top:6px">함께하는 사람</h2></div></div>
+<div class="c"><b>업무 분배</b>${['지은','민수','함께'].map(w=>{const a=L.filter(e=>e.w===w),d=a.filter(done).length;return`<div style="margin-top:14px"><div class="row sp"><span>${w}</span><small>${d} / ${a.length} 완료</small></div><div class="bar" style="margin-top:6px"><i style="width:${a.length?d/a.length*100:0}%;background:var(--p)"></i></div></div>`}).join('')}<p class="sb" style="margin:14px 0 0">일정에서 항목을 눌러 담당자를 바꿀 수 있어요.</p></div>
+<div class="c"><b>초대하기</b><p class="sb" style="margin:4px 0 0">앱을 깔지 않아도 링크로 일정을 볼 수 있어요.</p><button class="btn" data-a="copy">초대 링크 복사</button><button class="btn" style="background:var(--lav);color:var(--pd)" data-a="go" data-p="onb">처음 화면 다시 보기</button></div>`};
+function sheet(){const x=S.sh,h=$('#sh');if(!x){h.style.display='none';return}
+let b='';
+if(x.t==='ev'){const e=E(x.id);b=`<h2>${e.n}</h2><label>날짜</label><input type="date" id="ed" value="${iso(dt(e))}"><label>담당자</label><select id="ew">${['지은','민수','함께'].map(w=>`<option ${e.w===w?'selected':''}>${w}</option>`).join('')}</select>
+<label><input type="checkbox" id="edn" style="width:auto;margin:0 8px 0 0" ${done(e)?'checked':''}>완료했어요</label><button class="btn" data-a="save" data-id="${e.id}">저장하기</button>${e.f?`<button class="btn" style="background:var(--lav);color:var(--pd)" data-a="unfix" data-id="${e.id}">자동 날짜로 되돌리기</button>`:''}`}
+if(x.t==='msg'){const v=SV[S.svc];b=`<h2>${x.v}에 메시지 보내기</h2><label>문의 내용</label><textarea id="mt">안녕하세요. ${v.n} 견적을 문의드려요. 희망 날짜는 ${S.q.dt.slice(5).replace('-','/')}이고, ${v.f.map(f=>f[1]+' '+S.q[f[0]]).join(', ')}이에요.</textarea><button class="btn" data-a="send">메시지 보내기</button>`}
+if(x.t==='call')b=`<h2>${x.v}에 전화할까요?</h2><p class="sb">실제 앱에서는 전화 앱으로 바로 연결돼요.</p><button class="btn" data-a="dial">전화 걸기</button>`;
+h.innerHTML='<div>'+b+'<button class="btn" style="background:none;color:var(--sub)" data-a="close">닫기</button></div>';h.style.display='flex'}
+function render(){const o=S.pg==='onb';$('#scr').innerHTML=P[S.pg]();
+const T=[['home','홈'],['tl','일정'],['fund','자금'],['svc','서비스'],['com','커뮤니티']],cur={q:'svc',fam:'home'}[S.pg]||S.pg;
+$('#nv').style.display=o?'none':'flex';$('#nv').innerHTML=T.map(t=>`<button class="${cur===t[0]?'on':''}" data-a="go" data-p="${t[0]}">${ic(t[0])}${t[1]}</button>`).join('');
+if(S.pg==='q')est();sheet()}
+function est(){const[a,b]=SV[S.svc].c(S.q);$('#est').textContent=mny(a)+' ~ '+mny(b)}
+function openSvc(k){const v=SV[k];S.svc=k;S.q={dt:iso(dt(E(v.e)))};v.f.forEach(f=>S.q[f[0]]=f[2]==='n'?f[3]:f[3][0]);S.pg='q'}
+function act(a,d){
+if(a==='go'){S.pg=d.p;if(d.s)S.sub=d.s;S.sh=null}
+else if(a==='sub')S.sub=d.v;
+else if(a==='type')S.type=d.v;
+else if(a==='int')S.int=+d.v;
+else if(a==='start'){S.base=Date.parse($('#ob').value)||S.base;if(!S.int){const m={cl:0,mv:1,mi:2,dis:-3};for(const k in m)E(k).o=m[k]}S.pg='home'}
+else if(a==='done'){const e=E(d.id);e.dn=true;toast(e.n+' 완료')}
+else if(a==='edit')S.sh={t:'ev',id:d.id};
+else if(a==='save'){const e=E(d.id),n=Date.parse($('#ed').value);if(n&&n!==dt(e))e.f=n;e.w=$('#ew').value;e.dn=$('#edn').checked;S.sh=null;toast('저장했어요')}
+else if(a==='unfix'){delete E(d.id).f;S.sh=null;toast('자동 날짜로 되돌렸어요')}
+else if(a==='doc')S.docs[+d.i][1]^=1;
+else if(a==='svc')openSvc(d.k);
+else if(a==='msg')S.sh={t:'msg',v:d.v};
+else if(a==='call')S.sh={t:'call',v:d.v};
+else if(a==='send'){S.sh=null;toast('문의를 보냈어요. 답변은 알림으로 알려드려요')}
+else if(a==='dial'){S.sh=null;toast('전화 앱으로 연결돼요 (시연)')}
+else if(a==='close')S.sh=null;
+else if(a==='copy')return toast('초대 링크를 복사했어요');
+else if(a==='cm')return toast('중고거래는 다음 버전에서 만나요');
+render()}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(t)act(t.dataset.a,t.dataset)});
+document.addEventListener('change',e=>{if(e.target.dataset.b!==undefined){S.banks[+e.target.dataset.b]=+e.target.value||0;render();return}if(e.target.id==='bs'){const n=Date.parse(e.target.value);if(n){S.base=n;render();toast('고정하지 않은 일정이 같이 움직였어요')}}});
+document.addEventListener('input',e=>{const t=e.target;
+if(0){}
+else if(t.dataset.q){S.q[t.dataset.q]=t.type==='number'?+t.value:t.value;est()}});
+render();
+</script></body></html>
