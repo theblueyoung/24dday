@@ -90,12 +90,12 @@ textarea{min-height:110px}label{display:block;font-size:14px;color:var(--ink2);m
 .sgh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
 .sgh i{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:14px;font-weight:800;flex:none}.sgh i svg{width:16px;height:16px}
 .sgh b{font-size:19px;flex:1}
-.g-dn .sgh i{background:var(--lav);color:var(--p)}
+.g-dn .sgh i{background:var(--gn);color:#fff}.g-dn .sgh b{color:var(--gn)}
 .g-cur .sgh i{background:var(--p);color:#fff}.g-cur .sgh b{color:var(--pd)}
 .g-fu .sgh i{background:var(--gy);color:var(--sub)}
 .g-fu .li .nm{color:var(--ink2)}
-.tile{display:flex;flex-direction:column;align-items:flex-start;gap:12px;border-radius:18px;padding:18px 16px;background:var(--gy);font-weight:700;font-size:16px;border:0;text-align:left}
-.tile .ti{background:#fff}.tile small{display:block;font-weight:500}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:12px;border-radius:20px;padding:18px 16px;background:linear-gradient(140deg,#8B5CFF,#5B33E0);color:#fff;font-weight:700;font-size:17px;border:0;text-align:left;box-shadow:0 10px 20px -14px rgba(91,51,224,.8)}
+.tile .ti{background:#fff;width:44px;height:44px;border-radius:14px}.tile small{display:block;font-weight:500;color:rgba(255,255,255,.8)}
 .gr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .chips button{border:0;background:var(--gy);color:var(--ink2);border-radius:18px;padding:8px 14px;font-size:14px;font-weight:600}
@@ -111,13 +111,18 @@ nav button svg{width:24px;height:24px}nav button.on{background:none!important;co
 .wr{background:#FFEBEE;color:#C0282D;border-radius:14px;padding:12px 14px;margin:0 20px 16px;font-size:14px}
 .pk{display:flex;gap:8px;margin-top:8px}.pk button{width:34px;height:34px;border-radius:50%;border:3px solid transparent;padding:0}.pk button.on{border-color:var(--ink)}
 .kv{display:flex;justify-content:space-between;padding:10px 0;font-size:15px}.kv span{color:var(--sub)}.kv b{font-weight:600}
-.metro{display:flex;padding:0 14px 24px}
+.metro{display:flex;margin:22px -8px 2px}
 .st{flex:1;text-align:center;position:relative;font-size:12px}
-.st i{display:block;width:16px;height:16px;border-radius:50%;margin:3px auto 8px;background:#fff;border:2px solid #D1D6DB;position:relative;z-index:1}
-.st.dn i{background:var(--gn);border-color:var(--gn)}.st.cur i{width:22px;height:22px;margin:0 auto 5px;border:6px solid var(--p);background:#fff}
-.st::before{content:"";position:absolute;top:10px;left:-50%;width:100%;height:3px;background:var(--ln)}
-.st:first-child::before{display:none}.st.dn::before,.st.cur::before{background:var(--gn)}
-.st b{display:block;font-size:13px;font-weight:700;white-space:nowrap;color:var(--mute)}.st.dn b{color:var(--gn)}.st.cur b{color:var(--pd)}.st span{color:var(--sub);font-size:12px}
+.st i{display:block;width:16px;height:16px;border-radius:50%;margin:3px auto 8px;background:#6A40EC;border:2px solid rgba(255,255,255,.5);position:relative;z-index:1}
+.st::before{content:"";position:absolute;top:10px;left:-50%;width:100%;height:3px;background:rgba(255,255,255,.25)}
+.st:first-child::before{display:none}
+.st.dn i{background:#3DDC97;border-color:#3DDC97}.st.dn::before,.st.cur::before{background:#3DDC97}
+.st.cur i{width:22px;height:22px;margin:0 auto 5px;background:var(--pdd);border:4px solid #fff;animation:hb 1.6s ease-in-out infinite}
+@keyframes hb{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,255,255,.55)}15%{transform:scale(1.18)}30%{transform:scale(1)}45%{transform:scale(1.12);box-shadow:0 0 0 9px rgba(255,255,255,0)}}
+@media(prefers-reduced-motion:reduce){.st.cur i{animation:none}}
+.st b{display:block;font-size:13px;font-weight:600;white-space:nowrap;color:rgba(255,255,255,.65)}.st.dn b{color:#B6F5D8}.st.cur b{color:#fff;font-weight:800}
+.st span{color:rgba(255,255,255,.6);font-size:12px}
+.back{display:inline-flex;align-items:center;gap:4px;color:var(--p);font-size:16px;font-weight:700}.back span{font-size:30px;line-height:.8;margin-top:-3px}
 .dk{background:linear-gradient(140deg,#3F1FB0,#25106E);color:#fff;border-radius:20px;padding:20px}
 .dk small{color:rgba(255,255,255,.75)}.dk .v{color:#fff}
 .addb{width:36px;height:36px;border-radius:50%;border:0;background:var(--p);color:#fff;display:grid;place-items:center;padding:0;flex:none}.addb svg{width:20px;height:20px}
@@ -158,12 +163,13 @@ ev:[
 {id:'ad',n:'주소 변경 (은행·카드)',o:20,w:'p2',st:4,i:'pin'}]};
 const INS=[['도배',2,3.5,'p'],['장판·마루',3,7,'p'],['욕실',400,800,'f'],['주방',400,900,'f'],['샷시(창호)',25,40,'p'],['조명·전기',1.5,3,'p'],['중문·현관',150,300,'f'],['붙박이장',200,500,'f'],['발코니 확장',300,700,'f'],['전체 리모델링',150,300,'p']];
 const SV={
-lw:{n:'법무사',e:'bal',v:'법무사 사무소',i:'doc',ts:1,f:[['pr','매매가(억원)','n',7]],c:v=>v.pr<6?[40,60]:v.pr<9?[50,80]:[60,100]},
-mv:{n:'이삿짐센터',e:'mv',v:'이삿짐 업체',i:'truck',ts:2,f:[['py','평수','n',32],['el','엘리베이터','s',['있음','없음']],['ty','이사 방식','s',['포장이사','반포장이사','일반이사']]],c:v=>{const m=(v.el==='없음'?1.15:1)*({'포장이사':1,'반포장이사':.8,'일반이사':.6}[v.ty]);return[v.py*5*m,v.py*8*m]}},
-cl:{n:'입주청소',e:'cl',v:'청소 업체',i:'spark',ts:4,f:[['py','평수','n',32]],c:v=>[v.py*1.1,v.py*1.4]},
-in:{n:'인테리어',e:'ib',v:'인테리어 업체',i:'brush',ts:3,f:[['py','평수','n',32],['sc','공사 범위 (여러 개 고를 수 있어요)','m',INS.map(x=>x[0]),['도배','장판·마루']]],
+lw:{col:'#2F6FE0',n:'법무사',e:'bal',v:'법무사 사무소',i:'doc',ts:1,f:[['pr','매매가(억원)','n',7]],c:v=>v.pr<6?[40,60]:v.pr<9?[50,80]:[60,100]},
+mv:{col:'#F2700F',n:'이삿짐센터',e:'mv',v:'이삿짐 업체',i:'truck',ts:2,f:[['py','평수','n',32],['el','엘리베이터','s',['있음','없음']],['ty','이사 방식','s',['포장이사','반포장이사','일반이사']]],c:v=>{const m=(v.el==='없음'?1.15:1)*({'포장이사':1,'반포장이사':.8,'일반이사':.6}[v.ty]);return[v.py*5*m,v.py*8*m]}},
+cl:{col:'#0EA5A5',n:'입주청소',e:'cl',v:'청소 업체',i:'spark',ts:4,f:[['py','평수','n',32]],c:v=>[v.py*1.1,v.py*1.4]},
+in:{col:'#E64980',n:'인테리어',e:'ib',v:'인테리어 업체',i:'brush',ts:3,f:[['py','평수','n',32],['sc','공사 범위 (여러 개 고를 수 있어요)','m',INS.map(x=>x[0]),['도배','장판·마루']]],
  c:v=>{const L=INS.filter(x=>v.sc.includes(x[0]));if(!L.length)return[0,0];const all=L.find(x=>x[0]==='전체 리모델링');const U=all?[all]:L;return U.reduce((a,x)=>{const k=x[3]==='p'?v.py:1;return[a[0]+x[1]*k,a[1]+x[2]*k]},[0,0])}},
-ds:{n:'폐가전·폐가구',e:'dis',v:'수거 업체',i:'trash',ts:3,f:[['it','품목 수','n',5],['el','엘리베이터','s',['있음','없음']]],c:v=>{const m=v.el==='없음'?1.3:1;return[v.it*m,v.it*3*m]}}};
+ds:{col:'#12A150',n:'폐가전·폐가구',e:'dis',v:'수거 업체',i:'trash',ts:3,f:[['it','품목 수','n',5],['el','엘리베이터','s',['있음','없음']]],c:v=>{const m=v.el==='없음'?1.3:1;return[v.it*m,v.it*3*m]}}};
+const VN={lw:['한결 법무사사무소','정자 등기법무센터','바른길 법무사'],mv:['늘봄익스프레스 이사','든든포장이사 분당점','온새미 이삿짐센터'],cl:['반짝하루 입주청소','새집클린 케어','말끔홈 클리닝'],in:['공간공방 인테리어','디자인숲 리모델링','결 하우스디자인'],ds:['그린순환 수거센터','바로수거 24','이웃 폐가구 수거']};
 const SO=['lw','mv','cl','in','ds'];
 const iso=t=>new Date(t).toISOString().slice(0,10),md=t=>{const d=new Date(t);return(d.getUTCMonth()+1)+'/'+d.getUTCDate()};
 const dt=e=>e.f??S.base+e.o*DAY,E=id=>S.ev.find(e=>e.id===id);
@@ -181,8 +187,9 @@ const IC={home:'<path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1
 uplus:'<circle cx="9" cy="8" r="3.4"/><path d="M3 19.5c.6-3.3 3-5 6-5s5.4 1.7 6 5"/><path d="M18.5 7.5v6M15.5 10.5h6"/>',bell:'<path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.6 1.8H4.4z"/><path d="M10 21a2.2 2.2 0 0 0 4 0"/>',x:'<path d="M6 6l12 12M18 6L6 18"/>',check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
 doc:'<path d="M7 3h7l4 4v13H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>',coin:'<circle cx="12" cy="12" r="8"/><path d="M8.5 10l1.5 5 2-4 2 4 1.5-5"/>',key:'<circle cx="8" cy="12" r="3.5"/><path d="M11.5 12H21M17 12v3M20 12v2.5"/>',brush:'<rect x="4" y="4" width="13" height="5" rx="1.5"/><path d="M17 6.5h2.5v5H11v3.5M9.5 15h3v6h-3z"/>',spark:'<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18 16l.8 2.2L21 19l-2.2.8L18 22l-.8-2.2L15 19l2.2-.8z"/>',truck:'<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/>',pin:'<path d="M12 21s6-5.5 6-11a6 6 0 0 0-12 0c0 5.5 6 11 6 11z"/><circle cx="12" cy="10" r="2.2"/>',trash:'<path d="M5 7h14M9 7V4h6v3M7 7l1 13h8l1-13"/>',scale:'<path d="M12 4v16M6 20h12M5 8h14M5 8l-2.5 6a3 3 0 0 0 5 0zM19 8l-2.5 6a3 3 0 0 0 5 0z"/>',bank:'<path d="M3 9l9-5 9 5M5 10v7M10 10v7M14 10v7M19 10v7M3 20h18"/>'};
 const ic=(k,sw=1.8)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]}</svg>`;
+const BELLOFF='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.6 1.8H4.4z"/><path d="M10 21a2.2 2.2 0 0 0 4 0"/><path d="M3.5 3.5l17 17" stroke="var(--offb)" stroke-width="5"/><path d="M3.5 3.5l17 17" stroke-width="2.4"/></svg>';
 const BOLT='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2L4.5 13.5h6.5L9.5 22l10-12.5h-6.8z" fill="#FFC633" stroke="#E5A100" stroke-width="1.3" stroke-linejoin="round"/></svg>';
-const LOGO='<svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9B6BFF"/><stop offset="1" stop-color="#5B33E0"/></linearGradient></defs><rect width="40" height="40" rx="12" fill="url(#lg)"/><path d="M10 19.5L20 11l10 8.5V29a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 10 29z" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><path d="M15.5 22.5l3.3 3.3 6-6.3" fill="none" stroke="#FFD43B" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const LOGO='<svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9B6BFF"/><stop offset="1" stop-color="#5B33E0"/></linearGradient></defs><rect width="40" height="40" rx="12" fill="url(#lg)"/><path d="M24.5 11.5V8.5h3.2v6" fill="#fff"/><path d="M7.5 20.5L20 9.5l12.5 11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 18.5V30a1.5 1.5 0 0 0 1.5 1.5h15A1.5 1.5 0 0 0 29 30V18.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><path d="M15.2 23.6l3.3 3.3 6.2-6.4" fill="none" stroke="#FFD43B" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const et=e=>`<span class="ti">${ic(e.i)}</span>`;
 const cb=e=>`<button class="cb ${done(e)?'on':''}" data-a="chk" data-id="${e.id}" aria-pressed="${done(e)}" aria-label="${e.n} 완료">${ic('check',3)}</button>`;
 const who=w=>{const p=S.pp.find(x=>x.id===w)||S.pp[0];return{n:p.n,col:PC[p.c]}};
@@ -193,8 +200,8 @@ const wopt=s=>[...S.pp.map(p=>[p.id,p.n+(p.id==='me'?' (나)':'')]),['all','함�
 const stS=g=>{const G=vis().filter(e=>e.st===g.k);return G.every(done)?'dn':g===curStg()?'cur':'fu'};
 const stI=(g,st)=>st==='dn'?ic('check',3):g.k;
 const shortA=a=>a.split(' ').pop();
-function metro(){const L=vis().filter(e=>e.big),k=L.findIndex(e=>!done(e));
-return'<div class="metro">'+L.map((e,i)=>`<div class="st ${done(e)?'dn':''} ${i===k?'cur':''}"><i></i><b>${e.mn||e.n}</b><span>${md(dt(e))}</span></div>`).join('')+'</div>'}
+function metro(){const cs=curStg();
+return'<div class="metro">'+STG.map(g=>{const st=stS(g);return`<div class="st ${st}"><i></i><b>${g.n.replace(' 단계','')}</b><span>${md(dt(E(g.m)))}</span></div>`}).join('')+'</div>'}
 function warn(){const c=E('cl'),m=E('mv');return dt(c)>=dt(m)?'<div class="wr">입주청소 날짜가 이사일과 겹쳐요. 청소는 이사 전날까지 잡아주세요.</div>':''}
 
 const P={};
@@ -206,14 +213,12 @@ P.onb=()=>`<div class="hd"><div><div class="logo">${LOGO}24dday</div><h1 style="
 P.home=()=>{const L=vis(),n=L.filter(done).length,pct=Math.round(n/L.length*100),cs=curStg(),T=L.filter(e=>e.st===cs.k),td=T.filter(done).length,d=dday();
 return`<div class="top"><div class="logo">${LOGO}24dday</div><div class="row" style="gap:8px">
 <button class="inv" data-a="inv" aria-label="일정 함께 관리할 사람 초대하기"><span class="ip">${ic('uplus',2)}</span><span>공유 <b>${S.pp.length}</b>명 참여중</span></button>
-<button class="bell ${S.bell?'':'off'}" data-a="bell" aria-pressed="${!S.bell}" aria-label="${S.bell?'알림 끄기':'알림 켜기'}">${ic('bell',2)}${S.bell?'':`<span class="x">${ic('x',3.5)}</span>`}</button></div></div>
-<div class="hero"><div class="htop"><button class="loc" data-a="addr" aria-label="이사 주소 수정">${ic('pin',2)}${esc(shortA(S.addr.from))} → ${esc(shortA(S.addr.to))}</button><button class="hbt" data-a="addr">날짜 편집 ›</button></div>
+<button class="bell ${S.bell?'':'off'}" data-a="bell" aria-pressed="${!S.bell}" aria-label="${S.bell?'알림 끄기':'알림 켜기'}">${S.bell?ic('bell',2):BELLOFF}</button></div></div>
+<div class="hero"><div class="htop"><button class="loc" data-a="addr" aria-label="이사 주소 수정">${ic('pin',2)}${esc(shortA(S.addr.from))} → ${esc(shortA(S.addr.to))}</button><button class="hbt" data-a="addr">수정</button></div>
 <div class="hs" style="margin-top:18px">${md(S.base)} 잔금일</div><div class="big">${d>0?'D-'+d:d===0?'D-day':'D+'+(-d)}<span>${d>0?'일 남음':''}</span></div>
-<span class="nowc">지금은 ${cs.n}</span>
 <div class="hdv"></div>
 <div class="pc"><span>진행률</span><b>${pct}%</b></div><div class="yb"><i style="width:${pct}%"></i></div>
-<div class="row sp" style="margin-top:12px"><span class="hs">지금까지 <b>${n}개</b> 완료 · 전체 ${L.length}개</span><span class="avs">${S.pp.map(p=>av(p.id)).join('')}</span></div></div>
-${metro()}
+${metro()}</div>
 <div class="c"><div class="shd"><div class="sh2"><span class="ti sm yl">${BOLT}</span>지금 챙길 일</div><span class="ch">${cs.n} ${td}/${T.length}</span></div>
 ${T.map(e=>`<div class="li">${cb(e)}<div><div class="nm ${done(e)?'dnx':''}">${e.n}</div><small>${md(dt(e))} · ${done(e)?'완료':dl(e)}</small></div>${bd(e.w)}</div>`).join('')}</div>
 <div class="c"><div class="shd" style="margin-bottom:18px"><div class="sh2"><span class="ti sm">${ic('tl')}</span>단계별 주요일정</div><a data-a="go" data-p="tl" data-s="list">자세히 보기 ›</a></div>
@@ -225,7 +230,7 @@ return`<button class="stp ${st}" data-a="go" data-p="tl" data-s="list"><div clas
 P.tl=()=>{const L=vis();
 return`<div class="hd"><div><h2>일정</h2><p class="sb" style="margin:6px 0 0">단계별 체크리스트로 할 일을 하나씩 챙겨요</p></div><button class="addb" data-a="add" aria-label="할 일 추가">${ic('plus',2.4)}</button></div>`+warn()+
 STG.map(g=>{const T=L.filter(e=>e.st===g.k),d=T.filter(done).length,st=stS(g);
-return`<div class="c g-${st}"><div class="sgh"><i>${stI(g,st)}</i><b>${g.n}</b>${st==='dn'?'<span class="ch n">완료</span>':st==='cur'?'<span class="ch">진행 중</span>':'<span class="ch n">예정</span>'}<small>${d}/${T.length}</small></div>
+return`<div class="c g-${st}"><div class="sgh"><i>${stI(g,st)}</i><b>${g.n}</b>${st==='dn'?'<span class="ch g">완료</span>':st==='cur'?'<span class="ch">진행 중</span>':'<span class="ch n">예정</span>'}<small>${d}/${T.length}</small></div>
 ${T.map(e=>`<div class="li">${cb(e)}<div><div class="nm ${done(e)?'dnx':''}">${esc(e.n)}</div><small>${md(dt(e))}${e.f?' · 직접 정함':''} · ${done(e)?'완료':dl(e)}</small></div>${bd(e.w)}<button class="bo" data-a="edit" data-id="${e.id}">수정</button></div>`).join('')}</div>`}).join('')+
 `<div class="c"><button class="btn" style="margin:0" data-a="add">+ 할 일 추가</button></div>`};
 
@@ -236,13 +241,13 @@ return`<div class="hd"><div><h2>자금</h2><p class="sb" style="margin:6px 0 0">
 <div class="c"><div class="shd"><div class="sh2">은행별 보유액 <small style="font-weight:500">(만원)</small></div><button class="pb" data-a="recalc">다시 계산</button></div>${nm.map((n,i)=>`<label>${n}</label><input type="number" inputmode="numeric" data-b="${i}" value="${S.banks[i]}">`).join('')}<p class="sb" style="margin:14px 0 0">금액을 고친 뒤 다시 계산을 눌러 주세요. 계좌 자동 연결은 다음 버전에서 만나요.</p></div>
 <div class="c"><div class="sh2" style="margin-bottom:4px">입출금 계획</div>${Object.keys(S.plan).map(id=>{const e=E(id),p=S.plan[id];return`<div class="li"><div><small style="font-weight:700;color:var(--pd)">${md(dt(e))}</small><div class="nm">${e.mn} · ${esc(p.bank)}</div><small>${esc(p.amt)}</small></div>${bd(e.w)}<button class="bo" data-a="pedit" data-id="${id}">수정</button></div>`}).join('')}</div>`};
 
-P.svc=()=>`<div class="hd"><div><h2>서비스</h2><p class="sb" style="margin:6px 0 0">견적을 보고 메시지나 전화로 바로 문의해요</p></div></div><div class="c gr" style="border-top:0;padding-top:0">${SO.map(k=>{const v=SV[k];return`<button class="tile" data-a="svc" data-k="${k}"><span class="ti">${ic(v.i)}</span>${v.n}<small>견적 확인</small></button>`}).join('')}</div>`;
+P.svc=()=>`<div class="hd"><div><h2>서비스</h2><p class="sb" style="margin:6px 0 0">견적을 보고 메시지나 전화로 바로 문의해요</p></div></div><div class="c gr" style="border-top:0;padding-top:0">${SO.map(k=>{const v=SV[k];return`<button class="tile" data-a="svc" data-k="${k}"><span class="ti" style="color:${v.col}">${ic(v.i,2.1)}</span>${v.n}<small>견적 확인 ›</small></button>`}).join('')}</div>`;
 
 P.q=()=>{const v=SV[S.svc];
-return`<div class="hd"><div><a data-a="go" data-p="svc">‹ 서비스</a><h2 style="margin-top:8px">${v.n}</h2></div></div>
+return`<div class="hd"><div><a class="back" data-a="go" data-p="svc"><span>‹</span>뒤로</a><h2 style="margin-top:8px">${v.n}</h2></div></div>
 <div class="est dk"><small style="font-weight:600">예상 견적</small><div id="est" class="v"></div><small>실제 견적은 업체마다 달라요.</small></div>
 <div class="c" style="border-top:0;padding-top:8px">${v.f.map(f=>f[2]==='n'?`<label>${f[1]}</label><input type="number" inputmode="numeric" data-q="${f[0]}" value="${S.q[f[0]]}">`:f[2]==='m'?`<label>${f[1]}</label><div class="chips">${f[3].map(o=>`<button class="${S.q[f[0]].includes(o)?'on':''}" data-a="qm" data-k="${f[0]}" data-v="${o}" aria-pressed="${S.q[f[0]].includes(o)}">${o}</button>`).join('')}</div>`:`<label>${f[1]}</label><select data-q="${f[0]}">${f[3].map(o=>`<option ${S.q[f[0]]===o?'selected':''}>${o}</option>`).join('')}</select>`).join('')}<label>희망 날짜</label><input type="date" data-q="dt" value="${S.q.dt}"></div>
-<div class="c"><div class="sh2" style="margin-bottom:4px">업체에 문의하기</div>${[['A','4.9','212'],['B','4.7','96'],['C','4.6','58']].map(x=>`<div class="li"><div><div class="nm">${v.v} ${x[0]}</div><small>★ ${x[1]} · 후기 ${x[2]}개</small></div><button class="bo" style="background:var(--lav);color:var(--pd)" data-a="msg" data-v="${v.v} ${x[0]}">메시지</button><button class="bo" data-a="call" data-v="${v.v} ${x[0]}">전화</button></div>`).join('')}</div>
+<div class="c"><div class="sh2" style="margin-bottom:4px">업체에 문의하기</div>${VN[S.svc].map((x,i)=>[x,['4.9','4.7','4.6'][i],['212','96','58'][i]]).map(x=>`<div class="li"><div><div class="nm">${x[0]}</div><small>★ ${x[1]} · 후기 ${x[2]}개</small></div><button class="bo" style="background:var(--lav);color:var(--pd)" data-a="msg" data-v="${x[0]}">메시지</button><button class="bo" data-a="call" data-v="${x[0]}">전화</button></div>`).join('')}</div>
 <div class="c"><b style="font-size:17px">${v.n} 업체이신가요?</b><p class="sb" style="margin:6px 0 0">24dday에 업체를 등록하면 이사 준비 중인 고객에게 견적을 보낼 수 있어요.</p><button class="btn gy" data-a="reg">업체 등록 문의하기</button></div>`};
 
 P.my=()=>{const me=S.pp[0],L=vis(),mine=L.filter(e=>e.w==='me'),md2=mine.filter(done).length,O=S.pp.slice(1);
