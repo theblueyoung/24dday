@@ -9,6 +9,18 @@
 - 그 밖에 "깃허브에 올려줘" 또는 작업 중 저장 → 작업용 공간(브랜치)에 올린다. 메인이라고 말하지 않는 한 메인에는 올리지 않는다.
 - 작업용 공간에는 말하지 않아도 작업할 때마다 알아서 올려도 된다.
 
+## 피그마 업데이트 규칙
+- **"피그마 업데이트해줘"**라고 하면 → 아래를 끝까지 다 한다 (중간에 따로 묻지 않음, 로그인이 필요할 때만 말하기).
+  1. 바뀐 내용이 깃허브 메인에 없으면 먼저 알려 주고, 사용자가 원하면 메인에 올린다 (GitHub Pages가 메인 기준이라서)
+  2. Pages 새 빌드가 끝났는지 확인
+  3. 피그마 파일(https://www.figma.com/design/3lkHayGMZZdkF8h4UITjxU) 열기 → html.to.design 플러그인 → `https://theblueyoung.github.io/24dday/figma/screens.html?v=날짜` Import
+  4. 브라우저 콘솔에서 `figma/prototype.js` 실행 → 화면 25개 정리 + 스크롤/하단 메뉴 고정 + 버튼 연결 (기존 "24dday 화면 · 프로토타입" 섹션은 새것으로 바뀜)
+  5. 아이콘이 바뀌었으면 피그마의 "24dday 아이콘" 판도 `figma/icons/` 기준으로 다시 만든다
+  6. 프로토타입 미리보기에서 몇 군데 눌러 보고 결과를 알려 준다
+- 화면이나 버튼이 추가·변경되면 `figma/prototype.js`의 연결 규칙(R)도 같이 고친다.
+- 미리보기 주소(창 크기에 맞춤): https://www.figma.com/proto/3lkHayGMZZdkF8h4UITjxU/Untitled?node-id=3-3723&starting-point-node-id=3-3723&scaling=scale-down
+  (다시 만들면 01 랜딩의 node-id가 바뀌므로, 새 id로 이 주소를 고쳐 둔다)
+
 ## 프로젝트
 - `index.html`: 이사 관리 앱 프로토타입 (파일 하나, 업체 사진도 안에 들어 있음)
 - `PLANNING.md`: 기획 노트

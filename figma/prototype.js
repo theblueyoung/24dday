@@ -1,0 +1,113 @@
+// 24dday 피그마 프로토타입 만들기 스크립트
+// 쓰는 법: html.to.design으로 screens.html을 불러온 직후, 피그마 파일을 연 브라우저의 개발자 콘솔에서 이 파일 내용을 실행.
+// 하는 일:
+//  1) 불러온 화면 모음(theblueyoung.github.io 로 시작하는 섹션)에서 화면 25개를 꺼내
+//     "24dday 화면 · 프로토타입" 섹션에 휴대폰 크기(390×844)로 5줄 배치 (같은 이름 섹션이 있으면 지우고 새로 만듦)
+//  2) 긴 화면은 위아래 스크롤 + 하단 메뉴 고정
+//  3) 버튼 연결(누르면 해당 화면으로 이동), 시작 화면 = 01 랜딩
+// 화면이나 버튼이 바뀌면 아래 R(연결 규칙)을 고쳐 주세요.
+
+(async () => {
+  const page = figma.currentPage;
+  const gal = page.children.find(n => n.type === 'SECTION' && n.name.startsWith('theblueyoung'));
+  if (!gal) throw new Error('불러온 화면 모음 섹션이 없어요. 먼저 html.to.design으로 screens.html을 불러오세요.');
+  const old = page.children.find(n => n.name === '24dday 화면 · 프로토타입');
+  const pos = old ? { x: old.x, y: old.y } : { x: gal.x, y: gal.y };
+  if (old) old.remove();
+
+  // 1) 화면 꺼내서 배치
+  const root = gal.children[0];
+  const secs = root.children.filter(n => n.name === 'Section');
+  const ns = figma.createSection();
+  ns.name = '24dday 화면 · 프로토타입';
+  ns.x = pos.x; ns.y = pos.y;
+  const COLS = 5, W = 390, H = 844, GX = 120, GY = 200, PAD = 120;
+  secs.forEach((s, i) => {
+    const title = s.children.find(c => c.type === 'TEXT').characters;
+    const scr = s.children.find(c => c.type !== 'TEXT');
+    ns.appendChild(scr);
+    scr.name = title;
+    scr.x = PAD + (i % COLS) * (W + GX);
+    scr.y = PAD + Math.floor(i / COLS) * (H + GY);
+    scr.clipsContent = true;
+  });
+  const rows = Math.ceil(secs.length / COLS);
+  ns.resizeWithoutConstraints(PAD * 2 + COLS * W + (COLS - 1) * GX, PAD * 2 + rows * H + (rows - 1) * GY);
+  gal.remove();
+
+  // 2) 긴 화면: 스크롤 + 하단 메뉴 고정
+  for (const f of ns.children) {
+    if (f.height <= H + 1) continue;
+    const nav = f.findOne(n => n.name === 'Nav');
+    if (nav) { f.appendChild(nav); nav.x = 0; nav.y = H - nav.height; f.numberOfFixedChildren = 1; }
+    f.resizeWithoutConstraints(W, H);
+    f.overflowDirection = 'VERTICAL';
+  }
+
+  // 3) 버튼 연결
+  const S = {}; ns.children.forEach(f => S[f.name.slice(0, 2)] = f);
+  const T = n => n.type === 'TEXT' ? n.characters : (n.findAll ? n.findAll(x => x.type === 'TEXT').map(x => x.characters).join('/') : '');
+  const lab = n => n.name + ' {' + T(n) + '}';
+  const allB = f => f.findAll(n => /^(Button|Link)/.test(n.name));
+  let count = 0;
+  const go = async (n, d) => {
+    await n.setReactionsAsync([{ trigger: { type: 'ON_CLICK' }, actions: [{ type: 'NODE', destinationId: S[d].id, navigation: 'NAVIGATE', transition: { type: 'DISSOLVE', easing: { type: 'EASE_OUT' }, duration: 0.2 }, preserveScrollPosition: false, resetVideoPosition: false }] }]);
+    count++;
+  };
+  const has = s => n => lab(n).includes(s);
+  const eq = s => n => T(n).trim() === s;
+  const NAV = [[eq('홈'), '06'], [eq('일정'), '10'], [eq('자금'), '14'], [eq('서비스'), '16'], [eq('마이'), '20']];
+  const HOME = [[has('초대하기'), '09'], [has('알림 목록'), '08'], [has('자세히 보기'), '10'], [n => /^\d단계/.test(T(n)), '10'], [eq('수정'), '21'], ...NAV];
+  // 연결 규칙: 화면번호: [[어떤 버튼, 갈 화면], ...]  (위에서부터 먼저 맞는 규칙 적용)
+  const R = {
+    '01': [[n => true, '02']],
+    '02': [[has('앞 화면으로'), '01'], [eq('시작하기'), '03']],
+    '03': [[has('앞 화면으로'), '02'], [has('→ 로그인'), '04'], [has('가입하고 이사 등록하기'), '05']],
+    '04': [[has('앞 화면으로'), '02'], [has('→ 회원가입'), '03']],
+    '05': [[has('앞 화면으로'), '03'], [eq('시작하기'), '07']],
+    '06': HOME,
+    '07': [[has('할 일 날짜가 다가와요'), '10'], ...HOME],
+    '10': [[has('할 일 추가'), '13'], [eq('수정'), '11'], ...NAV],
+    '14': [[eq('수정'), '15'], ...NAV],
+    '16': [[eq('상담 신청'), '19'], ...NAV],
+    '17': [[eq('상담 신청'), '19'], ...NAV],
+    '18': [[eq('상담 신청'), '19'], ...NAV],
+    '20': [[has('공유자 추가'), '09'], [eq('로그아웃'), '25'], ...NAV],
+    '08': [[has('모두 읽음'), '06'], [has('알림 설정'), '20'], [has('닫기'), '06'], [has('할 일 날짜'), '10'], [has('할 일을 끝냈어요'), '10'], [has('익스프레스'), '17'], [has('법무사사무소'), '16'], [has('참여했어요'), '20']],
+    '09': [[has('초대 링크 복사'), '06'], [has('공유자 관리로 가기'), '20'], [has('닫기'), '06']],
+    '11': [[has('저장하기'), '10'], [has('삭제하기'), '12'], [has('닫기'), '10']],
+    '12': [[has('삭제하기'), '10'], [has('취소'), '11'], [has('닫기'), '10']],
+    '13': [[has('추가하기'), '10'], [has('닫기'), '10']],
+    '15': [[has('저장하기'), '14'], [has('닫기'), '14']],
+    '19': [[has('상담 신청 보내기'), '18'], [has('전화로 문의하기'), '18'], [has('닫기'), '18']],
+    '21': [[has('저장하기'), '20'], [has('닫기'), '20']],
+    '22': [[has('저장하기'), '20'], [has('회원 탈퇴'), '23'], [has('닫기'), '20']],
+    '23': [[has('탈퇴하기'), '01'], [has('취소'), '22'], [has('닫기'), '22']],
+    '24': [[has('저장하기'), '20'], [has('공유자 삭제하기'), '20'], [has('닫기'), '20']],
+    '25': [[eq('로그아웃'), '04'], [has('취소'), '20'], [has('닫기'), '20']],
+  };
+  // 창(팝업) 화면은 뒤에 깔린 기본 화면 버튼은 빼고, 창 안의 버튼만 연결
+  const BASE = { '08': '06', '09': '06', '11': '10', '12': '10', '13': '10', '15': '14', '19': '18', '21': '20', '22': '20', '23': '20', '24': '20', '25': '20' };
+  for (const k of Object.keys(R)) {
+    let B = allB(S[k]);
+    if (BASE[k]) B = B.slice(allB(S[BASE[k]]).length);
+    if (k === '01') B = B.slice(0, 1);
+    for (const n of B) {
+      if (/ 완료$/.test(n.name)) continue; // 체크박스는 연결 안 함
+      const r = R[k].find(([p]) => p(n));
+      if (r && r[1] !== k) await go(n, r[1]);
+    }
+  }
+  // 로그인 화면: 아래쪽 '로그인' 버튼 → 홈
+  { const b = allB(S['04']).filter(eq('로그인')); await go(b[b.length - 1], '06'); }
+  // 마이페이지 수정 버튼 3개: 프로필, 이사 정보, 공유자
+  { const e = allB(S['20']).filter(eq('수정')); await go(e[0], '22'); await go(e[1], '21'); await go(e[2], '24'); }
+  // 서비스 탭(법무사/이삿짐/인테리어)
+  for (const k of ['16', '17', '18']) for (const [t, d] of [['법무사', '16'], ['이삿짐', '17'], ['인테리어', '18']]) {
+    if (d === k) continue;
+    const n = S[k].findOne(x => x.type === 'TEXT' && x.characters === t && /^Tab/.test(x.parent.name));
+    if (n) await go(n, d);
+  }
+  page.flowStartingPoints = [{ nodeId: S['01'].id, name: '24dday 앱' }];
+  console.log('연결 ' + count + '개 완료');
+})();
