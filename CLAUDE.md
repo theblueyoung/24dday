@@ -14,11 +14,14 @@
   1. 바뀐 내용이 깃허브 메인에 없으면 먼저 알려 주고, 사용자가 원하면 메인에 올린다 (GitHub Pages가 메인 기준이라서)
   2. Pages 새 빌드가 끝났는지 확인
   3. 피그마 파일(https://www.figma.com/design/3lkHayGMZZdkF8h4UITjxU) 열기 → html.to.design 플러그인 → `https://theblueyoung.github.io/24dday/figma/screens.html?v=날짜` Import
-  4. 브라우저 콘솔에서 `figma/prototype.js` 실행 → 화면 정리(지금 28개) + 스크롤/하단 메뉴 고정 + 버튼 연결 (기존 "24dday 화면 · 프로토타입" 섹션은 새것으로 바뀜)
+  4. 브라우저 콘솔에서 `figma/prototype.js` 실행 → 화면 정리(지금 45개 + 단계별 복사본 32개) + 스크롤/하단 메뉴 고정 + 버튼 연결 + 단계 체크리스트 (기존 섹션들은 새것으로 바뀜)
+     - 한 번에 실행하면 시간이 오래 걸려서 끊길 수 있음 → `window.PROTO_STEP`을 'layout' → 'check:06-1' … 'check:10-4' → 'toggles' 순서로 바꿔 가며 나눠 실행
+     - 피그마 무료 요금제라 '변수·조건' 기능은 못 씀 → 단계별 화면 + 체크리스트 컴포넌트로 단계 넘어가기를 만듦
+     - html.to.design 무료는 한 달에 불러오기 횟수가 정해져 있음(2026-11-06 기준 2번 남음)
   5. 아이콘이 바뀌었으면 피그마의 "24dday 아이콘" 판도 `figma/icons/` 기준으로 다시 만든다
   6. 프로토타입 미리보기에서 몇 군데 눌러 보고 결과를 알려 준다
 - 화면이나 버튼이 추가·변경되면 `figma/prototype.js`의 연결 규칙(R)도 같이 고친다.
-- 미리보기 주소(창 크기에 맞춤): https://www.figma.com/proto/3lkHayGMZZdkF8h4UITjxU/24dday?node-id=22-4097&starting-point-node-id=22-4097&scaling=scale-down
+- 미리보기 주소(창 크기에 맞춤): https://www.figma.com/proto/3lkHayGMZZdkF8h4UITjxU/24dday?node-id=52-443&starting-point-node-id=52-443&scaling=scale-down
   (다시 만들면 01 랜딩의 node-id가 바뀌므로, 새 id로 이 주소를 고쳐 둔다)
 
 ## 프로젝트

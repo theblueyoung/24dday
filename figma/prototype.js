@@ -216,6 +216,7 @@
       base.children.forEach(n => n.y -= top);
       base.resizeWithoutConstraints(F.width, bot - top);
       base.name = '바탕';
+      if (!first) base.strokes = [];   // 아래 묶음에는 섹션 위쪽 회색 띠(테두리)를 빼기
       const bRows = rowsIn(base); const bCnt = first ? counterOf(base) : null;
       const m = idx.length, full = (1 << m) - 1;
       const comps = [];
